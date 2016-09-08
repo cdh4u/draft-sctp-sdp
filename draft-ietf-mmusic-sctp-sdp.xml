@@ -5,7 +5,7 @@
 <?rfc compact="yes" ?>
 <?rfc subcompact="no" ?>
 <?rfc sortrefs="no" ?>
-<rfc category="std" docName="draft-ietf-mmusic-sctp-sdp-17" ipr="trust200902">
+<rfc category="std" docName="draft-ietf-mmusic-sctp-sdp-18" ipr="trust200902">
 
 <?xml-stylesheet type="text/xsl" href="rfc2629.xslt" ?>
 
@@ -26,6 +26,21 @@
 			</postal>
 			<email>christer.holmberg@ericsson.com</email>
 		</address>
+    </author>
+
+    <author fullname="Roman Shpount" initials="R.S." surname="Shpount">
+        <organization abbrev="TurboBridge">TurboBridge</organization>
+        <address>
+            <postal>
+                <street>4905 Del Ray Avenue, Suite 300</street>
+                <city>Bethesda</city>
+                <region>MD</region>
+                <code>20814</code>
+                <country>USA</country>
+            </postal>
+            <phone>+1 (240) 292-6632</phone>
+            <email>rshpount@turbobridge.com</email>
+        </address>
     </author>
 
     <author initials="S." surname="Loreto" fullname="Salvatore Loreto">
@@ -523,11 +538,16 @@
         The TCP connection is managed according to the procedures in <xref target="RFC4145"/>. Hence,
         the SDP ‘setup’ attribute is used to negotiate the TCP roles (‘active’ and ‘passive’), and
         the SDP ‘connection’ attribute is used to indicate whether to use an existing TCP connection,
-        or create a new one.
+        or create a new one. The SDP 'setup' attribute 'holdconn' value MUST NOT be used.
       </t>
       <t>
         NOTE: A change of the TCP roles will also trigger a re-establishment of the DTLS association, according
         to the procedures in <xref target="I-D.ietf-mmusic-dtls-sdp"/>.
+      </t>
+      <t>
+        NOTE: As specified in <xref target="I-D.ietf-mmusic-dtls-sdp"/>, usage of the SDP 'setup' attribute
+        'holdconn' value is not allowed. Therefore this specification also forbids usage of the attribute
+        value for TCP, as DTLS is transported on top of TCP.
       </t>
     </section>
   </section>
@@ -971,7 +991,7 @@
 
 	<section title="Acknowledgments">
 		<t>
-			The authors wish to thank Roman Shpount, Harald Alvestrand, Randell Jesup, Paul Kyzivat,
+			The authors wish to thank Harald Alvestrand, Randell Jesup, Paul Kyzivat,
 			Michael Tuexen, Juergen Stoetzer-Bradler, Flemming Andreasen and Ari Keranen for
 			their comments and useful feedback.
 		</t>
@@ -979,6 +999,12 @@
 
 	<section title="">
 		<t>[RFC EDITOR NOTE: Please remove this section when publishing]</t>
+    <t>Changes from draft-ietf-mmusic-sctp-sdp-17
+			<list style="symbols">
+        <t>Disallow usage of SDP 'setup' attribute 'holdconn' value.</t>
+				<t>Roman Shpount added as co-editor.</t>
+			</list>
+		</t>
     <t>Changes from draft-ietf-mmusic-sctp-sdp-15
 			<list style="symbols">
 				<t>Chapter about SCTP, DTLS and TCP association/connection management modified.</t>

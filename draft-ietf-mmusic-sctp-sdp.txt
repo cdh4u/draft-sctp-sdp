@@ -3,15 +3,18 @@
 
 
 MMUSIC                                                       C. Holmberg
-Internet-Draft                                                 S. Loreto
-Intended status: Standards Track                            G. Camarillo
-Expires: March 5, 2017                                          Ericsson
-                                                       September 1, 2016
+Internet-Draft                                                  Ericsson
+Intended status: Standards Track                              R. Shpount
+Expires: March 12, 2017                                      TurboBridge
+                                                               S. Loreto
+                                                            G. Camarillo
+                                                                Ericsson
+                                                       September 8, 2016
 
 
 Stream Control Transmission Protocol (SCTP)-Based Media Transport in the
                    Session Description Protocol (SDP)
-                     draft-ietf-mmusic-sctp-sdp-17
+                     draft-ietf-mmusic-sctp-sdp-18
 
 Abstract
 
@@ -43,20 +46,22 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on March 5, 2017.
+   This Internet-Draft will expire on March 12, 2017.
+
+
+
+
+
+
+Holmberg, et al.         Expires March 12, 2017                 [Page 1]
+
+Internet-Draft    The SCTP protocol identifier for SDP    September 2016
+
 
 Copyright Notice
 
    Copyright (c) 2016 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
-
-
-
-
-Holmberg, et al.          Expires March 5, 2017                 [Page 1]
-
-Internet-Draft    The SCTP protocol identifier for SDP    September 2016
-
 
    This document is subject to BCP 78 and the IETF Trust's Legal
    Provisions Relating to IETF Documents
@@ -77,7 +82,7 @@ Table of Contents
      4.1.  General . . . . . . . . . . . . . . . . . . . . . . . . .   4
      4.2.  Protocol Identifiers  . . . . . . . . . . . . . . . . . .   5
      4.3.  Media Format Management . . . . . . . . . . . . . . . . .   5
-     4.4.  Syntax  . . . . . . . . . . . . . . . . . . . . . . . . .   5
+     4.4.  Syntax  . . . . . . . . . . . . . . . . . . . . . . . . .   6
        4.4.1.  General . . . . . . . . . . . . . . . . . . . . . . .   6
        4.4.2.  ABNF  . . . . . . . . . . . . . . . . . . . . . . . .   6
      4.5.  Example . . . . . . . . . . . . . . . . . . . . . . . . .   6
@@ -94,30 +99,30 @@ Table of Contents
    9.  Association And Connection Management . . . . . . . . . . . .   9
      9.1.  General . . . . . . . . . . . . . . . . . . . . . . . . .   9
      9.2.  SDP sendrecv/sendonly/recvonly/inactive Attribute . . . .   9
-     9.3.  SCTP Association  . . . . . . . . . . . . . . . . . . . .   9
+     9.3.  SCTP Association  . . . . . . . . . . . . . . . . . . . .  10
      9.4.  DTLS Association (UDP/DTLS/SCTP And TCP/DTLS/SCTP)  . . .  10
-     9.5.  TCP Connection (TCP/DTLS/SCTP)  . . . . . . . . . . . . .  10
+     9.5.  TCP Connection (TCP/DTLS/SCTP)  . . . . . . . . . . . . .  11
    10. SDP Offer/Answer Procedures . . . . . . . . . . . . . . . . .  11
      10.1.  General  . . . . . . . . . . . . . . . . . . . . . . . .  11
      10.2.  Generating the Initial SDP Offer . . . . . . . . . . . .  11
      10.3.  Generating the SDP Answer  . . . . . . . . . . . . . . .  12
-     10.4.  Offerer Processing of the SDP Answer . . . . . . . . . .  12
-     10.5.  Modifying the Session  . . . . . . . . . . . . . . . . .  13
-   11. Multihoming Considerations  . . . . . . . . . . . . . . . . .  13
-   12. NAT Considerations  . . . . . . . . . . . . . . . . . . . . .  14
-     12.1.  General  . . . . . . . . . . . . . . . . . . . . . . . .  14
 
 
 
-Holmberg, et al.          Expires March 5, 2017                 [Page 2]
+Holmberg, et al.         Expires March 12, 2017                 [Page 2]
 
 Internet-Draft    The SCTP protocol identifier for SDP    September 2016
 
 
+     10.4.  Offerer Processing of the SDP Answer . . . . . . . . . .  13
+     10.5.  Modifying the Session  . . . . . . . . . . . . . . . . .  13
+   11. Multihoming Considerations  . . . . . . . . . . . . . . . . .  13
+   12. NAT Considerations  . . . . . . . . . . . . . . . . . . . . .  14
+     12.1.  General  . . . . . . . . . . . . . . . . . . . . . . . .  14
      12.2.  ICE Considerations . . . . . . . . . . . . . . . . . . .  14
    13. Examples  . . . . . . . . . . . . . . . . . . . . . . . . . .  15
      13.1.  Establishment of UDP/DTLS/SCTP association . . . . . . .  15
-   14. Security Considerations . . . . . . . . . . . . . . . . . . .  15
+   14. Security Considerations . . . . . . . . . . . . . . . . . . .  16
    15. IANA Considerations . . . . . . . . . . . . . . . . . . . . .  16
      15.1.  New SDP proto values . . . . . . . . . . . . . . . . . .  16
      15.2.  New SDP Attributes . . . . . . . . . . . . . . . . . . .  16
@@ -127,7 +132,7 @@ Internet-Draft    The SCTP protocol identifier for SDP    September 2016
    16. Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .  18
    17. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  18
    18. References  . . . . . . . . . . . . . . . . . . . . . . . . .  20
-     18.1.  Normative References . . . . . . . . . . . . . . . . . .  20
+     18.1.  Normative References . . . . . . . . . . . . . . . . . .  21
      18.2.  Informative References . . . . . . . . . . . . . . . . .  22
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  23
 
@@ -156,19 +161,21 @@ Internet-Draft    The SCTP protocol identifier for SDP    September 2016
    negotiate and establish SCTP associations, and how to indicate the
    SCTP application usage.
 
+
+
+
+
+Holmberg, et al.         Expires March 12, 2017                 [Page 3]
+
+Internet-Draft    The SCTP protocol identifier for SDP    September 2016
+
+
    NOTE: TLS is designed to run on top of a byte-stream oriented
    transport protocol providing a reliable, in-sequence delivery like
    TCP.  [RFC6083] presents serious limitations with transporting TLS on
    top of SCTP.  Therefore, defining a mechanism to negotiate media
    streams transported using TLS on top of SCTP, i.e. 'SCTP/TLS', is
    outside the scope of this specification.
-
-
-
-Holmberg, et al.          Expires March 5, 2017                 [Page 3]
-
-Internet-Draft    The SCTP protocol identifier for SDP    September 2016
-
 
 2.  Conventions
 
@@ -211,6 +218,14 @@ Internet-Draft    The SCTP protocol identifier for SDP    September 2016
 
        m=<media> <port> <proto> <fmt> ...
 
+
+
+
+Holmberg, et al.         Expires March 12, 2017                 [Page 4]
+
+Internet-Draft    The SCTP protocol identifier for SDP    September 2016
+
+
    The 'SCTP', 'UDP/DTLS/SCTP' and 'TCP/DTLS/SCTP' proto values are
    similar to both the 'UDP' and 'TCP' proto values in that they only
    describe the transport-layer protocol and not the upper-layer
@@ -218,14 +233,6 @@ Internet-Draft    The SCTP protocol identifier for SDP    September 2016
 
    NOTE: When the 'UDP/DTLS/SCTP' and 'TCP/DTLS/SCTP' proto values are
    used, the underlying transport protocol is respectively UDP and TCP;
-
-
-
-Holmberg, et al.          Expires March 5, 2017                 [Page 4]
-
-Internet-Draft    The SCTP protocol identifier for SDP    September 2016
-
-
    SCTP is carried on top of DTLS which is on top of those transport-
    layer protocols.
 
@@ -265,22 +272,21 @@ Internet-Draft    The SCTP protocol identifier for SDP    September 2016
    values describes the generic application usage of the entire SCTP
    association, including the associated SCTP streams.
 
+
+
+
+
+
+Holmberg, et al.         Expires March 12, 2017                 [Page 5]
+
+Internet-Draft    The SCTP protocol identifier for SDP    September 2016
+
+
    NOTE: A mechanism on how to describe, and manage, individual SCTP
    streams within an SCTP association, is outside the scope of this
    specification.
 
 4.4.  Syntax
-
-
-
-
-
-
-
-Holmberg, et al.          Expires March 5, 2017                 [Page 5]
-
-Internet-Draft    The SCTP protocol identifier for SDP    September 2016
-
 
 4.4.1.  General
 
@@ -324,19 +330,17 @@ Internet-Draft    The SCTP protocol identifier for SDP    September 2016
    This section defines a new SDP media-level attribute, 'sctp-port'.
    The attribute can be associated with an SDP media description (m-
    line) with a 'UDP/DTLS/SCTP' or a 'TCP/DTLS/SCTP' proto value.  In
-   that case the m- line port value indicates the port of the underlying
-   transport layer protocol (UDP or TCP), and the 'sctp-port' value
-   indicates the SCTP port.
 
 
 
-
-
-
-Holmberg, et al.          Expires March 5, 2017                 [Page 6]
+Holmberg, et al.         Expires March 12, 2017                 [Page 6]
 
 Internet-Draft    The SCTP protocol identifier for SDP    September 2016
 
+
+   that case the m- line port value indicates the port of the underlying
+   transport layer protocol (UDP or TCP), and the 'sctp-port' value
+   indicates the SCTP port.
 
    No default value is defined for the SDP sctp-port attribute.
    Therefore, if the attribute is not present, the associated m- line
@@ -381,18 +385,19 @@ Internet-Draft    The SCTP protocol identifier for SDP    September 2016
    is willing to receive on the SCTP association associated with the m-
    line.  Different attribute values can be used in each direction.
 
+
+
+
+
+Holmberg, et al.         Expires March 12, 2017                 [Page 7]
+
+Internet-Draft    The SCTP protocol identifier for SDP    September 2016
+
+
    The remote peer MUST assume that larger messages will be rejected by
    the SCTP endpoint.  SCTP endpoints need to decide on appropriate
    behavior in case a message that exceeds the maximum size needs to be
    sent.
-
-
-
-
-Holmberg, et al.          Expires March 5, 2017                 [Page 7]
-
-Internet-Draft    The SCTP protocol identifier for SDP    September 2016
-
 
    If the SDP 'max-message-size' attribute contains a maximum message
    size value of zero, it indicates the SCTP endpoint will handle
@@ -437,19 +442,19 @@ Internet-Draft    The SCTP protocol identifier for SDP    September 2016
    o  SCTP on top of DTLS is realized according to the procedures
       defined in [I-D.ietf-tsvwg-sctp-dtls-encaps]; and
 
+
+
+
+Holmberg, et al.         Expires March 12, 2017                 [Page 8]
+
+Internet-Draft    The SCTP protocol identifier for SDP    September 2016
+
+
    o  DTLS on top of UDP is realized according to the procedures in
       defined in [RFC6347].
 
    NOTE: While [I-D.ietf-tsvwg-sctp-dtls-encaps] allows multiple SCTP
    associations on top of a single DTLS association, the procedures in
-
-
-
-Holmberg, et al.          Expires March 5, 2017                 [Page 8]
-
-Internet-Draft    The SCTP protocol identifier for SDP    September 2016
-
-
    this specification only supports the negotiation of a single SCTP
    association on top of any given DTLS association.
 
@@ -492,20 +497,20 @@ Internet-Draft    The SCTP protocol identifier for SDP    September 2016
    SCTP association usage have been defined, SDP direction attributes
    MUST be discarded if present.
 
+
+
+
+
+Holmberg, et al.         Expires March 12, 2017                 [Page 9]
+
+Internet-Draft    The SCTP protocol identifier for SDP    September 2016
+
+
 9.3.  SCTP Association
 
    When an SCTP association is established/re-established, both SCTP
    endpoints MUST initiate the SCTP association (i.e. both SCTP
    endpoints take the 'active' role), and MUST use the same SCTP port as
-
-
-
-
-Holmberg, et al.          Expires March 5, 2017                 [Page 9]
-
-Internet-Draft    The SCTP protocol identifier for SDP    September 2016
-
-
    client port and server port (in order to prevent two separate SCTP
    associations from being established).
 
@@ -548,26 +553,32 @@ Internet-Draft    The SCTP protocol identifier for SDP    September 2016
    candidate pair will not trigger the establishment of a new DTLS
    association.
 
+
+
+
+
+Holmberg, et al.         Expires March 12, 2017                [Page 10]
+
+Internet-Draft    The SCTP protocol identifier for SDP    September 2016
+
+
 9.5.  TCP Connection (TCP/DTLS/SCTP)
 
    The TCP connection is managed according to the procedures in
    [RFC4145].  Hence, the SDP 'setup' attribute is used to negotiate the
    TCP roles ('active' and 'passive'), and the SDP 'connection'
-
-
-
-
-Holmberg, et al.          Expires March 5, 2017                [Page 10]
-
-Internet-Draft    The SCTP protocol identifier for SDP    September 2016
-
-
    attribute is used to indicate whether to use an existing TCP
-   connection, or create a new one.
+   connection, or create a new one.  The SDP 'setup' attribute
+   'holdconn' value MUST NOT be used.
 
    NOTE: A change of the TCP roles will also trigger a re-establishment
    of the DTLS association, according to the procedures in
    [I-D.ietf-mmusic-dtls-sdp].
+
+   NOTE: As specified in [I-D.ietf-mmusic-dtls-sdp], usage of the SDP
+   'setup' attribute 'holdconn' value is not allowed.  Therefore this
+   specification also forbids usage of the attribute value for TCP, as
+   DTLS is transported on top of TCP.
 
 10.  SDP Offer/Answer Procedures
 
@@ -599,6 +610,14 @@ Internet-Draft    The SCTP protocol identifier for SDP    September 2016
    o  MUST, in the case of UDP/DTLS/SCTP or TCP/DTLS/SCTP, associate an
       SDP setup attribute, with an 'actpass' value, with the m- line;
 
+
+
+
+Holmberg, et al.         Expires March 12, 2017                [Page 11]
+
+Internet-Draft    The SCTP protocol identifier for SDP    September 2016
+
+
    o  MUST, in the case of UDP/DTLS/SCTP or TCP/DTLS/SCTP, associate an
       SDP 'sctp-port' attribute with the m- line;
 
@@ -607,16 +626,6 @@ Internet-Draft    The SCTP protocol identifier for SDP    September 2016
 
    o  MAY associate an SDP 'max-message-size' attribute (Section 6) with
       the m- line.
-
-
-
-
-
-
-Holmberg, et al.          Expires March 5, 2017                [Page 11]
-
-Internet-Draft    The SCTP protocol identifier for SDP    September 2016
-
 
 10.3.  Generating the SDP Answer
 
@@ -658,6 +667,13 @@ Internet-Draft    The SCTP protocol identifier for SDP    September 2016
    MUST NOT initiate the establishment of an SCTP association, or a DTLS
    association, associated with the m- line.
 
+
+
+Holmberg, et al.         Expires March 12, 2017                [Page 12]
+
+Internet-Draft    The SCTP protocol identifier for SDP    September 2016
+
+
 10.4.  Offerer Processing of the SDP Answer
 
    Once the offerer has received the answer, which contains an m- line
@@ -665,14 +681,6 @@ Internet-Draft    The SCTP protocol identifier for SDP    September 2016
    has yet not been established, or if an existing SCTP association is
    to be re-established, initiate the establishement of the SCTP
    association.
-
-
-
-
-Holmberg, et al.          Expires March 5, 2017                [Page 12]
-
-Internet-Draft    The SCTP protocol identifier for SDP    September 2016
-
 
    In the case of UDP/DTLS/SCTP or TCP/DTLS/SCTP, the offerer follows
    the procedures in [I-D.ietf-mmusic-dtls-sdp] regarding the
@@ -714,6 +722,14 @@ Internet-Draft    The SCTP protocol identifier for SDP    September 2016
    SCTP supports multihoming.  An SCTP endpoint is considered multihomed
    if it has more than one IP address on which SCTP can be used.  An
    SCTP endpoint inform the remote peer about its IP addresses using the
+
+
+
+Holmberg, et al.         Expires March 12, 2017                [Page 13]
+
+Internet-Draft    The SCTP protocol identifier for SDP    September 2016
+
+
    address parameters in the INIT/INIT-ACK chunk.  Therefore, when SDP
    is used to describe an SCTP association, while the "c=" line contains
    the address which was used to negotiate the SCTP association,
@@ -721,15 +737,6 @@ Internet-Draft    The SCTP protocol identifier for SDP    September 2016
 
    If an endpoint removes the IP address [RFC5061] that it offered in
    the SDP "c=" line associated with the SCTP association, it MUST send
-
-
-
-
-Holmberg, et al.          Expires March 5, 2017                [Page 13]
-
-Internet-Draft    The SCTP protocol identifier for SDP    September 2016
-
-
    a new Offer, in which the "c=" line contains an IP address which is
    valid within the SCTP association.
 
@@ -771,6 +778,14 @@ Internet-Draft    The SCTP protocol identifier for SDP    September 2016
    When the transport layer protocol is UDP (UDP/DTLS/SCTP), if ICE is
    used, the ICE procedures defined in [RFC5245] are used.
 
+
+
+
+Holmberg, et al.         Expires March 12, 2017                [Page 14]
+
+Internet-Draft    The SCTP protocol identifier for SDP    September 2016
+
+
    When the transport layer protocol is TCP (TCP/DTLS/SCTP), if ICE is
    used, the ICE procedures defined in [RFC6544] are used.
 
@@ -778,14 +793,6 @@ Internet-Draft    The SCTP protocol identifier for SDP    September 2016
    an SCTP association on top of a DTLS association as part of the same
    DTLS association.  Thus, there will only be one DTLS handshake even
    if there are multiple valid candidate pairs, and shifting from one
-
-
-
-Holmberg, et al.          Expires March 5, 2017                [Page 14]
-
-Internet-Draft    The SCTP protocol identifier for SDP    September 2016
-
-
    candidate pair to another will not impact the DTLS association.  If
    new candidates are added, they will also be part of the same DTLS
    association.
@@ -828,19 +835,18 @@ Internet-Draft    The SCTP protocol identifier for SDP    September 2016
 
 
 
+
+
+Holmberg, et al.         Expires March 12, 2017                [Page 15]
+
+Internet-Draft    The SCTP protocol identifier for SDP    September 2016
+
+
 14.  Security Considerations
 
    [RFC4566] defines general SDP security considerations, while
    [RFC3264], [RFC4145] and [RFC4572] define security considerations
    when using the SDP offer/answer mechanism to negotiate media streams.
-
-
-
-
-Holmberg, et al.          Expires March 5, 2017                [Page 15]
-
-Internet-Draft    The SCTP protocol identifier for SDP    September 2016
-
 
    [RFC4960] defines general SCTP security considerations, while
    [RFC6083] defines security considerations when using DTLS on top of
@@ -887,13 +893,7 @@ Internet-Draft    The SCTP protocol identifier for SDP    September 2016
 
 
 
-
-
-
-
-
-
-Holmberg, et al.          Expires March 5, 2017                [Page 16]
+Holmberg, et al.         Expires March 12, 2017                [Page 16]
 
 Internet-Draft    The SCTP protocol identifier for SDP    September 2016
 
@@ -949,7 +949,7 @@ Internet-Draft    The SCTP protocol identifier for SDP    September 2016
 
 
 
-Holmberg, et al.          Expires March 5, 2017                [Page 17]
+Holmberg, et al.         Expires March 12, 2017                [Page 17]
 
 Internet-Draft    The SCTP protocol identifier for SDP    September 2016
 
@@ -987,28 +987,33 @@ Internet-Draft    The SCTP protocol identifier for SDP    September 2016
 
 16.  Acknowledgments
 
-   The authors wish to thank Roman Shpount, Harald Alvestrand, Randell
-   Jesup, Paul Kyzivat, Michael Tuexen, Juergen Stoetzer-Bradler,
-   Flemming Andreasen and Ari Keranen for their comments and useful
-   feedback.
+   The authors wish to thank Harald Alvestrand, Randell Jesup, Paul
+   Kyzivat, Michael Tuexen, Juergen Stoetzer-Bradler, Flemming Andreasen
+   and Ari Keranen for their comments and useful feedback.
 
 17.
 
    [RFC EDITOR NOTE: Please remove this section when publishing]
 
+   Changes from draft-ietf-mmusic-sctp-sdp-17
+
+   o  Disallow usage of SDP 'setup' attribute 'holdconn' value.
+
+   o  Roman Shpount added as co-editor.
+
    Changes from draft-ietf-mmusic-sctp-sdp-15
+
+
+
+Holmberg, et al.         Expires March 12, 2017                [Page 18]
+
+Internet-Draft    The SCTP protocol identifier for SDP    September 2016
+
 
    o  Chapter about SCTP, DTLS and TCP association/connection management
       modified.
 
    o  Removal of SCTP/DTLS.
-
-
-
-Holmberg, et al.          Expires March 5, 2017                [Page 18]
-
-Internet-Draft    The SCTP protocol identifier for SDP    September 2016
-
 
    Changes from draft-ietf-mmusic-sctp-sdp-14
 
@@ -1054,17 +1059,17 @@ Internet-Draft    The SCTP protocol identifier for SDP    September 2016
    o  - Clarify that, if UDP/DTLS/SCTP or TCP/DTLS/SCTP is used, the
       DTLS association is established before the SCTP association.
 
+
+
+Holmberg, et al.         Expires March 12, 2017                [Page 19]
+
+Internet-Draft    The SCTP protocol identifier for SDP    September 2016
+
+
    o  - Clarify that max-message-size value is given in bytes, and that
       different values can be used per direction.
 
    o  - Section on fmtp attribute removed.
-
-
-
-Holmberg, et al.          Expires March 5, 2017                [Page 19]
-
-Internet-Draft    The SCTP protocol identifier for SDP    September 2016
-
 
    o  - Editorial corrections.
 
@@ -1105,22 +1110,24 @@ Internet-Draft    The SCTP protocol identifier for SDP    September 2016
 
 18.  References
 
+
+
+
+
+
+
+
+Holmberg, et al.         Expires March 12, 2017                [Page 20]
+
+Internet-Draft    The SCTP protocol identifier for SDP    September 2016
+
+
 18.1.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
               <http://www.rfc-editor.org/info/rfc2119>.
-
-
-
-
-
-
-Holmberg, et al.          Expires March 5, 2017                [Page 20]
-
-Internet-Draft    The SCTP protocol identifier for SDP    September 2016
-
 
    [RFC3264]  Rosenberg, J. and H. Schulzrinne, "An Offer/Answer Model
               with Session Description Protocol (SDP)", RFC 3264,
@@ -1162,21 +1169,19 @@ Internet-Draft    The SCTP protocol identifier for SDP    September 2016
               DOI 10.17487/RFC5061, September 2007,
               <http://www.rfc-editor.org/info/rfc5061>.
 
+
+
+
+
+Holmberg, et al.         Expires March 12, 2017                [Page 21]
+
+Internet-Draft    The SCTP protocol identifier for SDP    September 2016
+
+
    [RFC5226]  Narten, T. and H. Alvestrand, "Guidelines for Writing an
               IANA Considerations Section in RFCs", BCP 26, RFC 5226,
               DOI 10.17487/RFC5226, May 2008,
               <http://www.rfc-editor.org/info/rfc5226>.
-
-
-
-
-
-
-
-Holmberg, et al.          Expires March 5, 2017                [Page 21]
-
-Internet-Draft    The SCTP protocol identifier for SDP    September 2016
-
 
    [RFC5234]  Crocker, D., Ed. and P. Overell, "Augmented BNF for Syntax
               Specifications: ABNF", STD 68, RFC 5234,
@@ -1217,22 +1222,23 @@ Internet-Draft    The SCTP protocol identifier for SDP    September 2016
               RFC 793, DOI 10.17487/RFC0793, September 1981,
               <http://www.rfc-editor.org/info/rfc793>.
 
+
+
+
+
+
+
+
+Holmberg, et al.         Expires March 12, 2017                [Page 22]
+
+Internet-Draft    The SCTP protocol identifier for SDP    September 2016
+
+
    [RFC5245]  Rosenberg, J., "Interactive Connectivity Establishment
               (ICE): A Protocol for Network Address Translator (NAT)
               Traversal for Offer/Answer Protocols", RFC 5245,
               DOI 10.17487/RFC5245, April 2010,
               <http://www.rfc-editor.org/info/rfc5245>.
-
-
-
-
-
-
-
-Holmberg, et al.          Expires March 5, 2017                [Page 22]
-
-Internet-Draft    The SCTP protocol identifier for SDP    September 2016
-
 
    [RFC6083]  Tuexen, M., Seggelmann, R., and E. Rescorla, "Datagram
               Transport Layer Security (DTLS) for Stream Control
@@ -1268,6 +1274,22 @@ Authors' Addresses
    Email: christer.holmberg@ericsson.com
 
 
+   Roman Shpount
+   TurboBridge
+   4905 Del Ray Avenue, Suite 300
+   Bethesda, MD  20814
+   USA
+
+   Phone: +1 (240) 292-6632
+   Email: rshpount@turbobridge.com
+
+
+
+Holmberg, et al.         Expires March 12, 2017                [Page 23]
+
+Internet-Draft    The SCTP protocol identifier for SDP    September 2016
+
+
    Salvatore Loreto
    Ericsson
    Hirsalantie 11
@@ -1275,19 +1297,6 @@ Authors' Addresses
    Finland
 
    Email: Salvatore.Loreto@ericsson.com
-
-
-
-
-
-
-
-
-
-
-Holmberg, et al.          Expires March 5, 2017                [Page 23]
-
-Internet-Draft    The SCTP protocol identifier for SDP    September 2016
 
 
    Gonzalo Camarillo
@@ -1332,13 +1341,4 @@ Internet-Draft    The SCTP protocol identifier for SDP    September 2016
 
 
 
-
-
-
-
-
-
-
-
-
-Holmberg, et al.          Expires March 5, 2017                [Page 24]
+Holmberg, et al.         Expires March 12, 2017                [Page 24]
