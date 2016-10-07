@@ -703,31 +703,6 @@
 
 	<section title="Multihoming Considerations">
 		<t>
-			SCTP supports multihoming. An SCTP endpoint is considered
-			multihomed if it has more than one IP address on which SCTP
-			can be used. An SCTP endpoint inform the remote peer about
-			its IP addresses using the address parameters in the INIT/INIT-ACK
-			chunk. Therefore, when SDP is used to describe an SCTP association,
-			while the "c=" line contains the address which was used to negotiate
-			the SCTP association, multihomed SCTP endpoints might end up using
-			other IP addresses.
-		</t>
-		<t>
-			If an endpoint removes the IP address <xref target="RFC5061"/> that
-			it offered in the SDP "c=" line associated with the SCTP association,
-			it MUST send a new Offer, in which the "c=" line contains an IP address
-			which is valid within the SCTP association.
-		</t>
-		<t>
-			NOTE: In some network environments, intermediaries performing gate-
-			and firewall control using the address information in the SDP "c=" and
-			"m=" lines to authorize media, and will not pass media sent using
-			other addresses. In such network environments, if an SCTP endpoints
-			wants to change the address information on which media is sent and
-			received, it needs to send an updated Offer, in which the SDP "c="
-			and "m=" lines contain the new address information.
-		</t>
-		<t>
 			Multihoming is not supported when sending SCTP on top of DTLS,
 			as DTLS does not expose address management of the underlying
 			transport protocols (UDP or TCP) to its upper layer.
