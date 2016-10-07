@@ -678,8 +678,8 @@
 			<t>
 				<list style="symbols">
 					<t>
-						Unless the offerer wants to re-establish an SCTP association, the offerer
-						MUST associate an SDP 'sctp-port' attribute, with a new attribute value, with the
+						Unless the offerer wants to maintain the existing SCTP association, the offerer
+						MUST associate an SDP 'sctp-port' attribute with a new attribute value, with the
 						m- line; and
 					</t>
 					<t>
