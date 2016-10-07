@@ -463,8 +463,8 @@
       </t>
       <t>
          In case of UDP/DTLS/SCTP and TCP/DTLS/SCTP the SCTP association, DTLS association
-         and TCP connection are managed independetly for each other. An assocation/connection
-         can be re-established without impacting other assocations/connections.
+         and TCP connection are managed independently for each other. An association/connection
+         can be re-established without impacting other associations/connections.
        </t>
        <t>
          The detailed SDP Offer/Answer <xref target="RFC3264"/> procedures for the SDP attributes
@@ -625,17 +625,17 @@
 			<t>
 				Once the answerer has sent the answer, the answerer MUST, if an SCTP
         association has yet not been established, or if an existing SCTP
-        association is to be re-established, initiate the establishement
+        association is to be re-established, initiate the establishment
         of the SCTP association.
 			</t>
       <t>
         The answerer follows the procedures in <xref target="I-D.ietf-mmusic-dtls-sdp"/> regarding
-        the establishment/re-establishemnt of the DTLS association.
+        the establishment/re-establishment of the DTLS association.
       </t>
       <t>
         In the case of TCP/DTLS/SCTP, the answerer follows
         the procedures in <xref target="RFC4145"/> regarding
-        the establishment/re-establishemnt of the TCP conection association.
+        the establishment/re-establishment of the TCP connection association.
       </t>
 			<t>
 				If the answerer does not accept the m- line in the offer, it MUST assign
@@ -651,17 +651,17 @@
         Once the offerer has received the answer, which contains an m- line
         with a non-zero port value, the offerer MUST, if an SCTP
         association has yet not been established, or if an existing SCTP
-        association is to be re-established, initiate the establishement
+        association is to be re-established, initiate the establishment
         of the SCTP association.
 			</t>
       <t>
         The offerer follows the procedures in <xref target="I-D.ietf-mmusic-dtls-sdp"/> regarding
-        the establishment/re-establishemnt of the DTLS association.
+        the establishment/re-establishment of the DTLS association.
       </t>
       <t>
         In the case of TCP/DTLS/SCTP, the offerer follows
         the procedures in <xref target="RFC4145"/> regarding
-        the establishment/re-establishemnt of the TCP conection association.
+        the establishment/re-establishment of the TCP connection association.
       </t>
 			<t>
 				If the m- line in the answer contains a zero port value, the offerer
@@ -770,7 +770,7 @@
       <t>
         When an SDP offer or answer is sent, the proto value MUST match the
         transport protocol associated with the default candidate. Hence, if UDP
-        transport is used for the default candidiate the 'UDP/DTLS/SCTP'
+        transport is used for the default candidate the 'UDP/DTLS/SCTP'
         proto value MUST be used. If TCP transport is used for the default
         candidate the 'TCP/DTLS/SCTP' proto value MUST be used.
         However, if an endpoint switch between TCP-based and UDP-based candidates
