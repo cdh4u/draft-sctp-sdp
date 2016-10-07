@@ -712,35 +712,30 @@
 	<section title="NAT Considerations">
 		<section title="General">
 			<t>
-				SCTP features not present in UDP or TCP, including the checksum
-				(CRC32c) value calculated on the whole packet (rather than
-				just the header), and multihoming, introduce new challenges
-				for NAT traversal. <xref target="I-D.ietf-behave-sctpnat"/>
-				defines an SCTP specific variant of NAT, which provides similar
-				features of Network Address and Port Translation (NAPT).
-			</t>
-			<t>
-				Current NATs typically do not support SCTP. <xref target="RFC6951"/>
-				defines a mechanism for sending SCTP on top of UDP, which makes it
-				possible to use SCTP with NATs and firewalls that do not support SCTP.
+				When SCTP-over-DTLS is used in NAT environment, it relies on the NAT
+				traversal procedures for the underlying transport protocol (UDP or TCP).
 			</t>
 		</section>
 		<section title="ICE Considerations">
 			<t>
-				When the transport layer protocol is UDP (UDP/DTLS/SCTP), if ICE is used,
-        the ICE procedures defined in <xref target="RFC5245"/> are used.
+				When SCTP-over-DTLS is used with UDP based ICE candidates as defined in <xref target="RFC5245"/>
+				procedures for UDP/DTLS/SCTP, as defined in <xref target="sec-udp-dtls-sctp"/> are used.
 			</t>
 			<t>
-				When the transport layer protocol is TCP (TCP/DTLS/SCTP), if ICE is used,
-        the ICE procedures defined in <xref target="RFC6544"/> are used.
+				When SCTP-over-DTLS is used with TCP based ICE candidates as defined in <xref target="RFC6544"/>
+				procedures for TCP/DTLS/SCTP, as defined in <xref target="sec-tcp-dtls-sctp"/> are used.
 			</t>
 			<t>
 				Implementations MUST treat all ICE candidate pairs associated with a
 				an SCTP association on top of a DTLS association as part of the same
-				DTLS association. Thus, there will only be one DTLS handshake even if
-				there are multiple valid candidate pairs, and shifting from one candidate
-				pair to another will not impact the DTLS association. If new candidates
-				are added, they will also be part of the same DTLS association.
+				DTLS association. Thus, there will only be one SCTP handshake and one DTLS
+				handshake even if there are multiple valid candidate pairs, and shifting from one candidate
+				pair to another will not impact the SCTP or DTLS associations. If new candidates
+				are added, they will also be part of the same SCTP and DTLS associations. When transitioning
+				between candidate pairs, different candidate pairs can be currently active
+				in different directions and implementations MUST be ready to receive
+				data on any of the candidates, even if this means sending and receiving data using
+				UDP/DTLS/SCTP and TCP/DTLS/SCTP at the same time in different directions.
 			</t>
       <t>
         When an SDP offer or answer is sent, the proto value MUST match the
