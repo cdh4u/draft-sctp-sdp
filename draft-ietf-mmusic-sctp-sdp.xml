@@ -507,19 +507,19 @@
         a new (different than the ones currently used) SCTP ports.
       </t>
       <t>
-        Alternatively, the SCTP association can be closed using the SDP 'sctp-port' attribute
-        with a zero attribute value. Later, the SCTP assocation can be re-established using the
-        same SCTP ports, using the procedures in this section for establishing an SCTP
-        association.
+        Alternatively, an SCTP association can be closed using the SDP 'sctp-port' attribute
+        with a zero attribute value. Later, the SCTP association can be re-established using the
+        procedures in this section for establishing an SCTP association. Also in such case a
+        new SCTP port MUST be used.
       </t>
       <t>
-        NOTE: Closing and re-establishing the SCTP assocation using the SDP 'sctp-port' attribute
-        will not impact the underlying DTLS assocation.
+        SCTP associations might be closed without SDP signalling, e.g, in case of a failure.
+        When such SCTP association is re-established the SCTP endpoints MUST use the
+        procedures in this section for establishing an SCTP association.
       </t>
       <t>
-        NOTE: SCTP endpoints can close and re-establish an SCTP assocation using the same SCTP ports
-        without sending SDP and the SDP 'sctp-port' attribute. This can be done e.g., if an SCTP
-        association fails for whatever reason, and the SCTP endpoints immediately want to re-establish it.
+        NOTE: Closing and re-establishing the SCTP association using the SDP 'sctp-port' attribute
+        will not impact the underlying DTLS association.
       </t>
     </section>
     <section title="DTLS Association (UDP/DTLS/SCTP And TCP/DTLS/SCTP)" anchor="sec-con-mgmt-dtls">
@@ -681,7 +681,7 @@
       <t>
         If the SDP 'sctp-port' attribute in the answer contains a zero attribute
         value, the offerer MUST NOT establish an SCTP association. If an SCTP
-        assocation exists, the offerer MUST close it.
+        association exists, the offerer MUST close it.
       </t>
 		</section>
 		<section title="Modifying the Session">
@@ -693,27 +693,37 @@
 			<t>
 				<list style="symbols">
 					<t>
-            If the offerer wants to close and re-establish the existing SCTP association,
-            the offerer MUST associate an SDP 'sctp-port' attribute with a attribute value
+            If the offerer wants to close and immediately re-establish an existing SCTP association,
+            the offerer MUST associate an SDP 'sctp-port' attribute with an attribute value
             different than the value currently used. This will not impact the underlying
             DTLS association (and TCP connection in case of TCP/DTLS/SCTP).
           </t>
           <t>
-            If the offerer want to close, but not re-establish an existing SCTP association,
+            If the offerer wants to close, but not re-establish an existing SCTP association,
             the offerer MUST associate an SDP 'sctp-port' attribute with a zero attribute
             value. This will not impact the underlying DTLS association (and TCP connection
             in case of TCP/DTLS/SCTP).
           </t>
+          <t>
+            If the offerer wants to re-establish a previously closed SCTP association,
+            the offerer MUST associate an SDP 'sctp-port' attribute with an attribute value
+            different than the value currently used, even if SCTP association was previously
+            closed using an SDP 'sctp-port' attribute with a zero attribute value, or if the
+            SCTP association was closed without SDP signalling. This will not impact the underlying
+            DTLS association (and TCP connection in case of TCP/DTLS/SCTP).
+          </t>
 					<t>
 						If the offerer wants to close an existing SCTP association, and the
-            underlying DTLS assocation (and the underlying TCP connection in case of
+            underlying DTLS association (and the underlying TCP connection in case of
             TCP/DTLS/SCTP) it MUST assign a zero port value to the m- line associated with the
             SCTP and DTLS associations (and TCP connection in case of TCP/DTLS/SCTP),
             following the procedures in <xref target="RFC3264"/>.
 					</t>
           <t>
-            NOTE: This specification does not define a mechanism for closing an DTLS
-            assocation while maintaining the overlying SCTP assocation.
+            NOTE: This specification does not define a mechanism for explicitly closing an DTLS
+            association while maintaining the overlying SCTP association. However, if a DTLS
+            association is re-established as a result of some other action
+            <xref target="I-D.ietf-mmusic-dtls-sdp"/> the SCTP association is not affected.
           </t>
 				</list>
 			</t>
