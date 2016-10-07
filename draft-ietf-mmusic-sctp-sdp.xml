@@ -502,13 +502,24 @@
       </t>
       <t>
         Usage of the SDP 'connection' attribute <xref target="RFC4145"/> is not
-        defined for SCTP. In order to trigger the re-establishment of an SCTP association,
+        defined for SCTP. In order to trigger the closure and re-establishment of an SCTP association,
         the SDP 'sctp-port' attribute (<xref target="attr-sctp-port"/>) is used to indicate
         a new (different than the ones currently used) SCTP ports.
       </t>
       <t>
-        NOTE: This specification does not define procedures for re-establishing an SCTP association
-        using the SCTP ports currently used for the SCTP association.
+        Alternatively, the SCTP association can be closed using the SDP 'sctp-port' attribute
+        with a zero attribute value. Later, the SCTP assocation can be re-established using the
+        same SCTP ports, using the procedures in this section for establishing an SCTP
+        association.
+      </t>
+      <t>
+        NOTE: Closing and re-establishing the SCTP assocation using the SDP 'sctp-port' attribute
+        will not impact the underlying DTLS assocation.
+      </t>
+      <t>
+        NOTE: SCTP endpoints can close and re-establish an SCTP assocation using the same SCTP ports
+        without sending SDP and the SDP 'sctp-port' attribute. This can be done e.g., if an SCTP
+        association fails for whatever reason, and the SCTP endpoints immediately want to re-establish it.
       </t>
     </section>
     <section title="DTLS Association (UDP/DTLS/SCTP And TCP/DTLS/SCTP)" anchor="sec-con-mgmt-dtls">
@@ -644,7 +655,6 @@
         initiate the establishment of an SCTP association, or a DTLS association,
         associated with the m- line.
 			</t>
-
 		</section>
 		<section title="Offerer Processing of the SDP Answer">
 			<t>
@@ -668,6 +678,11 @@
         MUST NOT establish a TCP connection, an SCTP association, or a
         DTLS association, associated with the m- line.
 			</t>
+      <t>
+        If the SDP 'sctp-port' attribute in the answer contains a zero attribute
+        value, the offerer MUST NOT establish an SCTP association. If an SCTP
+        assocation exists, the offerer MUST close it.
+      </t>
 		</section>
 		<section title="Modifying the Session">
 			<t>
@@ -678,15 +693,28 @@
 			<t>
 				<list style="symbols">
 					<t>
-						Unless the offerer wants to maintain the existing SCTP association, the offerer
-						MUST associate an SDP 'sctp-port' attribute with a new attribute value, with the
-						m- line; and
-					</t>
+            If the offerer wants to close and re-establish the existing SCTP association,
+            the offerer MUST associate an SDP 'sctp-port' attribute with a attribute value
+            different than the value currently used. This will not impact the underlying
+            DTLS association (and TCP connection in case of TCP/DTLS/SCTP).
+          </t>
+          <t>
+            If the offerer want to close, but not re-establish an existing SCTP association,
+            the offerer MUST associate an SDP 'sctp-port' attribute with a zero attribute
+            value. This will not impact the underlying DTLS association (and TCP connection
+            in case of TCP/DTLS/SCTP).
+          </t>
 					<t>
-						If the offerer wants to disable a previously established SCTP association, it MUST
-						assign a zero port value to the m- line associated with the SCTP association, following
-						the procedures in <xref target="RFC3264"/>.
+						If the offerer wants to close an existing SCTP association, and the
+            underlying DTLS assocation (and the underlying TCP connection in case of
+            TCP/DTLS/SCTP) it MUST assign a zero port value to the m- line associated with the
+            SCTP and DTLS associations (and TCP connection in case of TCP/DTLS/SCTP),
+            following the procedures in <xref target="RFC3264"/>.
 					</t>
+          <t>
+            NOTE: This specification does not define a mechanism for closing an DTLS
+            assocation while maintaining the overlying SCTP assocation.
+          </t>
 				</list>
 			</t>
       <t>
