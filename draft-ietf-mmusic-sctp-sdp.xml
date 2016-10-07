@@ -488,7 +488,7 @@
       </t>
       <t>
         As both SCTP endpoints take the 'active' role, this specification does not define
-        usage of the SDP ‘setup’ attribute <xref target="RFC4145"/> for SCTP.
+        usage of the SDP 'setup' attribute <xref target="RFC4145"/> for SCTP.
       </t>
       <t>
         NOTE: The procedure above is different from TCP, where one endpoint takes the 'active'
@@ -501,9 +501,9 @@
         successfully been performed.
       </t>
       <t>
-        Usage of the SDP ‘connection’ attribute <xref target="RFC4145"/> is not
+        Usage of the SDP 'connection' attribute <xref target="RFC4145"/> is not
         defined for SCTP. In order to trigger the re-establishment of an SCTP association,
-        the SDP ‘sctp-port’ attribute (<xref target="attr-sctp-port"/>) is used to indicate
+        the SDP 'sctp-port' attribute (<xref target="attr-sctp-port"/>) is used to indicate
         a new (different than the ones currently used) SCTP ports.
       </t>
       <t>
@@ -514,11 +514,11 @@
     <section title="DTLS Association (UDP/DTLS/SCTP And TCP/DTLS/SCTP)" anchor="sec-con-mgmt-dtls">
       <t>
         An DTLS association is managed according to the procedures in <xref target="I-D.ietf-mmusic-dtls-sdp"/>.
-        Hence, the SDP ‘setup’ attribute is used to negotiate the (D)TLS roles (‘client’ and ‘server’)
+        Hence, the SDP 'setup' attribute is used to negotiate the (D)TLS roles ('client' and 'server')
         <xref target="RFC4572"/>.
       </t>
       <t>
-        NOTE: The SDP ‘setup’ attribute is used both to negotiate both the DTLS roles and the
+        NOTE: The SDP 'setup' attribute is used both to negotiate both the DTLS roles and the
         TCP roles (<xref target="sec-con-mgmt-tcp"/>).
       </t>
       <t>
@@ -533,8 +533,8 @@
     <section title="TCP Connection (TCP/DTLS/SCTP)" anchor="sec-con-mgmt-tcp">
       <t>
         The TCP connection is managed according to the procedures in <xref target="RFC4145"/>. Hence,
-        the SDP ‘setup’ attribute is used to negotiate the TCP roles (‘active’ and ‘passive’), and
-        the SDP ‘connection’ attribute is used to indicate whether to use an existing TCP connection,
+        the SDP 'setup' attribute is used to negotiate the TCP roles ('active' and 'passive'), and
+        the SDP 'connection' attribute is used to indicate whether to use an existing TCP connection,
         or create a new one. The SDP 'setup' attribute 'holdconn' value MUST NOT be used.
       </t>
       <t>
@@ -770,9 +770,9 @@
       <t>
         When an SDP offer or answer is sent, the proto value MUST match the
         transport protocol associated with the default candidate. Hence, if UDP
-        transport is used for the default candidiate the ‘UDP/DTLS/SCTP’
+        transport is used for the default candidiate the 'UDP/DTLS/SCTP'
         proto value MUST be used. If TCP transport is used for the default
-        candidate the ‘TCP/DTLS/SCTP’ proto value MUST be used.
+        candidate the 'TCP/DTLS/SCTP' proto value MUST be used.
         However, if an endpoint switch between TCP-based and UDP-based candidates
         during a session the endpoint is not required to send an SDP offer in order
         to modify that proto value of the associated m- line.
