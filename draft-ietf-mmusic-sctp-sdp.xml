@@ -504,18 +504,18 @@
         Usage of the SDP 'connection' attribute <xref target="RFC4145"/> is not
         defined for SCTP. In order to trigger the closure and re-establishment of an SCTP association,
         the SDP 'sctp-port' attribute (<xref target="attr-sctp-port"/>) is used to indicate
-        a new (different than the ones currently used) SCTP ports.
+        a new (different than the ones currently used) SCTP port.
       </t>
       <t>
         Alternatively, an SCTP association can be closed using the SDP 'sctp-port' attribute
         with a zero attribute value. Later, the SCTP association can be re-established using the
-        procedures in this section for establishing an SCTP association. Also in such case a
-        new SCTP port MUST be used.
+        procedures in this section for establishing an SCTP association.
       </t>
       <t>
         SCTP associations might be closed without SDP signalling, e.g, in case of a failure.
         When such SCTP association is re-established the SCTP endpoints MUST use the
-        procedures in this section for establishing an SCTP association.
+        procedures in this section for establishing an SCTP association. New
+        (different than the ones currently used) SCTP ports MUST be used.
       </t>
       <t>
         NOTE: Closing and re-establishing the SCTP association using the SDP 'sctp-port' attribute
@@ -610,7 +610,7 @@
 		<section title="Generating the SDP Answer">
 			<t>
 				When the answerer receives an offer, which contains an m- line describing
-				an SCTP association, if the answerer accepts the m- line it:
+				an SCTP-over-DTLS association, if the answerer accepts the association line it:
 			</t>
 			<t>
 				<list style="symbols">
@@ -623,7 +623,11 @@
             value, with the m- line;
 					</t>
 					<t>
-						MUST associate an SDP 'sctp-port' attribute with the m- line; and
+						MUST associate an SDP 'sctp-port' attribute with the m- line. If the
+            offer contained a new (different than the one currently used) SCTP
+            port value the answerer MUST also associate a new SCTP port value. If
+            the offer contained a zero SCTP port value the answerer MUST also associate
+            a zero SCTP port value; and
 					</t>
 					<t>
 						MAY associate an SDP 'max-message-size' attribute
@@ -634,14 +638,14 @@
 				</list>
 			</t>
 			<t>
-				Once the answerer has sent the answer, the answerer MUST, if an SCTP
+				Once the answerer has sent the answer the answerer MUST, if an SCTP
         association has yet not been established, or if an existing SCTP
         association is to be re-established, initiate the establishment
         of the SCTP association.
 			</t>
       <t>
-        The answerer follows the procedures in <xref target="I-D.ietf-mmusic-dtls-sdp"/> regarding
-        the establishment/re-establishment of the DTLS association.
+        The answerer follows the procedures in <xref target="I-D.ietf-mmusic-dtls-sdp"/>
+        regarding the establishment/re-establishment of the DTLS association.
       </t>
       <t>
         In the case of TCP/DTLS/SCTP, the answerer follows
@@ -665,6 +669,11 @@
         of the SCTP association.
 			</t>
       <t>
+        If the SDP 'sctp-port' attribute in the answer contains a zero attribute
+        value, the offerer MUST NOT establish an SCTP association. If an SCTP
+        association exists, the offerer MUST close it.
+      </t>
+      <t>
         The offerer follows the procedures in <xref target="I-D.ietf-mmusic-dtls-sdp"/> regarding
         the establishment/re-establishment of the DTLS association.
       </t>
@@ -676,13 +685,9 @@
 			<t>
 				If the m- line in the answer contains a zero port value, the offerer
         MUST NOT establish a TCP connection, an SCTP association, or a
-        DTLS association, associated with the m- line.
+        DTLS association, associated with the m- line. If an SCTP association,
+        DTLS association and/or TCP connection exists, the offerer MUST close it.
 			</t>
-      <t>
-        If the SDP 'sctp-port' attribute in the answer contains a zero attribute
-        value, the offerer MUST NOT establish an SCTP association. If an SCTP
-        association exists, the offerer MUST close it.
-      </t>
 		</section>
 		<section title="Modifying the Session">
 			<t>
@@ -694,8 +699,8 @@
 				<list style="symbols">
 					<t>
             If the offerer wants to close and immediately re-establish an existing SCTP association,
-            the offerer MUST associate an SDP 'sctp-port' attribute with an attribute value
-            different than the value currently used. This will not impact the underlying
+            the offerer MUST associate an SDP 'sctp-port' attribute with a new (different than the
+            one currently used) attribute value. This will not impact the underlying
             DTLS association (and TCP connection in case of TCP/DTLS/SCTP).
           </t>
           <t>
@@ -706,11 +711,12 @@
           </t>
           <t>
             If the offerer wants to re-establish a previously closed SCTP association,
-            the offerer MUST associate an SDP 'sctp-port' attribute with an attribute value
-            different than the value currently used, even if SCTP association was previously
-            closed using an SDP 'sctp-port' attribute with a zero attribute value, or if the
-            SCTP association was closed without SDP signalling. This will not impact the underlying
-            DTLS association (and TCP connection in case of TCP/DTLS/SCTP).
+            the offerer MUST associate an SDP 'sctp-port' attribute with a new (different
+            than the one currently used) attribute value. If the SCTP association was previously
+            closed using an SDP 'sctp-port' attribute with a zero attribute value, the
+            offerer MAY use the same attribute value that was used prior to the SCTP
+            association was closed. This will not impact the underlying DTLS association
+            (and TCP connection in case of TCP/DTLS/SCTP).
           </t>
 					<t>
 						If the offerer wants to close an existing SCTP association, and the
