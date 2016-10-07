@@ -10,10 +10,11 @@
 <?xml-stylesheet type="text/xsl" href="rfc2629.xslt" ?>
 
 <front>
-    <title abbrev="The SCTP protocol identifier for SDP">
-		Stream Control Transmission Protocol (SCTP)-Based Media
-		Transport in the Session Description Protocol (SDP)
-    </title>
+   <title abbrev="SDP Offer/Answer For SCTP Over DTLS">
+     Session Description Protocol (SDP) Offer/Answer Procedures
+     For Stream Control Transmission Protocol (SCTP) over
+     Datagram Transport Layer Security (DTLS) Transport.
+   </title>
 
     <author initials="C." surname="Holmberg" fullname="Christer Holmberg">
 		<organization>Ericsson</organization>
@@ -74,26 +75,25 @@
 	<workgroup>MMUSIC</workgroup>
 	<keyword>SCTP, SDP, DTLS</keyword>
 
-	<abstract>
+  <abstract>
 		<t>
 			The Stream Control Transmission Protocol (SCTP) is a transport protocol
 			used to establish associations between two endpoints.
+      draft-ietf-tsvwg-sctp-dtls-encaps-09 specifies how SCTP can be used on
+      top of the Datagram Transport Layer Security (DTLS) protocol, referred to
+      as SCTP-over-DTLS.
 		</t>
 		<t>
-			This specification describes how to describe SCTP associations using the Session
-			Description Protocol (SDP), and defines the following new SDP Media Description
-			protocol identifiers (proto values):'SCTP', 'UDP/DTLS/SCTP' and 'TCP/DTLS/SCTP'.
-		</t>
-		<t>
-			The specification also describes how to use the new proto values together
-			with the SDP Offer/Answer mechanism in order to negotiate and establish
-			SCTP associations, and how to indicate the SCTP application usage.
+      This specification defines the following new Session Description Protocol (SDP)
+      protocol identifiers (proto values):'UDP/DTLS/SCTP' and 'TCP/DTLS/SCTP'. This
+      specification also specifies how to use the new proto values with the
+      SDP Offer/Answer mechanism for negotiating SCTP-over-DTLS associations.
 		</t>
 	</abstract>
 </front>
 
 <middle>
-	<section title="Introduction">
+  <section title="Introduction">
 		<t>
 			SDP (Session Description Protocol) <xref target="RFC4566"/> provides a
 			general-purpose format for describing multimedia sessions in announcements
@@ -108,25 +108,28 @@
 			The Stream Control Transmission Protocol (SCTP) <xref target="RFC4960"/> is a
 			transport protocol used to establish associations between two endpoints.
 		</t>
-		<t>
-			This specification defines how to describe SCTP associations using the
-			Session Description Protocol (SDP) <xref target="RFC4566"/>, and defines
-			the following new SDP Media Description <xref target="RFC4566"/> protocol
-			identifiers (proto values):'SCTP', 'UDP/DTLS/SCTP' and 'TCP/DTLS/SCTP'.
+    <t>
+			The Stream Control Transmission Protocol (SCTP) <xref target="RFC4960"/> is a
+      transport protocol used to establish associations between two endpoints.
+      <xref target="I-D.ietf-tsvwg-sctp-dtls-encaps"/> specifies how SCTP can be used on
+      top of the Datagram Transport Layer Security (DTLS) protocol, referred to
+      as SCTP-over-DTLS.
 		</t>
-		<t>
-			The specification also describes how to use the new proto values together
-			with the SDP Offer/Answer mechanism <xref target="RFC3264"/> in order to
-			negotiate and establish SCTP associations, and how to indicate the SCTP
-			application usage.
-		</t>
+    <t>
+      This specification defines the following new Session Description Protocol (SDP)
+      <xref target="RFC4566"/> protocol identifiers (proto values):'UDP/DTLS/SCTP'
+      and 'TCP/DTLS/SCTP'. This specification also specifies how to use the new proto
+      values with the SDP Offer/Answer mechanism <xref target="RFC3264"/> for negotiating
+      SCTP-over-DTLS associations.
+  	</t>
 		<t>
 			NOTE: TLS is designed to run on top of a byte-stream oriented
 			transport protocol providing a reliable, in-sequence delivery like
 			TCP. <xref target="RFC6083"/> presents serious limitations with transporting TLS
 			on top of SCTP. Therefore, defining a mechanism to negotiate media streams
-			transported using TLS on top of SCTP, i.e. 'SCTP/TLS', is outside the scope
-			of this specification.
+			transported using TLS on top of SCTP, i.e., 'SCTP/TLS', is outside the scope
+			of this specification. In addition, defining a mechanism to negotiate non-protected
+      SCTP associations is also outside the scope of this specification.
 		</t>
 	</section>
 
@@ -160,6 +163,10 @@
 			a transport address is defined by the combination of an IP address
 			and an SCTP port number (where SCTP is the transport protocol).
 		</t>
+    <t>
+      SCTP-over-DTLS: SCTP used on top of DTLS, as specified in
+      <xref target="I-D.ietf-tsvwg-sctp-dtls-encaps"/>.
+    </t>
 	</section>
 
 	<section title="SDP Media Descriptions" anchor="m-line">
@@ -167,7 +174,7 @@
 			<t>
 				This section defines the following new SDP Media Description (m- line)
 				protocol identifiers (proto values) for describing an SCTP association:
-				'SCTP', 'UDP/DTLS/SCTP' and 'TCP/DTLS/SCTP'. The section
+				UDP/DTLS/SCTP' and 'TCP/DTLS/SCTP'. The section
 				also describes how an m- line, associated with the proto values, is created.
 			</t>
 			<t>
@@ -179,11 +186,10 @@
     m=<media> <port> <proto> <fmt> ...
 				]]></artwork>
 			</figure>
-			<t>
-				The 'SCTP', 'UDP/DTLS/SCTP' and 'TCP/DTLS/SCTP' proto
-				values are similar to both the 'UDP' and 'TCP' proto values in that they
-				only describe the transport-layer protocol and not the upper-layer
-				protocol.
+      <t>
+				The 'UDP/DTLS/SCTP' and 'TCP/DTLS/SCTP' proto values are similar to both
+        the 'UDP' and 'TCP' proto values in that they only describe the transport-layer
+        protocol and not the upper-layer protocol.
 			</t>
 			<t>
 				NOTE: When the 'UDP/DTLS/SCTP' and 'TCP/DTLS/SCTP' proto values are used,
@@ -202,10 +208,6 @@
 			</t>
 			<t>
 				<list style="symbols">
-					<t>
-						The 'SCTP' proto value describes an SCTP association, as
-						defined in <xref target="RFC4960"/>.
-					</t>
 					<t>
 						The 'UDP/DTLS/SCTP' proto value describes an SCTP association on top of
 						a DTLS association on top of UDP, as defined in
@@ -230,7 +232,7 @@
 				reference to, a standards-track RFC that defines the transport protocol for the format.
 			</t>
 			<t>
-				An m- line with a proto value of 'SCTP', 'UDP/DTLS/SCTP' or 'TCP/DTLS/SCTP'
+				An m- line with a proto value of UDP/DTLS/SCTP' or 'TCP/DTLS/SCTP'
 				always describe a single SCTP association.
 			</t>
 			<t>
@@ -261,11 +263,8 @@
 				<figure>
 					<artwork><![CDATA[
     sctp-m-line = %x6d "="
-     ("application" SP sctp-port SP "SCTP"	SP fmt CRLF) /
      ("application" SP udp-port  SP "UDP/DTLS/SCTP" SP fmt CRLF) /
      ("application" SP tcp-port  SP "TCP/DTLS/SCTP" SP fmt CRLF)
-
-    sctp-port = port
 
     udp-port = port
 
@@ -371,7 +370,7 @@
 			<t>
 				NOTE: This specification only defines the usage of the SDP 'max-message-size'
 				attribute when associated with an m- line containing one of the following proto
-				values: 'SCTP', 'UDP/DTLS/SCTP' or 'TCP/DTLS/SCTP'.
+				values: 'UDP/DTLS/SCTP' or 'TCP/DTLS/SCTP'.
 				Usage of the attribute with other proto values needs to be defined
 				in a separate specification.
 			</t>
@@ -395,9 +394,7 @@
 			<t>
 				The mux category for the SDP 'max-message-size' attribute
 				is SPECIAL. The mux rules depends on the proto value of the
-				associated m- line. If the proto value is 'SCTP' the rules
-        are identical to the rules associated with the TRANSPORT
-				mux category.
+				associated m- line.
 			</t>
 			<t>
 				As the usage of multiple SCTP associations on top of a single
@@ -499,9 +496,9 @@
         the TCP connection <xref target="RFC4145"/>.
       </t>
       <t>
-        NOTE: If the underlying transport protocol is UDP or TCP (UDP/DTLS/SCTP or TCP/DTLS/SCTP),
-        when the SCTP association is established it is assumed that any NAT traversal procedures
-        for the underlying transport protocol has successfully been performed.
+        NOTE: In case of SCTP-over-DTLS, when the SCTP association is established it is assumed
+        that any NAT traversal procedures for the underlying transport protocol (UDP or TCP) has
+        successfully been performed.
       </t>
       <t>
         Usage of the SDP ‘connection’ attribute <xref target="RFC4145"/> is not
@@ -554,17 +551,16 @@
 
 	<section title="SDP Offer/Answer Procedures" anchor="sec-sdp-oa">
 		<section title="General">
-			<t>
+      <t>
 				This section defines the SDP Offer/Answer <xref target="RFC3264"/>
-				procedures for negotiating and establishing an SCTP association. Unless
-				explicitly stated, the procedures apply to SCTP, UDP/DTLS/SCTP and
-        TCP/DTLS/SCTP.
+				procedures for negotiating and establishing an SCTP-over-DTLS association.
+        Unless explicitly stated, the procedures apply to both the
+        'UDP/DTLS/SCTP' and 'TCP/DTLS/SCTP' m- line proto values.
 			</t>
 			<t>
-        In case of UDP/DTLS/SCTP or TCP/DTLS/SCTP, each endpoint MUST associate one
-        or more certificate fingerprints, using the SDP 'fingerprint' attribute
-        with the m- line, following the procedures in <xref target="RFC4572"/> and
-        <xref target="I-D.ietf-mmusic-4572-update"/>.
+        Each endpoint MUST associate one or more certificate fingerprints, using
+        the SDP 'fingerprint' attribute with the m- line, following the procedures
+        in <xref target="RFC4572"/> and <xref target="I-D.ietf-mmusic-4572-update"/>.
 			</t>
 			<t>
 				The authentication certificates are interpreted and validated as
@@ -573,9 +569,8 @@
 				is assured as defined in <xref target="RFC4572"/>.
 			</t>
       <t>
-        In case of UDP/DTLS/SCTP or TCP/DTLS/SCTP, each endpoint MUST associate
-        an SDP 'dtls-id' attribute with the m- line, following the procedures
-        in <xref target="I-D.ietf-mmusic-dtls-sdp"/>.
+        Each endpoint MUST associate an SDP 'dtls-id' attribute with the m- line,
+        following the procedures in <xref target="I-D.ietf-mmusic-dtls-sdp"/>.
       </t>
 		</section>
 		<section title="Generating the Initial SDP Offer" anchor="sec-oa-initial-offer">
@@ -585,12 +580,10 @@
 			<t>
 				<list style="symbols">
 					<t>
-						MUST, in the case of UDP/DTLS/SCTP or TCP/DTLS/SCTP, associate an
-            SDP setup attribute, with an 'actpass' value, with the m- line;
+						MUST associate an SDP setup attribute, with an 'actpass' value, with the m- line;
 					</t>
 					<t>
-						MUST, in the case of UDP/DTLS/SCTP or TCP/DTLS/SCTP,
-            associate an SDP 'sctp-port' attribute with the m- line;
+						MUST associate an SDP 'sctp-port' attribute with the m- line;
 					</t>
 					<t>
 						MUST, in the case of TCP/DTLS/SCTP, associate an SDP 'connection'
@@ -615,13 +608,11 @@
 						m- line proto value <xref target="RFC3264"/>;
 					</t>
 					<t>
-						MUST, in the case of UDP/DTLS/SCTP or TCP/DTLS/SCTP associate an
-            SDP 'setup' attribute, with an 'active' or 'passive' value, with
-						the m- line;
+						MUST associate an SDP 'setup' attribute, with an 'active' or 'passive'
+            value, with the m- line;
 					</t>
 					<t>
-						MUST, in the case of UDP/DTLS/SCTP or TCP/DTLS/SCTP, associate an
-						SDP 'sctp-port' attribute with the m- line; and
+						MUST associate an SDP 'sctp-port' attribute with the m- line; and
 					</t>
 					<t>
 						MAY associate an SDP 'max-message-size' attribute
@@ -638,8 +629,7 @@
         of the SCTP association.
 			</t>
       <t>
-        In the case of UDP/DTLS/SCTP or TCP/DTLS/SCTP, the answerer follows
-        the procedures in <xref target="I-D.ietf-mmusic-dtls-sdp"/> regarding
+        The answerer follows the procedures in <xref target="I-D.ietf-mmusic-dtls-sdp"/> regarding
         the establishment/re-establishemnt of the DTLS association.
       </t>
       <t>
@@ -665,8 +655,7 @@
         of the SCTP association.
 			</t>
       <t>
-        In the case of UDP/DTLS/SCTP or TCP/DTLS/SCTP, the offerer follows
-        the procedures in <xref target="I-D.ietf-mmusic-dtls-sdp"/> regarding
+        The offerer follows the procedures in <xref target="I-D.ietf-mmusic-dtls-sdp"/> regarding
         the establishment/re-establishemnt of the DTLS association.
       </t>
       <t>
@@ -701,8 +690,7 @@
 				</list>
 			</t>
       <t>
-        In the case of UDP/DTLS/SCTP or TCP/DTLS/SCTP, the offer follows
-        the procedures in <xref target="I-D.ietf-mmusic-dtls-sdp"/> regarding
+        The offer follows the procedures in <xref target="I-D.ietf-mmusic-dtls-sdp"/> regarding
         the DTLS association impacts when modifying a session.
       </t>
       <t>
@@ -764,13 +752,6 @@
 		</section>
 		<section title="ICE Considerations">
 			<t>
-				At the time of writing this specification, no procedures have been
-				defined for using ICE <xref target="RFC5245"/> together with SCTP as
-				transport layer protocol.  Such procedures, including the associated
-				SDP Offer/Answer procedures, are outside the scope of this specification,
-				and might be defined in a future specification.
-			</t>
-			<t>
 				When the transport layer protocol is UDP (UDP/DTLS/SCTP), if ICE is used,
         the ICE procedures defined in <xref target="RFC5245"/> are used.
 			</t>
@@ -786,6 +767,21 @@
 				pair to another will not impact the DTLS association. If new candidates
 				are added, they will also be part of the same DTLS association.
 			</t>
+      <t>
+        When an SDP offer or answer is sent, the proto value MUST match the
+        transport protocol associated with the default candidate. Hence, if UDP
+        transport is used for the default candidiate the ‘UDP/DTLS/SCTP’
+        proto value MUST be used. If TCP transport is used for the default
+        candidate the ‘TCP/DTLS/SCTP’ proto value MUST be used.
+        However, if an endpoint switch between TCP-based and UDP-based candidates
+        during a session the endpoint is not required to send an SDP offer in order
+        to modify that proto value of the associated m- line.
+      </t>
+      <t>
+        NOTE: The text in the paragraph above only applies when the usage of ICE
+        has been negotiated. If ICE is not used, the proto value MUST always reflect
+        the transport protocol used at any given time.
+      </t>
 		</section>
 	</section>
 
@@ -839,9 +835,8 @@
 			to negotiate media streams.
 		</t>
 		<t>
-			<xref target="RFC4960"/> defines general SCTP security considerations, while
-			<xref target="RFC6083"/> defines security considerations when using DTLS on top of
-			SCTP, and <xref target="I-D.ietf-tsvwg-sctp-dtls-encaps"/> defines security
+			<xref target="RFC4960"/> defines general SCTP security considerations
+      and <xref target="I-D.ietf-tsvwg-sctp-dtls-encaps"/> defines security
 			considerations when using SCTP on top of DTLS.
 		</t>
 		<t>
@@ -865,9 +860,6 @@
 				<ttcol align='center'>Type</ttcol>
 				<ttcol align='center'>SDP Name</ttcol>
 				<ttcol align='center'>Reference</ttcol>
-				<c>proto</c>
-				<c>SCTP</c>
-				<c>[RFCXXXX]</c>
 				<c>proto</c>
 				<c>UDP/DTLS/SCTP</c>
 				<c>[RFCXXXX]</c>
@@ -894,7 +886,7 @@
 	Mux category:       SPECIAL
 	Subject to charset: No
 	Purpose:            Indicate the SCTP port value associated
-                        with the SDP Media Description.
+                      with the SDP Media Description.
 	Appropriate values: Integer
 	Contact name:       Christer Holmberg
 	Contact e-mail:     christer.holmberg@ericsson.com
@@ -919,9 +911,9 @@
 	Mux category:       SPECIAL
 	Subject to charset: No
 	Purpose:            Indicate the maximum message size that
-                        an SCTP endpoint is willing to receive
-                        on the SCTP association associated
-                        with the SDP Media Description.
+                      an SCTP endpoint is willing to receive
+                      on the SCTP association associated
+                      with the SDP Media Description.
 	Appropriate values: Integer
 	Contact name:       Christer Holmberg
 	Contact e-mail:     christer.holmberg@ericsson.com
@@ -940,7 +932,7 @@
 			<t>
 				This specification creates a new IANA registry, following the procedures in
 				<xref target="RFC5226"/>, for the "fmt" namespace associated with the
-				'SCTP', 'UDP/DTLS/SCTP' and 'TCP/DTLS/SCTP' protocol identifiers.
+				'UDP/DTLS/SCTP' and 'TCP/DTLS/SCTP' protocol identifiers.
 				Each "fmt" value describes the usage of an entire SCTP association, including
 				all SCTP streams associated with the SCTP association.
 			</t>
@@ -980,8 +972,8 @@
      |----------------------------------------------------------|
 
 	[RFC EDITOR NOTE: Please hold the publication of this draft
-    until draft-ietf-rtcweb-data-protocol has been published as an RFC.
-    Then, replace the reference to draft-ietf-rtcweb-data-protocol
+  until draft-ietf-rtcweb-data-protocol has been published as an RFC.
+  Then, replace the reference to draft-ietf-rtcweb-data-protocol
 	with the RFC number.]
 
 				]]></artwork>
@@ -1001,6 +993,8 @@
 		<t>[RFC EDITOR NOTE: Please remove this section when publishing]</t>
     <t>Changes from draft-ietf-mmusic-sctp-sdp-17
 			<list style="symbols">
+        <t>Removal of 'SCTP'.</t>
+        <t>Document title changed.</t>
         <t>Disallow usage of SDP 'setup' attribute 'holdconn' value.</t>
 				<t>Roman Shpount added as co-editor.</t>
 			</list>
