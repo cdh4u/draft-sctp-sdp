@@ -463,8 +463,8 @@
       </t>
       <t>
          In case of UDP/DTLS/SCTP and TCP/DTLS/SCTP the SCTP association, DTLS association
-         and TCP connection are managed independetly for each other. An assocation/connection
-         can be re-established without impacting other assocations/connections.
+         and TCP connection are managed independently for each other. An association/connection
+         can be re-established without impacting other associations/connections.
        </t>
        <t>
          The detailed SDP Offer/Answer <xref target="RFC3264"/> procedures for the SDP attributes
@@ -488,7 +488,7 @@
       </t>
       <t>
         As both SCTP endpoints take the 'active' role, this specification does not define
-        usage of the SDP ‘setup’ attribute <xref target="RFC4145"/> for SCTP.
+        usage of the SDP 'setup' attribute <xref target="RFC4145"/> for SCTP.
       </t>
       <t>
         NOTE: The procedure above is different from TCP, where one endpoint takes the 'active'
@@ -501,9 +501,9 @@
         successfully been performed.
       </t>
       <t>
-        Usage of the SDP ‘connection’ attribute <xref target="RFC4145"/> is not
+        Usage of the SDP 'connection' attribute <xref target="RFC4145"/> is not
         defined for SCTP. In order to trigger the re-establishment of an SCTP association,
-        the SDP ‘sctp-port’ attribute (<xref target="attr-sctp-port"/>) is used to indicate
+        the SDP 'sctp-port' attribute (<xref target="attr-sctp-port"/>) is used to indicate
         a new (different than the ones currently used) SCTP ports.
       </t>
       <t>
@@ -514,11 +514,11 @@
     <section title="DTLS Association (UDP/DTLS/SCTP And TCP/DTLS/SCTP)" anchor="sec-con-mgmt-dtls">
       <t>
         An DTLS association is managed according to the procedures in <xref target="I-D.ietf-mmusic-dtls-sdp"/>.
-        Hence, the SDP ‘setup’ attribute is used to negotiate the (D)TLS roles (‘client’ and ‘server’)
+        Hence, the SDP 'setup' attribute is used to negotiate the (D)TLS roles ('client' and 'server')
         <xref target="RFC4572"/>.
       </t>
       <t>
-        NOTE: The SDP ‘setup’ attribute is used both to negotiate both the DTLS roles and the
+        NOTE: The SDP 'setup' attribute is used both to negotiate both the DTLS roles and the
         TCP roles (<xref target="sec-con-mgmt-tcp"/>).
       </t>
       <t>
@@ -533,8 +533,8 @@
     <section title="TCP Connection (TCP/DTLS/SCTP)" anchor="sec-con-mgmt-tcp">
       <t>
         The TCP connection is managed according to the procedures in <xref target="RFC4145"/>. Hence,
-        the SDP ‘setup’ attribute is used to negotiate the TCP roles (‘active’ and ‘passive’), and
-        the SDP ‘connection’ attribute is used to indicate whether to use an existing TCP connection,
+        the SDP 'setup' attribute is used to negotiate the TCP roles ('active' and 'passive'), and
+        the SDP 'connection' attribute is used to indicate whether to use an existing TCP connection,
         or create a new one. The SDP 'setup' attribute 'holdconn' value MUST NOT be used.
       </t>
       <t>
@@ -625,17 +625,17 @@
 			<t>
 				Once the answerer has sent the answer, the answerer MUST, if an SCTP
         association has yet not been established, or if an existing SCTP
-        association is to be re-established, initiate the establishement
+        association is to be re-established, initiate the establishment
         of the SCTP association.
 			</t>
       <t>
         The answerer follows the procedures in <xref target="I-D.ietf-mmusic-dtls-sdp"/> regarding
-        the establishment/re-establishemnt of the DTLS association.
+        the establishment/re-establishment of the DTLS association.
       </t>
       <t>
         In the case of TCP/DTLS/SCTP, the answerer follows
         the procedures in <xref target="RFC4145"/> regarding
-        the establishment/re-establishemnt of the TCP conection association.
+        the establishment/re-establishment of the TCP connection association.
       </t>
 			<t>
 				If the answerer does not accept the m- line in the offer, it MUST assign
@@ -651,17 +651,17 @@
         Once the offerer has received the answer, which contains an m- line
         with a non-zero port value, the offerer MUST, if an SCTP
         association has yet not been established, or if an existing SCTP
-        association is to be re-established, initiate the establishement
+        association is to be re-established, initiate the establishment
         of the SCTP association.
 			</t>
       <t>
         The offerer follows the procedures in <xref target="I-D.ietf-mmusic-dtls-sdp"/> regarding
-        the establishment/re-establishemnt of the DTLS association.
+        the establishment/re-establishment of the DTLS association.
       </t>
       <t>
         In the case of TCP/DTLS/SCTP, the offerer follows
         the procedures in <xref target="RFC4145"/> regarding
-        the establishment/re-establishemnt of the TCP conection association.
+        the establishment/re-establishment of the TCP connection association.
       </t>
 			<t>
 				If the m- line in the answer contains a zero port value, the offerer
@@ -678,8 +678,8 @@
 			<t>
 				<list style="symbols">
 					<t>
-						Unless the offerer wants to re-establish an SCTP association, the offerer
-						MUST associate an SDP 'sctp-port' attribute, with a new attribute value, with the
+						Unless the offerer wants to maintain the existing SCTP association, the offerer
+						MUST associate an SDP 'sctp-port' attribute with a new attribute value, with the
 						m- line; and
 					</t>
 					<t>
@@ -703,31 +703,6 @@
 
 	<section title="Multihoming Considerations">
 		<t>
-			SCTP supports multihoming. An SCTP endpoint is considered
-			multihomed if it has more than one IP address on which SCTP
-			can be used. An SCTP endpoint inform the remote peer about
-			its IP addresses using the address parameters in the INIT/INIT-ACK
-			chunk. Therefore, when SDP is used to describe an SCTP association,
-			while the "c=" line contains the address which was used to negotiate
-			the SCTP association, multihomed SCTP endpoints might end up using
-			other IP addresses.
-		</t>
-		<t>
-			If an endpoint removes the IP address <xref target="RFC5061"/> that
-			it offered in the SDP "c=" line associated with the SCTP association,
-			it MUST send a new Offer, in which the "c=" line contains an IP address
-			which is valid within the SCTP association.
-		</t>
-		<t>
-			NOTE: In some network environments, intermediaries performing gate-
-			and firewall control using the address information in the SDP "c=" and
-			"m=" lines to authorize media, and will not pass media sent using
-			other addresses. In such network environments, if an SCTP endpoints
-			wants to change the address information on which media is sent and
-			received, it needs to send an updated Offer, in which the SDP "c="
-			and "m=" lines contain the new address information.
-		</t>
-		<t>
 			Multihoming is not supported when sending SCTP on top of DTLS,
 			as DTLS does not expose address management of the underlying
 			transport protocols (UDP or TCP) to its upper layer.
@@ -737,42 +712,37 @@
 	<section title="NAT Considerations">
 		<section title="General">
 			<t>
-				SCTP features not present in UDP or TCP, including the checksum
-				(CRC32c) value calculated on the whole packet (rather than
-				just the header), and multihoming, introduce new challenges
-				for NAT traversal. <xref target="I-D.ietf-behave-sctpnat"/>
-				defines an SCTP specific variant of NAT, which provides similar
-				features of Network Address and Port Translation (NAPT).
-			</t>
-			<t>
-				Current NATs typically do not support SCTP. <xref target="RFC6951"/>
-				defines a mechanism for sending SCTP on top of UDP, which makes it
-				possible to use SCTP with NATs and firewalls that do not support SCTP.
+				When SCTP-over-DTLS is used in NAT environment, it relies on the NAT
+				traversal procedures for the underlying transport protocol (UDP or TCP).
 			</t>
 		</section>
 		<section title="ICE Considerations">
 			<t>
-				When the transport layer protocol is UDP (UDP/DTLS/SCTP), if ICE is used,
-        the ICE procedures defined in <xref target="RFC5245"/> are used.
+				When SCTP-over-DTLS is used with UDP based ICE candidates as defined in <xref target="RFC5245"/>
+				procedures for UDP/DTLS/SCTP, as defined in <xref target="sec-udp-dtls-sctp"/> are used.
 			</t>
 			<t>
-				When the transport layer protocol is TCP (TCP/DTLS/SCTP), if ICE is used,
-        the ICE procedures defined in <xref target="RFC6544"/> are used.
+				When SCTP-over-DTLS is used with TCP based ICE candidates as defined in <xref target="RFC6544"/>
+				procedures for TCP/DTLS/SCTP, as defined in <xref target="sec-tcp-dtls-sctp"/> are used.
 			</t>
 			<t>
 				Implementations MUST treat all ICE candidate pairs associated with a
 				an SCTP association on top of a DTLS association as part of the same
-				DTLS association. Thus, there will only be one DTLS handshake even if
-				there are multiple valid candidate pairs, and shifting from one candidate
-				pair to another will not impact the DTLS association. If new candidates
-				are added, they will also be part of the same DTLS association.
+				DTLS association. Thus, there will only be one SCTP handshake and one DTLS
+				handshake even if there are multiple valid candidate pairs, and shifting from one candidate
+				pair to another will not impact the SCTP or DTLS associations. If new candidates
+				are added, they will also be part of the same SCTP and DTLS associations. When transitioning
+				between candidate pairs, different candidate pairs can be currently active
+				in different directions and implementations MUST be ready to receive
+				data on any of the candidates, even if this means sending and receiving data using
+				UDP/DTLS/SCTP and TCP/DTLS/SCTP at the same time in different directions.
 			</t>
       <t>
         When an SDP offer or answer is sent, the proto value MUST match the
         transport protocol associated with the default candidate. Hence, if UDP
-        transport is used for the default candidiate the ‘UDP/DTLS/SCTP’
+        transport is used for the default candidate the 'UDP/DTLS/SCTP'
         proto value MUST be used. If TCP transport is used for the default
-        candidate the ‘TCP/DTLS/SCTP’ proto value MUST be used.
+        candidate the 'TCP/DTLS/SCTP' proto value MUST be used.
         However, if an endpoint switch between TCP-based and UDP-based candidates
         during a session the endpoint is not required to send an SDP offer in order
         to modify that proto value of the associated m- line.
