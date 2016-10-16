@@ -5,7 +5,7 @@
 <?rfc compact="yes" ?>
 <?rfc subcompact="no" ?>
 <?rfc sortrefs="no" ?>
-<rfc category="std" docName="draft-ietf-mmusic-sctp-sdp-18" ipr="trust200902">
+<rfc category="std" docName="draft-ietf-mmusic-sctp-sdp-19" ipr="trust200902">
 
 <?xml-stylesheet type="text/xsl" href="rfc2629.xslt" ?>
 
@@ -122,14 +122,15 @@
       values with the SDP Offer/Answer mechanism <xref target="RFC3264"/> for negotiating
       SCTP-over-DTLS associations.
   	</t>
+    <t>
+      NOTE: Due to the characteristics of TCP, usage of 'TCP/DTLS/SCTP' will always
+      force ordered and reliable delivery of the SCTP packets, which limits the usage of
+      the SCTP options. Therefore, it is strongly RECOMMENDED that TCP is only used
+      in situations where UDP traffic is blocked.
+    </t>
 		<t>
-			NOTE: TLS is designed to run on top of a byte-stream oriented
-			transport protocol providing a reliable, in-sequence delivery like
-			TCP. <xref target="RFC6083"/> presents serious limitations with transporting TLS
-			on top of SCTP. Therefore, defining a mechanism to negotiate media streams
-			transported using TLS on top of SCTP, i.e., 'SCTP/TLS', is outside the scope
-			of this specification. In addition, defining a mechanism to negotiate non-protected
-      SCTP associations is also outside the scope of this specification.
+			NOTE: The definition of a mechanism to negotiate non-protected SCTP associations
+      with the SDP Offer/Answer mechanism is outside the scope of this specification.
 		</t>
 	</section>
 
@@ -244,37 +245,38 @@
 			</t>
 			<t>
 				NOTE: A mechanism on how to describe, and manage, individual SCTP streams within an
-				SCTP association, is outside the scope of this specification.
+				SCTP association, is outside the scope of this specification. <xref format="default"
+        pageno="false" target="I-D.ietf-mmusic-data-channel-sdpneg"/> defines
+        a mechanism for negotiating individual SCTP streams used to realize WebRTC
+        data channels <xref format="default" pageno="false" target="I-D.ietf-rtcweb-data-channel"/>.
 			</t>
 		</section>
 
 		<section title="Syntax" anchor="m-line-syn">
 			<section title="General">
 				<t>
-					This section defines the ABNF <xref format="default" pageno="false"
-					target="RFC5234"/> for the SDP media description when associated
-					with any of the proto values defined in this document.
+          This section defines the values that can be used within an
+          SDP media description ("m=" line) associated with an
+          SCTP-over-DTLS association.
 				</t>
 				<t>
 					This specification creates an IANA registry for 'association-usage' values.
 				</t>
 			</section>
-			<section title="ABNF">
+			<section title="SDP Media Description values">
 				<figure>
 					<artwork><![CDATA[
-    sctp-m-line = %x6d "="
-     ("application" SP udp-port  SP "UDP/DTLS/SCTP" SP fmt CRLF) /
-     ("application" SP tcp-port  SP "TCP/DTLS/SCTP" SP fmt CRLF)
 
-    udp-port = port
+    m= line parameter        parameter value(s)
+    ------------------------------------------------------------------
+    <media>:                 "application"
+    <proto>:                 "UDP/DTLS/SCTP" or "TCP/DTLS/SCTP"
+    <port>:                  UDP port number (for "UDP/DTLS/SCTP")
+                             TCP port number (for ""UDP/DTLS/SCTP")
+    <fmt>:                   a string denoting the association-usage,
+                             limited to the syntax of a 'token' as
+                             defined in RFC4566.
 
-    tcp-port = port
-
-    fmt = association-usage
-
-    association-usage = token
-
-	token and port as defined in RFC4566
 					]]></artwork>
 				</figure>
 			</section>
@@ -316,11 +318,26 @@
 			<figure>
 				<artwork><![CDATA[
 
-    sctp-port-attr  =  "a=sctp-port:" port
-    port            =  (1*5)DIGIT
+    Name: sctp-port
+
+    Value: sctp-port-value
+
+    Usage Level: media
+
+    Charset Dependent: no
+
+    Mux Category: SPECIAL
+
+    Syntax:
+
+          sctp-port-value = 1*5<DIGIT defined in RFC4566>
 
     The SCTP port range is between 0 and 65535 (both included).
     Leading zeroes MUST NOT be used.
+
+    Example:
+
+         a=sctp-port:5000
 
 				]]></artwork>
 			</figure>
@@ -328,9 +345,7 @@
 		<section title="Mux Category" anchor="attr-sctp-port-mux">
 			<t>
 				The mux category <xref target="I-D.ietf-mmusic-sdp-mux-attributes"/> for
-				the SDP sctp-port' attribute is SPECIAL.  Usage of the attribute
-				is only applicable when associated with 'UDP/DTLS/SCTP' and
-				'TCP/DTLS/SCTP' proto value m- lines.
+				the SDP sctp-port' attribute is SPECIAL.
 			</t>
 			<t>
 				As the usage of multiple SCTP associations on top of a single
@@ -382,10 +397,25 @@
 			<figure>
 				<artwork><![CDATA[
 
-    max-message-size-attr =  "a=max-message-size:" max-message-size
-    max-message-size      =  1*40DIGIT
+          Name: max-message-size
 
-	  Leading zeroes MUST NOT be used.
+          Value: max-message-size-value
+
+          Usage Level: media
+
+          Charset Dependent: no
+
+          Mux Category: SPECIAL
+
+          Syntax:
+
+                max-message-size-value = 1*<DIGIT defined in RFC4566>
+
+          Leading zeroes MUST NOT be used.
+
+          Example:
+
+               a=max-message-size:100000
 
 				]]></artwork>
 			</figure>
@@ -393,8 +423,7 @@
 		<section title="Mux Category" anchor="attr-max-message-size-mux">
 			<t>
 				The mux category for the SDP 'max-message-size' attribute
-				is SPECIAL. The mux rules depends on the proto value of the
-				associated m- line.
+				is SPECIAL.
 			</t>
 			<t>
 				As the usage of multiple SCTP associations on top of a single
@@ -457,14 +486,13 @@
 
   <section title="Association And Connection Management" anchor="sec-con-mgmt">
     <section title="General" anchor="sec-con-mgmt-gen">
-      <t>
+       <t>
          This section describes how to mange an SCTP association, DTLS association and TCP connection
          using SDP attributes.
-      </t>
-      <t>
-         In case of UDP/DTLS/SCTP and TCP/DTLS/SCTP the SCTP association, DTLS association
-         and TCP connection are managed independently for each other. An association/connection
-         can be re-established without impacting other associations/connections.
+       </t>
+       <t>
+         The SCTP association, DTLS association and TCP connection are managed independently of
+         each other. Each can be re-established without impacting others.
        </t>
        <t>
          The detailed SDP Offer/Answer <xref target="RFC3264"/> procedures for the SDP attributes
@@ -476,7 +504,7 @@
 				This specification does not define semantics for the SDP direction
 				attributes <xref target="RFC4566"/>. Unless semantics of these
 				attributes for an SCTP association usage have been defined, SDP direction
-				attributes MUST be discarded if present.
+				attributes MUST be ignored if present.
 			</t>
 		</section>
     <section title="SCTP Association" anchor="sec-con-mgmt-sctp">
@@ -487,8 +515,10 @@
         prevent two separate SCTP associations from being established).
       </t>
       <t>
-        As both SCTP endpoints take the 'active' role, this specification does not define
-        usage of the SDP 'setup' attribute <xref target="RFC4145"/> for SCTP.
+        As both SCTP endpoints take the 'active' role, the SDP 'setup'
+        attribute <xref target="RFC4145"/> does not apply to SCTP association
+        establishment. However the 'setup' attribute does apply to establishment
+        of underlying DTLS associations and TCP connections.
       </t>
       <t>
         NOTE: The procedure above is different from TCP, where one endpoint takes the 'active'
@@ -496,15 +526,17 @@
         the TCP connection <xref target="RFC4145"/>.
       </t>
       <t>
-        NOTE: In case of SCTP-over-DTLS, when the SCTP association is established it is assumed
-        that any NAT traversal procedures for the underlying transport protocol (UDP or TCP) has
-        successfully been performed.
+        NOTE: When the SCTP association is established it is assumed that any NAT traversal
+        procedures for the underlying transport protocol (UDP or TCP) have successfully been
+        performed.
       </t>
       <t>
         Usage of the SDP 'connection' attribute <xref target="RFC4145"/> is not
         defined for SCTP. In order to trigger the closure and re-establishment of an SCTP association,
         the SDP 'sctp-port' attribute (<xref target="attr-sctp-port"/>) is used to indicate
-        a new (different than the ones currently used) SCTP port.
+        a new (different than the ones currently used) SCTP port. An SCTP association is
+        closed and re-established if one or both endpoints signal a new SCTP port. However
+        the 'connection' attribute does apply to establishment of underlying TCP connections.
       </t>
       <t>
         Alternatively, an SCTP association can be closed using the SDP 'sctp-port' attribute
@@ -513,9 +545,9 @@
       </t>
       <t>
         SCTP associations might be closed without SDP signalling, e.g, in case of a failure.
-        When such SCTP association is re-established the SCTP endpoints MUST use the
-        procedures in this section for establishing an SCTP association. New
-        (different than the ones currently used) SCTP ports MUST be used.
+        The procedures in this section MUST be followed to re-establish the
+        SCTP association. This requires a new SDP Offer/Answer exchange.
+        New (different than the ones currently used) SCTP ports MUST be used.
       </t>
       <t>
         NOTE: Closing and re-establishing the SCTP association using the SDP 'sctp-port' attribute
@@ -591,7 +623,7 @@
 			<t>
 				<list style="symbols">
 					<t>
-						MUST associate an SDP setup attribute, with an 'actpass' value, with the m- line;
+						MUST associate an SDP setup attribute with the m- line;
 					</t>
 					<t>
 						MUST associate an SDP 'sctp-port' attribute with the m- line;
@@ -610,7 +642,8 @@
 		<section title="Generating the SDP Answer">
 			<t>
 				When the answerer receives an offer, which contains an m- line describing
-				an SCTP-over-DTLS association, if the answerer accepts the association line it:
+				an SCTP-over-DTLS association, if the answerer accepts the association line
+        the answerer:
 			</t>
 			<t>
 				<list style="symbols">
@@ -626,8 +659,9 @@
 						MUST associate an SDP 'sctp-port' attribute with the m- line. If the
             offer contained a new (different than the one currently used) SCTP
             port value the answerer MUST also associate a new SCTP port value. If
-            the offer contained a zero SCTP port value the answerer MUST also associate
-            a zero SCTP port value; and
+            the offer contained a zero SCTP port value, or if the answerer does not
+            accept the SCTP association, the answerer MUST also associate a zero
+            SCTP port value; and
 					</t>
 					<t>
 						MAY associate an SDP 'max-message-size' attribute
@@ -638,55 +672,71 @@
 				</list>
 			</t>
 			<t>
-				Once the answerer has sent the answer the answerer MUST, if an SCTP
-        association has yet not been established, or if an existing SCTP
-        association is to be re-established, initiate the establishment
-        of the SCTP association.
-			</t>
-      <t>
-        The answerer follows the procedures in <xref target="I-D.ietf-mmusic-dtls-sdp"/>
-        regarding the establishment/re-establishment of the DTLS association.
+        Once the answerer has sent the answer the answerer:
       </t>
       <t>
-        In the case of TCP/DTLS/SCTP, the answerer follows
-        the procedures in <xref target="RFC4145"/> regarding
-        the establishment/re-establishment of the TCP connection association.
+				<list style="symbols">
+					<t>
+            MUST, in the case of TCP/DTLS/SCTP, follow the procedures in
+            <xref target="RFC4145"/> regarding the establishment/re-establishment
+            of the TCP connection association;
+          </t>
+          <t>
+            MUST follow the procedures in <xref target="I-D.ietf-mmusic-dtls-sdp"/>
+            regarding the establishment/re-establishment of the DTLS association; and
+          </t>
+          <t>
+            MUST, if an SCTP association has yet not been established, or if an existing SCTP
+            association is to be re-established, initiate the establishment
+            of the SCTP association.
+          </t>
+        </list>
+			</t>
+      <t>
+        If the SDP 'sctp-port' attribute in the answer contains a zero attribute
+        value, the answerer MUST NOT establish an SCTP association. If an SCTP
+        association exists, the offerer MUST close it.
       </t>
 			<t>
 				If the answerer does not accept the m- line in the offer, it MUST assign
         a zero port value to the corresponding m- line in the answer, following the
         procedures in <xref target="RFC3264"/>. In addition, the answerer MUST NOT
-        initiate the establishment of an SCTP association, or a DTLS association,
-        associated with the m- line.
+        initiate the establishment of a TCP connection, a DTLS association or a
+        DTLS association associated with the m- line.
 			</t>
 		</section>
 		<section title="Offerer Processing of the SDP Answer">
-			<t>
-        Once the offerer has received the answer, which contains an m- line
-        with a non-zero port value, the offerer MUST, if an SCTP
-        association has yet not been established, or if an existing SCTP
-        association is to be re-established, initiate the establishment
-        of the SCTP association.
+      <t>
+        Once the offerer has received the answer the offerer:
+      </t>
+      <t>
+				<list style="symbols">
+					<t>
+            MUST, in the case of TCP/DTLS/SCTP, follow the procedures in
+            <xref target="RFC4145"/> regarding the establishment/re-establishment
+            of the TCP connection association;
+          </t>
+          <t>
+            MUST follow the procedures in <xref target="I-D.ietf-mmusic-dtls-sdp"/>
+            regarding the establishment/re-establishment of the DTLS association; and
+          </t>
+          <t>
+            MUST, if an SCTP association has yet not been established, or if an existing SCTP
+            association is to be re-established, initiate the establishment
+            of the SCTP association.
+          </t>
+        </list>
 			</t>
       <t>
         If the SDP 'sctp-port' attribute in the answer contains a zero attribute
         value, the offerer MUST NOT establish an SCTP association. If an SCTP
         association exists, the offerer MUST close it.
       </t>
-      <t>
-        The offerer follows the procedures in <xref target="I-D.ietf-mmusic-dtls-sdp"/> regarding
-        the establishment/re-establishment of the DTLS association.
-      </t>
-      <t>
-        In the case of TCP/DTLS/SCTP, the offerer follows
-        the procedures in <xref target="RFC4145"/> regarding
-        the establishment/re-establishment of the TCP connection association.
-      </t>
 			<t>
 				If the m- line in the answer contains a zero port value, the offerer
-        MUST NOT establish a TCP connection, an SCTP association, or a
-        DTLS association, associated with the m- line. If an SCTP association,
-        DTLS association and/or TCP connection exists, the offerer MUST close it.
+        MUST NOT initiate the establishment a TCP connection, a DTLS association
+        or an SCTP association associated with the m- line. If a TCP connection,
+        or a DTLS association or an SCTP association exists, the offerer MUST close it.
 			</t>
 		</section>
 		<section title="Modifying the Session">
@@ -1005,6 +1055,11 @@
 
 	<section title="">
 		<t>[RFC EDITOR NOTE: Please remove this section when publishing]</t>
+    <t>Changes from draft-ietf-mmusic-sctp-sdp-18
+			<list style="symbols">
+        <t>Changes based on WGLC comments from Paul Kyzivat.</t>
+			</list>
+		</t>
     <t>Changes from draft-ietf-mmusic-sctp-sdp-17
 			<list style="symbols">
         <t>Removal of 'SCTP'.</t>
@@ -1097,23 +1152,20 @@
 		<?rfc include="reference.RFC.4571"?>
 		<?rfc include="reference.RFC.4572"?>
 		<?rfc include="reference.RFC.4960"?>
-		<?rfc include="reference.RFC.5061"?>
 		<?rfc include="reference.RFC.5226"?>
-		<?rfc include="reference.RFC.5234"?>
 		<?rfc include="reference.RFC.6347"?>
 		<?rfc include="reference.RFC.6838"?>
-    <?rfc include="reference.I-D.draft-ietf-mmusic-4572-update-05"?>
+    <?rfc include="reference.I-D.draft-ietf-mmusic-4572-update-07"?>
     <?rfc include="reference.I-D.draft-ietf-mmusic-dtls-sdp-14"?>
 		<?rfc include="reference.I-D.draft-ietf-tsvwg-sctp-dtls-encaps-09"?>
-		<?rfc include="reference.I-D.draft-ietf-mmusic-sdp-mux-attributes-13"?>
+		<?rfc include="reference.I-D.draft-ietf-mmusic-sdp-mux-attributes-14"?>
 	</references>
 	<references title="Informative References">
 		<?rfc include="reference.RFC.0793"?>
 		<?rfc include="reference.RFC.5245"?>
-		<?rfc include="reference.RFC.6083"?>
 		<?rfc include="reference.RFC.6544"?>
-		<?rfc include="reference.RFC.6951"?>
-		<?rfc include="reference.I-D.draft-ietf-behave-sctpnat-09"?>
+    <?rfc include="reference.I-D.draft-ietf-rtcweb-data-channel-13"?>
+    <?rfc include="reference.I-D.draft-ietf-mmusic-data-channel-sdpneg-10"?>
 	</references>
 </back>
 </rfc>
