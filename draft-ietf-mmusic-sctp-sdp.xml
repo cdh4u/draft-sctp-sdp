@@ -369,7 +369,7 @@
 				An SCTP endpoint MUST assume that larger SCTP user message sizes will be
         rejected by the peer SCTP endpoint. SCTP endpoints need to decide on appropriate
         behavior in case a message needs to be sent in which the SCTP user message size
-        exceeds thevmaximumvSCTP user message size.
+        exceeds the maximumv SCTP user message size.
 			</t>
 			<t>
 				If the SDP 'max-message-size' attribute contains a maximum message size
