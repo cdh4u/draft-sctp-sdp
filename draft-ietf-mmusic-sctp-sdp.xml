@@ -571,8 +571,8 @@
         TCP roles (<xref target="sec-con-mgmt-tcp"/>).
       </t>
       <t>
-        NOTE: As described in <xref target="RFC5245"/>, if the Interactive Connectivity
-        Establishment (ICE) mechanism <xref target="RFC5245"/> is used, all ICE
+        NOTE: As described in <xref target="I-D.ietf-ice-rfc5245bis"/>, if the Interactive Connectivity
+        Establishment (ICE) mechanism <xref target="I-D.ietf-ice-rfc5245bis"/> is used, all ICE
         candidates associated with a DTLS association as considered part of the same DTLS association.
         Thus, a switch from one candidate pair to another candidate pair will not trigger the establishment
         of a new DTLS association.
@@ -826,7 +826,7 @@
 		</section>
 		<section title="ICE Considerations">
 			<t>
-				When SCTP-over-DTLS is used with UDP based ICE candidates <xref target="RFC5245"/>
+				When SCTP-over-DTLS is used with UDP based ICE candidates <xref target="I-D.ietf-ice-rfc5245bis"/>
 				then the procedures for UDP/DTLS/SCTP [<xref target="sec-udp-dtls-sctp"/>] are used.
 			</t>
 			<t>
@@ -846,14 +846,13 @@
 				UDP/DTLS/SCTP and TCP/DTLS/SCTP at the same time in different directions.
 			</t>
       <t>
-        When an SDP offer or answer is sent, the proto value MUST match the
-        transport protocol associated with the default candidate. Hence, if UDP
-        transport is used for the default candidate the 'UDP/DTLS/SCTP'
-        proto value MUST be used. If TCP transport is used for the default
-        candidate the 'TCP/DTLS/SCTP' proto value MUST be used.
-        However, if an endpoint switches between TCP-based and UDP-based candidates
-        during a session the endpoint is not required to send an SDP offer in order
-        to modify that proto value of the associated m- line.
+        When an SDP offer or answer is sent, the rules in <xref target="I-D.ietf-mmusic-ice-sip-sdp"/>
+        apply regarding when the proto value must match the transport protocol associated with
+        the default candidate.
+      </t>
+      <t>
+        If an endpoint switches between TCP-based and UDP-based candidates during a session the endpoint
+        is not required to send an SDP offer in order to modify that proto value of the associated m- line.
       </t>
       <t>
         NOTE: The text in the paragraph above only applies when the usage of ICE
@@ -1142,8 +1141,9 @@
 	</references>
 	<references title="Informative References">
 		<?rfc include="reference.RFC.0793"?>
-		<?rfc include="reference.RFC.5245"?>
 		<?rfc include="reference.RFC.6544"?>
+    <?rfc include="reference.I-D.draft-ietf-ice-rfc5245bis-04"?>
+    <?rfc include="reference.I-D.draft-ietf-mmusic-ice-sip-sdp-10"?>
     <?rfc include="reference.I-D.draft-ietf-rtcweb-data-channel-13"?>
     <?rfc include="reference.I-D.draft-ietf-mmusic-data-channel-sdpneg-10"?>
 	</references>
