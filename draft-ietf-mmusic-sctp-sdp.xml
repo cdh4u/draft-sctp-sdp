@@ -214,10 +214,6 @@
 			<t>
 				<xref target="RFC4566"/> defines that specifications defining new proto values must
 				define the rules by which their media format (fmt) namespace is managed.
-				Use of an existing MIME subtype for the format is encouraged. If no MIME subtype
-				exists, it is RECOMMENDED that a suitable one is registered through the
-				IETF process defined in <xref target="RFC6838"/> and <xref target="RFC4289"/> by production of, or
-				reference to, a standards-track RFC that defines the transport protocol for the format.
 			</t>
 			<t>
 				An m- line with a proto value of 'UDP/DTLS/SCTP' or 'TCP/DTLS/SCTP'
@@ -1130,14 +1126,12 @@
 		<?rfc include="reference.RFC.2119"?>
 		<?rfc include="reference.RFC.3264"?>
 		<?rfc include="reference.RFC.4145"?>
-		<?rfc include="reference.RFC.4289"?>
 		<?rfc include="reference.RFC.4566"?>
 		<?rfc include="reference.RFC.4571"?>
 		<?rfc include="reference.RFC.4572"?>
 		<?rfc include="reference.RFC.4960"?>
 		<?rfc include="reference.RFC.5226"?>
 		<?rfc include="reference.RFC.6347"?>
-		<?rfc include="reference.RFC.6838"?>
     <?rfc include="reference.I-D.draft-ietf-mmusic-4572-update-07"?>
     <?rfc include="reference.I-D.draft-ietf-mmusic-dtls-sdp-14"?>
 		<?rfc include="reference.I-D.draft-ietf-tsvwg-sctp-dtls-encaps-09"?>
