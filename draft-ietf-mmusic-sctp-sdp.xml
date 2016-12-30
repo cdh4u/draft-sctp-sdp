@@ -5,7 +5,7 @@
 <?rfc compact="yes" ?>
 <?rfc subcompact="no" ?>
 <?rfc sortrefs="no" ?>
-<rfc category="std" docName="draft-ietf-mmusic-sctp-sdp-19" ipr="trust200902">
+<rfc category="std" docName="draft-ietf-mmusic-sctp-sdp-20" ipr="trust200902">
 
 <?xml-stylesheet type="text/xsl" href="rfc2629.xslt" ?>
 
@@ -109,8 +109,6 @@
 			transport protocol used to establish associations between two endpoints.
 		</t>
     <t>
-			The Stream Control Transmission Protocol (SCTP) <xref target="RFC4960"/> is a
-      transport protocol used to establish associations between two endpoints.
       <xref target="I-D.ietf-tsvwg-sctp-dtls-encaps"/> specifies how SCTP can be used on
       top of the Datagram Transport Layer Security (DTLS) protocol, referred to
       as SCTP-over-DTLS.
@@ -216,10 +214,6 @@
 			<t>
 				<xref target="RFC4566"/> defines that specifications defining new proto values must
 				define the rules by which their media format (fmt) namespace is managed.
-				Use of an existing MIME subtype for the format is encouraged. If no MIME subtype
-				exists, it is recommended that a suitable one is registered through the
-				IETF process defined in <xref target="RFC6838"/> and <xref target="RFC4289"/> by production of, or
-				reference to, a standards-track RFC that defines the transport protocol for the format.
 			</t>
 			<t>
 				An m- line with a proto value of 'UDP/DTLS/SCTP' or 'TCP/DTLS/SCTP'
@@ -232,6 +226,10 @@
 				with those proto values describes the generic application usage of the entire SCTP
 				association, including the associated SCTP streams.
 			</t>
+      <t>
+        <xref format="default" pageno="false" target="iana-assusage-registry"/> defines the IANA
+        registry for the media format namespace.
+      </t>
 			<t>
 				NOTE: A mechanism on how to describe, and manage, individual SCTP streams within an
 				SCTP association, is outside the scope of this specification. <xref format="default"
@@ -275,7 +273,7 @@
 				<artwork><![CDATA[
 
  m=application 12345 UDP/DTLS/SCTP webrtc-datachannel
- a=max-message-size: 100000
+ a=max-message-size:100000
 
  				]]></artwork>
 			</figure>
@@ -369,7 +367,7 @@
 				An SCTP endpoint MUST assume that larger SCTP user message sizes will be
         rejected by the peer SCTP endpoint. SCTP endpoints need to decide on appropriate
         behavior in case a message needs to be sent in which the SCTP user message size
-        exceeds the maximumv SCTP user message size.
+        exceeds thevmaximum SCTP user message size.
 			</t>
 			<t>
 				If the SDP 'max-message-size' attribute contains a maximum message size
@@ -400,17 +398,17 @@
 				<artwork><![CDATA[
 
           Attribute name:     max-message-size
-          Type of attribute:  media
-          Mux category:       SPECIAL
-          Subject to charset: No
+        	Type of attribute:  media
+        	Mux category:       SPECIAL
+        	Subject to charset: No
           Purpose:            Indicate the maximum message size that
                               an SCTP endpoint is willing to receive
                               on the SCTP association associated
                               with the SDP Media Description.
-          Appropriate values: Integer
-          Contact name:       Christer Holmberg
-          Contact e-mail:     christer.holmberg@ericsson.com
-          Reference:          RFCXXXX
+        	Appropriate values: Integer
+        	Contact name:       Christer Holmberg
+        	Contact e-mail:     christer.holmberg@ericsson.com
+        	Reference:          RFCXXXX
 
           Syntax:
 
@@ -553,7 +551,8 @@
         SCTP associations might be closed without SDP signalling, e.g, in case of a failure.
         The procedures in this section MUST be followed to establish a new
         SCTP association. This requires a new SDP Offer/Answer exchange.
-        New (different than the ones currently used) SCTP ports MUST be used.
+        New (different than the ones currently used) SCTP ports MUST be used by both
+        endpoints.
       </t>
       <t>
         NOTE: Closing and establishing a new SCTP association using the SDP
@@ -567,13 +566,13 @@
         <xref target="RFC4572"/>.
       </t>
       <t>
-        NOTE: The SDP 'setup' attribute is used both to negotiate both the DTLS roles and the
+        NOTE: The SDP 'setup' attribute is used to negotiate both the DTLS roles and the
         TCP roles (<xref target="sec-con-mgmt-tcp"/>).
       </t>
       <t>
-        NOTE: As described in <xref target="I-D.ietf-ice-rfc5245bis"/>, if the Interactive Connectivity
-        Establishment (ICE) mechanism <xref target="I-D.ietf-ice-rfc5245bis"/> is used, all ICE
-        candidates associated with a DTLS association as considered part of the same DTLS association.
+        NOTE: As described in <xref target="RFC5245"/>, if the Interactive Connectivity
+        Establishment (ICE) mechanism <xref target="RFC5245"/> is used, all ICE
+        candidates associated with a DTLS association are considered part of the same DTLS association.
         Thus, a switch from one candidate pair to another candidate pair will not trigger the establishment
         of a new DTLS association.
       </t>
@@ -609,13 +608,13 @@
 			<t>
         Each endpoint MUST associate one or more certificate fingerprints, using
         the SDP 'fingerprint' attribute with the m- line, following the procedures
-        in <xref target="RFC4572"/> and <xref target="I-D.ietf-mmusic-4572-update"/>.
+        in <xref target="I-D.ietf-mmusic-4572-update"/>.
 			</t>
 			<t>
-				The authentication certificates are interpreted and validated as
-				defined in <xref target="RFC4572"/>. Self-signed certificates can
-				be used securely, provided that the integrity of the SDP description
-				is assured as defined in <xref target="RFC4572"/>.
+        The authentication certificates are interpreted and validated as
+        defined in <xref target="I-D.ietf-mmusic-4572-update"/>. Self-signed
+        certificates can be used securely, provided that the integrity of the
+        SDP description is assured as defined in <xref target="I-D.ietf-mmusic-4572-update"/>.
 			</t>
       <t>
         Each endpoint MUST associate an SDP 'dtls-id' attribute with the m- line,
@@ -658,8 +657,7 @@
 						m- line proto value <xref target="RFC3264"/>;
 					</t>
 					<t>
-						MUST associate an SDP 'setup' attribute, with an 'active' or 'passive'
-            value, with the m- line;
+						MUST associate an SDP 'setup' attribute with the m- line;
 					</t>
 					<t>
 						MUST associate an SDP 'sctp-port' attribute with the m- line. If the
@@ -683,19 +681,19 @@
       <t>
 				<list style="symbols">
 					<t>
-            MUST, in the case of TCP/DTLS/SCTP, if a TCP connection has yet
-            not been established, or if an existing TCP connection is to be
+            MUST, in the case of TCP/DTLS/SCTP, if a TCP connection has not yet
+            been established, or if an existing TCP connection is to be
             closed and replaced by a new TCP connection, follow the procedures
             in <xref target="RFC4145"/> for closing and establishing a TCP connection;
           </t>
           <t>
-            MUST, if a DTLS association has yet not been established, or if
+            MUST, if a DTLS association has not yet been established, or if
             an existing DTLS association is to be closed and replaced by a
             new DTLS association, follow the procedures in <xref target="I-D.ietf-mmusic-dtls-sdp"/>
             for closing establishing a DTLS association; and
           </t>
           <t>
-            MUST, if an SCTP association has yet not been established, or if an
+            MUST, if an SCTP association has not yet been established, or if an
             existing SCTP association is to be closed and replaced by a new
             SCTP association, initiate the closing of the existing
             SCTP association (if applicable) and establishment of the SCTP association.
@@ -722,19 +720,19 @@
       <t>
 				<list style="symbols">
           <t>
-            MUST, in the case of TCP/DTLS/SCTP, if a TCP connection has yet
-            not been established, or if an existing TCP connection is to be
+            MUST, in the case of TCP/DTLS/SCTP, if a TCP connection has not yet
+            been established, or if an existing TCP connection is to be
             closed and replaced by a new TCP connection, follow the procedures
             in <xref target="RFC4145"/> for closing and establishing a TCP connection;
           </t>
           <t>
-            MUST, if a DTLS association has yet not been established, or if
+            MUST, if a DTLS association has not yet been established, or if
             an existing DTLS association is to be closed and replaced by a
             new DTLS association, follow the procedures in <xref target="I-D.ietf-mmusic-dtls-sdp"/>
-            for closing establishing a DTLS association; and
+            for closing and establishing a DTLS association; and
           </t>
           <t>
-            MUST, if an SCTP association has yet not been established, or if an
+            MUST, if an SCTP association has not yet been established, or if an
             existing SCTP association is to be closed and replaced by a new
             SCTP association, initiate the closing of the existing
             SCTP association (if applicable) and establishment of the SCTP association.
@@ -744,13 +742,13 @@
       <t>
         If the SDP 'sctp-port' attribute in the answer contains a zero attribute
         value, the offerer MUST NOT establish an SCTP association. If an SCTP
-        association exists, the offerer MUST close it.
+        association exists in that case, the offerer MUST close it.
       </t>
 			<t>
 				If the m- line in the answer contains a zero port value, the offerer
         MUST NOT initiate the establishment a TCP connection, a DTLS association
         or an SCTP association associated with the m- line. If a TCP connection,
-        or a DTLS association or an SCTP association exists, the offerer MUST close it.
+        or a DTLS association or an SCTP association exists in that case, the offerer MUST close it.
 			</t>
 		</section>
 		<section title="Modifying the Session">
@@ -777,7 +775,7 @@
             If the offerer wants to establish an SCTP association, and another SCTP association
             was previously closed, the offerer MUST associate an SDP 'sctp-port' attribute with
             a new attribute value (different than the value associated with the previous SCTP association).
-            If the previous SCTP association was closed using an SDP 'sctp-port' attribute with a zero
+            If the previous SCTP association was closed successfully following use of an SDP 'sctp-port' attribute with a zero
             attribute value, the offerer MAY use the same attribute value for the new SCTP association
             that was used with the previous SCTP association before it was closed. This will not impact
             the underlying DTLS association (and TCP connection in case of TCP/DTLS/SCTP).
@@ -802,7 +800,7 @@
         the DTLS association impacts when modifying a session.
       </t>
       <t>
-        In the case of TCP/DTLS/SCTP, the offer follows the procedures in
+        In the case of TCP/DTLS/SCTP, the offerer follows the procedures in
         <xref target="RFC4145"/> regarding the TCP connection impacts when
         modifying a session.
       </t>
@@ -826,7 +824,7 @@
 		</section>
 		<section title="ICE Considerations">
 			<t>
-				When SCTP-over-DTLS is used with UDP based ICE candidates <xref target="I-D.ietf-ice-rfc5245bis"/>
+				When SCTP-over-DTLS is used with UDP based ICE candidates <xref target="RFC5245"/>
 				then the procedures for UDP/DTLS/SCTP [<xref target="sec-udp-dtls-sctp"/>] are used.
 			</t>
 			<t>
@@ -834,24 +832,26 @@
 				then the procedures for TCP/DTLS/SCTP [<xref target="sec-tcp-dtls-sctp"/>] are used.
 			</t>
 			<t>
-        The generic ICE rules defined in <xref target="I-D.ietf-mmusic-ice-sip-sdp"/> apply
-        also to SCTP-over-DTLS. Therefore, implementations must treat all ICE candidate pairs
-        associated with an SCTP association on top of a DTLS association as part of the same
-        DTLS association. Thus, there will only be one SCTP handshake and one DTLS handshake
-        even if there are multiple valid candidate pairs, and shifting from one candidate pair
-        to another will not impact the SCTP or DTLS associations. If new candidates are added,
-        they will also be part of the same SCTP and DTLS associations. Note that, depending
-        on which candidiates are used at any given time, TCP-based and UDP-based candidiates might
-        be used simultaneously for sending and receiving data.
-      </t>
+				Implementations MUST treat all ICE candidate pairs associated with
+				an SCTP association on top of a DTLS association as part of the same
+				DTLS association. Thus, there will only be one SCTP handshake and one DTLS
+				handshake even if there are multiple valid candidate pairs, and shifting from one candidate
+				pair to another will not impact the SCTP or DTLS associations. If new candidates
+				are added, they will also be part of the same SCTP and DTLS associations. When transitioning
+				between candidate pairs, different candidate pairs can be currently active
+				in different directions and implementations MUST be ready to receive
+				data on any of the candidates, even if this means sending and receiving data using
+				UDP/DTLS/SCTP and TCP/DTLS/SCTP at the same time in different directions.
+			</t>
       <t>
-        When an SDP offer or answer is sent, the rules in <xref target="I-D.ietf-mmusic-ice-sip-sdp"/>
-        apply regarding when the proto value must match the transport protocol associated with
-        the default candidate.
-      </t>
-      <t>
-        If an endpoint switches between TCP-based and UDP-based candidates during a session the endpoint
-        is not required to send an SDP offer in order to modify that proto value of the associated m- line.
+        When an SDP offer or answer is sent, the proto value MUST match the
+        transport protocol associated with the default candidate. Hence, if UDP
+        transport is used for the default candidate the 'UDP/DTLS/SCTP'
+        proto value MUST be used. If TCP transport is used for the default
+        candidate the 'TCP/DTLS/SCTP' proto value MUST be used.
+        However, if an endpoint switches between TCP-based and UDP-based candidates
+        during a session the endpoint is not required to send an SDP offer in order
+        to modify that proto value of the associated m- line.
       </t>
       <t>
         NOTE: The text in the paragraph above only applies when the usage of ICE
@@ -1033,6 +1033,11 @@
 
 	<section title="">
 		<t>[RFC EDITOR NOTE: Please remove this section when publishing]</t>
+    <t>Changes from draft-ietf-mmusic-sctp-sdp-19
+			<list style="symbols">
+        <t>Changes based on WG chair comments from Flemming Andreasen.</t>
+			</list>
+		</t>
     <t>Changes from draft-ietf-mmusic-sctp-sdp-18
 			<list style="symbols">
         <t>Changes based on WGLC comments from Paul Kyzivat.</t>
@@ -1125,24 +1130,21 @@
 		<?rfc include="reference.RFC.2119"?>
 		<?rfc include="reference.RFC.3264"?>
 		<?rfc include="reference.RFC.4145"?>
-		<?rfc include="reference.RFC.4289"?>
 		<?rfc include="reference.RFC.4566"?>
 		<?rfc include="reference.RFC.4571"?>
 		<?rfc include="reference.RFC.4572"?>
 		<?rfc include="reference.RFC.4960"?>
 		<?rfc include="reference.RFC.5226"?>
 		<?rfc include="reference.RFC.6347"?>
-		<?rfc include="reference.RFC.6838"?>
-    <?rfc include="reference.I-D.draft-ietf-mmusic-4572-update-07"?>
-    <?rfc include="reference.I-D.draft-ietf-mmusic-dtls-sdp-14"?>
+    <?rfc include="reference.I-D.draft-ietf-mmusic-4572-update-08"?>
+    <?rfc include="reference.I-D.draft-ietf-mmusic-dtls-sdp-15"?>
 		<?rfc include="reference.I-D.draft-ietf-tsvwg-sctp-dtls-encaps-09"?>
-		<?rfc include="reference.I-D.draft-ietf-mmusic-sdp-mux-attributes-14"?>
+		<?rfc include="reference.I-D.draft-ietf-mmusic-sdp-mux-attributes-16"?>
 	</references>
 	<references title="Informative References">
 		<?rfc include="reference.RFC.0793"?>
+		<?rfc include="reference.RFC.5245"?>
 		<?rfc include="reference.RFC.6544"?>
-    <?rfc include="reference.I-D.draft-ietf-ice-rfc5245bis-04"?>
-    <?rfc include="reference.I-D.draft-ietf-mmusic-ice-sip-sdp-10"?>
     <?rfc include="reference.I-D.draft-ietf-rtcweb-data-channel-13"?>
     <?rfc include="reference.I-D.draft-ietf-mmusic-data-channel-sdpneg-10"?>
 	</references>
