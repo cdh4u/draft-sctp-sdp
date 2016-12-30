@@ -226,6 +226,10 @@
 				with those proto values describes the generic application usage of the entire SCTP
 				association, including the associated SCTP streams.
 			</t>
+      <t>
+        <xref format="default" pageno="false" target="iana-assusage-registry"/> defines the IANA
+        registry for the media format namespace.
+      </t>
 			<t>
 				NOTE: A mechanism on how to describe, and manage, individual SCTP streams within an
 				SCTP association, is outside the scope of this specification. <xref format="default"
@@ -1132,10 +1136,10 @@
 		<?rfc include="reference.RFC.4960"?>
 		<?rfc include="reference.RFC.5226"?>
 		<?rfc include="reference.RFC.6347"?>
-    <?rfc include="reference.I-D.draft-ietf-mmusic-4572-update-07"?>
-    <?rfc include="reference.I-D.draft-ietf-mmusic-dtls-sdp-14"?>
+    <?rfc include="reference.I-D.draft-ietf-mmusic-4572-update-08"?>
+    <?rfc include="reference.I-D.draft-ietf-mmusic-dtls-sdp-15"?>
 		<?rfc include="reference.I-D.draft-ietf-tsvwg-sctp-dtls-encaps-09"?>
-		<?rfc include="reference.I-D.draft-ietf-mmusic-sdp-mux-attributes-14"?>
+		<?rfc include="reference.I-D.draft-ietf-mmusic-sdp-mux-attributes-16"?>
 	</references>
 	<references title="Informative References">
 		<?rfc include="reference.RFC.0793"?>
