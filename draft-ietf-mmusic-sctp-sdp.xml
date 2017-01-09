@@ -5,7 +5,7 @@
 <?rfc compact="yes" ?>
 <?rfc subcompact="no" ?>
 <?rfc sortrefs="no" ?>
-<rfc category="std" docName="draft-ietf-mmusic-sctp-sdp-20" ipr="trust200902">
+<rfc category="std" docName="draft-ietf-mmusic-sctp-sdp-21" ipr="trust200902">
 
 <?xml-stylesheet type="text/xsl" href="rfc2629.xslt" ?>
 
@@ -70,7 +70,7 @@
 		</address>
     </author>
 
-	<date year="2016"/>
+	<date year="2017"/>
 	<area>RAI</area>
 	<workgroup>MMUSIC</workgroup>
 	<keyword>SCTP, SDP, DTLS</keyword>
@@ -277,6 +277,10 @@
 
  				]]></artwork>
 			</figure>
+      <t>
+        NOTE: 'webrtc-datachannel' indicates the WebRTC Data Channel Establishment Protocol
+        defined in <xref target="I-D.ietf-rtcweb-data-protocol"/>.
+      </t>
 		</section>
 	</section>
 
@@ -1033,6 +1037,11 @@
 
 	<section title="">
 		<t>[RFC EDITOR NOTE: Please remove this section when publishing]</t>
+    <t>Changes from draft-ietf-mmusic-sctp-sdp-20
+			<list style="symbols">
+        <t>Informative reference to draft-ietf-rtcweb-data-protocol added.</t>
+			</list>
+		</t>
     <t>Changes from draft-ietf-mmusic-sctp-sdp-19
 			<list style="symbols">
         <t>Changes based on WG chair comments from Flemming Andreasen.</t>
@@ -1136,7 +1145,7 @@
 		<?rfc include="reference.RFC.4960"?>
 		<?rfc include="reference.RFC.5226"?>
 		<?rfc include="reference.RFC.6347"?>
-    <?rfc include="reference.I-D.draft-ietf-mmusic-4572-update-08"?>
+    <?rfc include="reference.I-D.draft-ietf-mmusic-4572-update-10"?>
     <?rfc include="reference.I-D.draft-ietf-mmusic-dtls-sdp-15"?>
 		<?rfc include="reference.I-D.draft-ietf-tsvwg-sctp-dtls-encaps-09"?>
 		<?rfc include="reference.I-D.draft-ietf-mmusic-sdp-mux-attributes-16"?>
@@ -1147,6 +1156,7 @@
 		<?rfc include="reference.RFC.6544"?>
     <?rfc include="reference.I-D.draft-ietf-rtcweb-data-channel-13"?>
     <?rfc include="reference.I-D.draft-ietf-mmusic-data-channel-sdpneg-10"?>
+    <?rfc include="reference.I-D.draft-ietf-rtcweb-data-protocol-09"?>
 	</references>
 </back>
 </rfc>
