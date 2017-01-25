@@ -17,16 +17,16 @@
    </title>
 
     <author initials="C." surname="Holmberg" fullname="Christer Holmberg">
-		<organization>Ericsson</organization>
-		<address>
-			<postal>
-				<street>Hirsalantie 11</street>
-				<code>02420</code>
-				<city>Jorvas</city>
-				<country>Finland</country>
-			</postal>
-			<email>christer.holmberg@ericsson.com</email>
-		</address>
+        <organization>Ericsson</organization>
+        <address>
+            <postal>
+                <street>Hirsalantie 11</street>
+                <code>02420</code>
+                <city>Jorvas</city>
+                <country>Finland</country>
+            </postal>
+            <email>christer.holmberg@ericsson.com</email>
+        </address>
     </author>
 
     <author fullname="Roman Shpount" initials="R.S." surname="Shpount">
@@ -45,74 +45,75 @@
     </author>
 
     <author initials="S." surname="Loreto" fullname="Salvatore Loreto">
-		<organization>Ericsson</organization>
-		<address>
-			<postal>
-				<street>Hirsalantie 11</street>
-				<code>02420</code>
-				<city>Jorvas</city>
-				<country>Finland</country>
-			</postal>
-			<email>Salvatore.Loreto@ericsson.com</email>
-		</address>
+        <organization>Ericsson</organization>
+        <address>
+            <postal>
+                <street>Hirsalantie 11</street>
+                <code>02420</code>
+                <city>Jorvas</city>
+                <country>Finland</country>
+            </postal>
+            <email>Salvatore.Loreto@ericsson.com</email>
+        </address>
     </author>
 
     <author initials="G." surname="Camarillo" fullname="Gonzalo Camarillo">
-		<organization>Ericsson</organization>
-		<address>
-			<postal>
-				<street>Hirsalantie 11</street>
-				<code>02420</code>
-				<city>Jorvas</city>
-				<country>Finland</country>
-			</postal>
-			<email>Gonzalo.Camarillo@ericsson.com</email>
-		</address>
+        <organization>Ericsson</organization>
+        <address>
+            <postal>
+                <street>Hirsalantie 11</street>
+                <code>02420</code>
+                <city>Jorvas</city>
+                <country>Finland</country>
+            </postal>
+            <email>Gonzalo.Camarillo@ericsson.com</email>
+        </address>
     </author>
 
-	<date year="2017"/>
-	<area>RAI</area>
-	<workgroup>MMUSIC</workgroup>
-	<keyword>SCTP, SDP, DTLS</keyword>
+    <date year="2017"/>
+    <area>RAI</area>
+    <workgroup>MMUSIC</workgroup>
+    <keyword>SCTP, SDP, DTLS</keyword>
 
-  <abstract>
-		<t>
-			The Stream Control Transmission Protocol (SCTP) is a transport protocol
-			used to establish associations between two endpoints.
-      draft-ietf-tsvwg-sctp-dtls-encaps-09 specifies how SCTP can be used on
-      top of the Datagram Transport Layer Security (DTLS) protocol, referred to
-      as SCTP-over-DTLS.
-		</t>
-		<t>
-      This specification defines the following new Session Description Protocol (SDP)
-      protocol identifiers (proto values):'UDP/DTLS/SCTP' and 'TCP/DTLS/SCTP'. This
-      specification also specifies how to use the new proto values with the
-      SDP Offer/Answer mechanism for negotiating SCTP-over-DTLS associations.
-		</t>
-	</abstract>
+    <abstract>
+        <t>
+            The Stream Control Transmission Protocol (SCTP) is a transport protocol
+            used to establish associations between two endpoints.
+            draft-ietf-tsvwg-sctp-dtls-encaps-09 specifies how SCTP can be used on
+            top of the Datagram Transport Layer Security (DTLS) protocol, referred to
+            as SCTP-over-DTLS.
+        </t>
+        <t>
+            This specification defines the following new Session Description Protocol (SDP)
+            protocol identifiers (proto values):'UDP/DTLS/SCTP' and 'TCP/DTLS/SCTP'. This
+            specification also specifies how to use the new proto values with the
+            SDP Offer/Answer mechanism for negotiating SCTP-over-DTLS associations.
+        </t>
+    </abstract>
 </front>
 
 <middle>
   <section title="Introduction">
-		<t>
-			SDP (Session Description Protocol) <xref target="RFC4566"/> provides a
-			general-purpose format for describing multimedia sessions in announcements
-			or invitations. TCP-Based Media Transport in the Session Description Protocol
-			(SDP) <xref target="RFC4145"/> specifies a general mechanism for describing and
-			establishing TCP <xref target="RFC0793"/> streams.
-			Connection-Oriented Media Transport over the Transport Layer Security (TLS)
-			Protocol in SDP <xref target="RFC4572"/> extends RFC4145 <xref target="RFC4145"/> for
-			describing TCP-based media streams that are protected using TLS.
-		</t>
-		<t>
-			The Stream Control Transmission Protocol (SCTP) <xref target="RFC4960"/> is a
-			transport protocol used to establish associations between two endpoints.
-		</t>
+        <t>
+            SDP (Session Description Protocol) <xref target="RFC4566"/> provides a
+            general-purpose format for describing multimedia sessions in announcements
+            or invitations. TCP-Based Media Transport in the Session Description Protocol
+            (SDP) <xref target="RFC4145"/> specifies a general mechanism for describing and
+            establishing TCP <xref target="RFC0793"/> streams.
+            Connection-Oriented Media Transport over the Transport Layer Security (TLS)
+            Protocol in SDP <xref target="I-D.ietf-mmusic-4572-update"/> extends RFC4145 <xref target="RFC4145"/> for
+            describing TCP-based media streams that are protected using TLS.
+        </t>
+        <t>
+            The Stream Control Transmission Protocol (SCTP) <xref target="RFC4960"/> is a
+            reliable transport protocol used to transport data between two
+            endpoints using SCTP associations.
+        </t>
     <t>
       <xref target="I-D.ietf-tsvwg-sctp-dtls-encaps"/> specifies how SCTP can be used on
       top of the Datagram Transport Layer Security (DTLS) protocol, referred to
       as SCTP-over-DTLS.
-		</t>
+    </t>
     <t>
       This specification defines the following new Session Description Protocol (SDP)
       <xref target="RFC4566"/> protocol identifiers (proto values):'UDP/DTLS/SCTP'
@@ -123,10 +124,10 @@
     <t>
       NOTE: Due to the characteristics of TCP, usage of 'TCP/DTLS/SCTP' will always
       force ordered and reliable delivery of the SCTP packets, which limits the usage of
-      the SCTP options. Therefore, it is strongly RECOMMENDED that TCP is only used
+      the SCTP options. Therefore, it is RECOMMENDED that TCP is only used
       in situations where UDP traffic is blocked.
     </t>
-	</section>
+  </section>
 
   <section title="Conventions">
   <t>
@@ -136,123 +137,121 @@
   </t>
   </section>
 
-	<section title="SCTP Terminology">
-		<t>
-			SCTP Association: A protocol relationship between SCTP endpoints,
-			composed of the two SCTP endpoints and protocol state information
-			including Verification Tags and the currently active set of
-			Transmission Sequence Numbers (TSNs), etc. An association can be
-			uniquely identified by the transport addresses used by the
-			endpoints in the association.
-		</t>
-		<t>
-			SCTP Stream: A unidirectional logical channel established from one to
-			another associated SCTP endpoint, within which all user messages
-			are delivered in sequence except for those submitted to the
-			unordered delivery service.
-		</t>
-    <t>
-      SCTP-over-DTLS: SCTP used on top of DTLS, as specified in
-      <xref target="I-D.ietf-tsvwg-sctp-dtls-encaps"/>.
-    </t>
-	</section>
-
-	<section title="SDP Media Descriptions" anchor="m-line">
-		<section title="General" anchor="m-line-gen">
-			<t>
-				This section defines the following new SDP Media Description (m- line)
-				protocol identifiers (proto values) for describing an SCTP association:
-				'UDP/DTLS/SCTP' and 'TCP/DTLS/SCTP'. The section
-				also describes how an m- line, associated with the proto values, is created.
-			</t>
-			<t>
-				The following is the format for an 'm' line, as specified in RFC4566
-				<xref target="RFC4566"/>:
-			</t>
-			<figure>
-				<artwork><![CDATA[
-    m=<media> <port> <proto> <fmt> ...
-				]]></artwork>
-			</figure>
+  <section title="SCTP Terminology">
       <t>
-				The 'UDP/DTLS/SCTP' and 'TCP/DTLS/SCTP' proto values are similar to both
-        the 'UDP' and 'TCP' proto values in that they only describe the transport-layer
-        protocol and not the upper-layer protocol.
-			</t>
-			<t>
-				NOTE: When the 'UDP/DTLS/SCTP' and 'TCP/DTLS/SCTP' proto values are used,
-				the underlying transport protocol is respectively UDP and TCP; SCTP is
-				carried on top of DTLS which is on top of those transport-layer protocols.
- 			</t>
-			<t>
-				The m- line fmt value, identifying the application-layer protocol,
-				MUST be registered by IANA.
-			</t>
-		</section>
-
-		<section title="Protocol Identifiers" anchor="proto">
-			<t>
-				The new proto values are defined as below:
-			</t>
-			<t>
-				<list style="symbols">
-					<t>
-						The 'UDP/DTLS/SCTP' proto value describes an SCTP association on top of
-						a DTLS association on top of UDP, as defined in
-						<xref target="sec-udp-dtls-sctp"/>.
-					</t>
-					<t>
-						The 'TCP/DTLS/SCTP' proto value describes an SCTP association on top of
-						a DTLS association on top of TCP, as defined in
-						<xref target="sec-tcp-dtls-sctp"/>.
-					</t>
-				</list>
-			</t>
-		</section>
-
-		<section title="Media Format Management" anchor="media">
-			<t>
-				<xref target="RFC4566"/> defines that specifications defining new proto values must
-				define the rules by which their media format (fmt) namespace is managed.
-			</t>
-			<t>
-				An m- line with a proto value of 'UDP/DTLS/SCTP' or 'TCP/DTLS/SCTP'
-				always describes a single SCTP association.
-			</t>
-			<t>
-				In addition, such m- line MUST further indicate the application-layer protocol
-				using an 'fmt' identifier. There MUST be exactly one 'fmt' value per m- line associated
-				with the proto values defined in this specification. The "fmt" namespace associated
-				with those proto values describes the generic application usage of the entire SCTP
-				association, including the associated SCTP streams.
-			</t>
-      <t>
-        <xref format="default" pageno="false" target="iana-assusage-registry"/> defines the IANA
-        registry for the media format namespace.
+          SCTP Association: A protocol relationship between SCTP endpoints,
+          composed of the two SCTP endpoints and protocol state information
+          including Verification Tags and the currently active set of
+          Transmission Sequence Numbers (TSNs), etc. An association can be
+          uniquely identified by the transport addresses used by the
+          endpoints in the association.
       </t>
-			<t>
-				NOTE: A mechanism on how to describe, and manage, individual SCTP streams within an
-				SCTP association, is outside the scope of this specification. <xref format="default"
-        pageno="false" target="I-D.ietf-mmusic-data-channel-sdpneg"/> defines
-        a mechanism for negotiating individual SCTP streams used to realize WebRTC
-        data channels <xref format="default" pageno="false" target="I-D.ietf-rtcweb-data-channel"/>.
-			</t>
-		</section>
+      <t>
+          SCTP Stream: A unidirectional logical channel established from one to
+          another associated SCTP endpoint, within which all user messages
+          are delivered in sequence except for those submitted to the
+          unordered delivery service.
+      </t>
+      <t>
+          SCTP-over-DTLS: SCTP used on top of DTLS, as specified in
+          <xref target="I-D.ietf-tsvwg-sctp-dtls-encaps"/>.
+      </t>
+  </section>
 
-		<section title="Syntax" anchor="m-line-syn">
-			<section title="General">
-				<t>
-          This section defines the values that can be used within an
-          SDP media description ("m=" line) associated with an
-          SCTP-over-DTLS association.
-				</t>
-				<t>
-					This specification creates an IANA registry for 'association-usage' values.
-				</t>
-			</section>
-			<section title="SDP Media Description values">
-				<figure>
-					<artwork><![CDATA[
+  <section title="SDP Media Descriptions" anchor="m-line">
+      <section title="General" anchor="m-line-gen">
+          <t>
+              This section defines the following new SDP Media Description (m-
+              line) protocol identifiers (proto values) for describing an SCTP
+              association: 'UDP/DTLS/SCTP' and 'TCP/DTLS/SCTP'.  The section also
+              describes how an m- line, associated with the proto values, is
+              created.
+          </t>
+          <t>
+              The following is the format for an m- line, as specified in RFC4566
+              <xref target="RFC4566"/>:
+          </t>
+          <figure>
+              <artwork><![CDATA[
+    m=<media> <port> <proto> <fmt> ...
+              ]]></artwork>
+          </figure>
+          <t>
+              The 'UDP/DTLS/SCTP' and 'TCP/DTLS/SCTP' proto values are similar to both
+              the 'UDP' and 'TCP' proto values in that they only describe the transport-layer
+              protocol and not the upper-layer protocol.
+          </t>
+          <t>
+              NOTE: When the 'UDP/DTLS/SCTP' and 'TCP/DTLS/SCTP' proto values are used,
+              the underlying transport protocol is respectively UDP and TCP; SCTP is
+              carried on top of DTLS which is on top of those transport-layer protocols.
+          </t>
+      </section>
+
+      <section title="Protocol Identifiers" anchor="proto">
+          <t>
+              The new proto values are defined as below:
+          </t>
+          <t>
+              <list style="symbols">
+                  <t>
+                      The 'UDP/DTLS/SCTP' proto value describes an SCTP association on top of
+                      a DTLS association on top of UDP, as defined in
+                      <xref target="sec-udp-dtls-sctp"/>.
+                  </t>
+                  <t>
+                      The 'TCP/DTLS/SCTP' proto value describes an SCTP association on top of
+                      a DTLS association on top of TCP, as defined in <xref target="sec-tcp-dtls-sctp"/>.
+                  </t>
+              </list>
+          </t>
+      </section>
+
+      <section title="Media Format Management" anchor="media">
+          <t>
+              <xref target="RFC4566"/> defines that specifications defining new proto values must
+              define the rules by which their media format (fmt) namespace is managed.
+          </t>
+          <t>
+              An m- line with a proto value of 'UDP/DTLS/SCTP' or 'TCP/DTLS/SCTP'
+              always describes a single SCTP association.
+          </t>
+          <t>
+              In addition, such m- line MUST further indicate the application-layer protocol
+              using an 'fmt' identifier. There MUST be exactly one fmt value per m- line associated
+              with the proto values defined in this specification. The 'fmt' namespace associated
+              with those proto values describes the generic application usage of the entire SCTP
+              association, including the associated SCTP streams.
+          </t>
+          <t>
+              When the 'UDP/DTLS/SCTP' and 'TCP/DTLS/SCTP' proto values, the m- line fmt value,
+              identifying the application-layer protocol, MUST be registered by IANA.
+              <xref format="default" pageno="false" target="iana-assusage-registry"/> defines the
+              IANA registry for the media format namespace.
+          </t>
+          <t>
+              NOTE: A mechanism on how to describe, and manage, individual SCTP streams within an
+              SCTP association, is outside the scope of this specification. <xref format="default"
+              pageno="false" target="I-D.ietf-mmusic-data-channel-sdpneg"/> defines
+              a mechanism for negotiating individual SCTP streams used to realize WebRTC
+              data channels <xref format="default" pageno="false" target="I-D.ietf-rtcweb-data-channel"/>.
+          </t>
+      </section>
+
+      <section title="Syntax" anchor="m-line-syn">
+          <section title="General">
+              <t>
+                  This section defines the values that can be used within an
+                  SDP media description ("m=" line) associated with an
+                  SCTP-over-DTLS association.
+              </t>
+              <t>
+                  This specification creates an IANA registry for 'association-usage' values.
+              </t>
+          </section>
+          <section title="SDP Media Description values">
+              <figure>
+                  <artwork><![CDATA[
 
     m= line parameter        parameter value(s)
     ------------------------------------------------------------------
@@ -264,61 +263,62 @@
                              limited to the syntax of a 'token' as
                              defined in RFC4566.
 
-					]]></artwork>
-				</figure>
-			</section>
-		</section>
-		<section title="Example">
-			<figure>
-				<artwork><![CDATA[
+                  ]]></artwork>
+              </figure>
+          </section>
+      </section>
+      <section title="Example">
+          <figure>
+              <artwork><![CDATA[
 
  m=application 12345 UDP/DTLS/SCTP webrtc-datachannel
+ a=sctp-port:5000
  a=max-message-size:100000
 
- 				]]></artwork>
-			</figure>
-      <t>
-        NOTE: 'webrtc-datachannel' indicates the WebRTC Data Channel Establishment Protocol
-        defined in <xref target="I-D.ietf-rtcweb-data-protocol"/>.
-      </t>
-		</section>
-	</section>
+              ]]></artwork>
+          </figure>
+          <t>
+              NOTE: 'webrtc-datachannel' indicates the WebRTC Data Channel Establishment Protocol
+              defined in <xref target="I-D.ietf-rtcweb-data-protocol"/>.
+          </t>
+      </section>
+  </section>
 
-	<section title="SDP 'sctp-port' Attribute" anchor="attr-sctp-port">
-		<section title="General" anchor="attr-sctp-port-gen">
-			<t>
-				This section defines a new SDP media-level attribute, 'sctp-port'.
-				The attribute can be associated with an SDP media description (m- line)
-				with a 'UDP/DTLS/SCTP' or a 'TCP/DTLS/SCTP' proto value. In that case
-				the m- line port value indicates the port of the underlying transport layer
-				protocol (UDP or TCP), and the 'sctp-port' value indicates the SCTP port.
-			</t>
-			<t>
-				No default value is defined for the SDP sctp-port attribute. Therefore, if
-				the attribute is not present, the associated m- line MUST be considered invalid.
-			</t>
-      <t>
-				NOTE: This specification only defines the usage of the SDP 'sctp-port'
-				attribute when associated with an m- line containing one of the following proto
-				values: 'UDP/DTLS/SCTP' or 'TCP/DTLS/SCTP'.
-				Usage of the attribute with other proto values needs to be defined
-				in a separate specification.
-			</t>
-		</section>
-		<section title="Syntax" anchor="attr-sctp-port-syn">
-      <t>
-        [RFC EDITOR NOTE: Please replace RFCXXXX with the RFC number
-        of this document.]
-      </t>
-			<t>
-				The definition of the SDP 'sctp-port' attribute is:
-			</t>
-			<figure>
-				<artwork><![CDATA[
+  <section title="SDP 'sctp-port' Attribute" anchor="attr-sctp-port">
+      <section title="General" anchor="attr-sctp-port-gen">
+          <t>
+              This section defines a new SDP media-level attribute, 'sctp-port'.
+              The attribute can be associated with an SDP media description (m- line)
+              with a 'UDP/DTLS/SCTP' or a 'TCP/DTLS/SCTP' proto value. In that case
+              the m- line port value indicates the port of the underlying transport layer
+              protocol (UDP or TCP), and the 'sctp-port' value indicates the SCTP port.
+          </t>
+          <t>
+              No default value is defined for the SDP sctp-port attribute. Therefore, if
+              the attribute is not present, the associated m- line MUST be considered invalid.
+          </t>
+          <t>
+              NOTE: This specification only defines the usage of the SDP 'sctp-port'
+              attribute when associated with an m- line containing one of the following proto
+              values: 'UDP/DTLS/SCTP' or 'TCP/DTLS/SCTP'. Usage of the attribute with other
+              proto values needs to be defined
+              in a separate specification.
+          </t>
+      </section>
+      <section title="Syntax" anchor="attr-sctp-port-syn">
+          <t>
+              [RFC EDITOR NOTE: Please replace RFCXXXX with the RFC number
+              of this document.]
+          </t>
+          <t>
+              The definition of the SDP 'sctp-port' attribute is:
+          </t>
+          <figure>
+              <artwork><![CDATA[
 
    Attribute name:     sctp-port
    Type of attribute:  media
-   Mux category:       SPECIAL
+   Mux category:       CAUTION
    Subject to charset: No
    Purpose:            Indicate the SCTP port value associated with
                        the SDP Media Description.
@@ -338,81 +338,80 @@
 
         a=sctp-port:5000
 
-				]]></artwork>
-			</figure>
-		</section>
-		<section title="Mux Category" anchor="attr-sctp-port-mux">
-			<t>
-				The mux category <xref target="I-D.ietf-mmusic-sdp-mux-attributes"/> for
-				the SDP 'sctp-port' attribute is SPECIAL.
-			</t>
-			<t>
-				As the usage of multiple SCTP associations on top of a single
-				DTLS association is outside the scope of this specification,
-				no mux rules are specified for the 'UDP/DTLS/SCTP' and
-				'TCP/DTLS/SCTP' proto values. Future extensions, that define
-				how to negotiate multiplexing of multiple SCTP associations of top of
-				a single DTLS association, need to also define the mux rules for the
-				attribute.
-			</t>
-		</section>
-	</section>
+              ]]></artwork>
+          </figure>
+      </section>
+      <section title="Mux Category" anchor="attr-sctp-port-mux">
+          <t>
+              The mux category <xref target="I-D.ietf-mmusic-sdp-mux-attributes"/> for
+              the SDP 'sctp-port' attribute is CAUTION.
+          </t>
+          <t>
+              As the usage of multiple SCTP associations on top of a single
+              DTLS association is outside the scope of this specification,
+              no mux rules are specified for the 'UDP/DTLS/SCTP' and
+              'TCP/DTLS/SCTP' proto values. Future extensions, that define
+              how to negotiate multiplexing of multiple SCTP associations of top of
+              a single DTLS association, need to also define the mux rules for the
+              attribute.
+          </t>
+      </section>
+  </section>
 
-	<section title="SDP 'max-message-size' Attribute" anchor="attr-max-message-size">
-		<section title="General" anchor="attr-max-message-size-gen">
-			<t>
-				This section defines a new SDP media-level attribute, 'max-message-size'.
-				The attribute can be associated with an m- line to indicate the maximum
-				SCTP user message size (indicated in bytes) that an SCTP endpoint is willing to
-				receive on the SCTP association associated with the m- line. Different
-				attribute values can be used in each direction.
-			</t>
-			<t>
-				An SCTP endpoint MUST assume that larger SCTP user message sizes will be
-        rejected by the peer SCTP endpoint. SCTP endpoints need to decide on appropriate
-        behavior in case a message needs to be sent in which the SCTP user message size
-        exceeds thevmaximum SCTP user message size.
-			</t>
-			<t>
-				If the SDP 'max-message-size' attribute contains a maximum message size
-				value of zero, it indicates the SCTP endpoint will handle messages of any size,
-				subject to memory capacity etc.
-			</t>
-			<t>
-				If the SDP 'max-message-size' attribute is not present, the default value is
-				64K.
-			</t>
-			<t>
-				NOTE: This specification only defines the usage of the SDP 'max-message-size'
-				attribute when associated with an m- line containing one of the following proto
-				values: 'UDP/DTLS/SCTP' or 'TCP/DTLS/SCTP'.
-				Usage of the attribute with other proto values needs to be defined
-				in a separate specification.
-			</t>
-		</section>
-		<section title="Syntax" anchor="attr-max-message-size-syn">
-      <t>
-        [RFC EDITOR NOTE: Please replace RFCXXXX with the RFC number
-        of this document.]
-      </t>
-			<t>
-				The definition of the SDP 'max-message-size' attribute is:
-			</t>
-			<figure>
-				<artwork><![CDATA[
+  <section title="SDP 'max-message-size' Attribute" anchor="attr-max-message-size">
+      <section title="General" anchor="attr-max-message-size-gen">
+          <t>
+              This section defines a new SDP media-level attribute, 'max-message-size'.
+              The attribute can be associated with an m- line to indicate the maximum
+              SCTP user message size (indicated in bytes) that an SCTP endpoint is willing to
+              receive on the SCTP association associated with the m- line. Different
+              attribute values can be used in each direction.
+          </t>
+          <t>
+              An SCTP endpoint MUST NOT send a SCTP user message with a message size
+              that is larger than the maximum size indicated by the peer, as it
+              cannot be assumed that the peer would accept such message.
+          </t>
+          <t>
+              If the SDP 'max-message-size' attribute contains a maximum message size
+              value of zero, it indicates the SCTP endpoint will handle messages of any size,
+              subject to memory capacity etc.
+          </t>
+          <t>
+              If the SDP 'max-message-size' attribute is not present, the default value is 64K.
+          </t>
+          <t>
+              NOTE: This specification only defines the usage of the SDP 'max-message-size'
+              attribute when associated with an m- line containing one of the following proto
+              values: 'UDP/DTLS/SCTP' or 'TCP/DTLS/SCTP'.
+              Usage of the attribute with other proto values needs to be defined
+              in a separate specification.
+          </t>
+      </section>
+      <section title="Syntax" anchor="attr-max-message-size-syn">
+          <t>
+              [RFC EDITOR NOTE: Please replace RFCXXXX with the RFC number
+              of this document.]
+          </t>
+          <t>
+              The definition of the SDP 'max-message-size' attribute is:
+          </t>
+          <figure>
+              <artwork><![CDATA[
 
           Attribute name:     max-message-size
-        	Type of attribute:  media
-        	Mux category:       SPECIAL
-        	Subject to charset: No
-          Purpose:            Indicate the maximum message size that
-                              an SCTP endpoint is willing to receive
-                              on the SCTP association associated
-                              with the SDP Media Description.
-        	Appropriate values: Integer
-        	Contact name:       Christer Holmberg
-        	Contact e-mail:     christer.holmberg@ericsson.com
-        	Reference:          RFCXXXX
+          Type of attribute:  media
+          Mux category:       CAUTION
+          Subject to charset: No
+          Purpose:            Indicate the maximum message size
+                              (indicated in bytes) that an SCTP
+                              endpoint is willing to receive on the
+                              SCTP association associated with the SDP
+                              Media Description.
+          Appropriate values: Integer
+          Contact name:       Christer Holmberg
+          Contact e-mail:     christer.holmberg@ericsson.com
+          Reference:          RFCXXXX
 
           Syntax:
 
@@ -424,150 +423,148 @@
 
                a=max-message-size:100000
 
-				]]></artwork>
-			</figure>
-		</section>
-		<section title="Mux Category" anchor="attr-max-message-size-mux">
-			<t>
-				The mux category for the SDP 'max-message-size' attribute
-				is SPECIAL.
-			</t>
-			<t>
-				As the usage of multiple SCTP associations on top of a single
-				DTLS association is outside the scope of this specification,
-				no mux rules are specified for the 'UDP/DTLS/SCTP' and
-				'TCP/DTLS/SCTP' proto values.
-			</t>
-		</section>
-	</section>
+              ]]></artwork>
+          </figure>
+      </section>
+      <section title="Mux Category" anchor="attr-max-message-size-mux">
+          <t>
+              The mux category for the SDP 'max-message-size' attribute
+              is CAUTION.
+          </t>
+          <t>
+              As the usage of multiple SCTP associations on top of a single
+              DTLS association is outside the scope of this specification,
+              no mux rules are specified for the 'UDP/DTLS/SCTP' and
+              'TCP/DTLS/SCTP' proto values.
+          </t>
+      </section>
+  </section>
 
-	<section title="UDP/DTLS/SCTP Transport Realization" anchor="sec-udp-dtls-sctp">
-		<t>
-			The UDP/DTLS/SCTP transport is realized as described below:
-		</t>
-		<t>
-			<list style="symbols">
-				<t>
-						SCTP on top of DTLS is realized according to the procedures
-						defined in <xref target="I-D.ietf-tsvwg-sctp-dtls-encaps"/>; and
-				</t>
-				<t>
-						DTLS on top of UDP is realized according to the procedures in
-						defined in <xref target="RFC6347"/>.
-				</t>
-			</list>
-		</t>
-		<t>
-			NOTE: While <xref target="I-D.ietf-tsvwg-sctp-dtls-encaps"/> allows
-			multiple SCTP associations on top of a single DTLS association,
-			the procedures in this specification only support the negotiation of a single
-			SCTP association on top of any given DTLS association.
-		</t>
-	</section>
-
-	<section title="TCP/DTLS/SCTP Transport Realization" anchor="sec-tcp-dtls-sctp">
-		<t>
-			The TCP/DTLS/SCTP transport is realized as described below:
-		</t>
-		<t>
-			<list style="symbols">
-				<t>
-					SCTP on top of DTLS is realized according to the procedures
-					defined in <xref target="I-D.ietf-tsvwg-sctp-dtls-encaps"/>; and
-				</t>
-				<t>
-					DTLS on top of TCP is realized using the framing method defined in
-					<xref target="RFC4571"/>, with DTLS packets being sent instead of
-					RTP/RTCP packets, and SDP signaling according to the procedures
-					defined in this specification.
-				</t>
-			</list>
-		</t>
-		<t>
-			NOTE: DTLS on top of TCP, without using the framing method defined in
-			<xref target="RFC4571"/> is outside the scope of this specification.
-			A separate proto value would need to be registered for such
-			transport realization.
-		</t>
-	</section>
-
+  <section title="UDP/DTLS/SCTP Transport Realization" anchor="sec-udp-dtls-sctp">
+      <t>
+          The UDP/DTLS/SCTP transport is realized as described below:
+      </t>
+      <t>
+          <list style="symbols">
+              <t>
+                  SCTP on top of DTLS is realized according to the procedures
+                  defined in <xref target="I-D.ietf-tsvwg-sctp-dtls-encaps"/>; and
+              </t>
+              <t>
+                  DTLS on top of UDP is realized according to the procedures in
+                  defined in <xref target="RFC6347"/>.
+              </t>
+          </list>
+      </t>
+      <t>
+          NOTE: While <xref target="I-D.ietf-tsvwg-sctp-dtls-encaps"/> allows
+          multiple SCTP associations on top of a single DTLS association,
+          the procedures in this specification only support the negotiation of a single
+          SCTP association on top of any given DTLS association.
+      </t>
+  </section>
+  <section title="TCP/DTLS/SCTP Transport Realization" anchor="sec-tcp-dtls-sctp">
+      <t>
+          The TCP/DTLS/SCTP transport is realized as described below:
+      </t>
+      <t>
+          <list style="symbols">
+              <t>
+                  SCTP on top of DTLS is realized according to the procedures
+                  defined in <xref target="I-D.ietf-tsvwg-sctp-dtls-encaps"/>; and
+              </t>
+              <t>
+                  DTLS on top of TCP is realized using the framing method defined in
+                  <xref target="RFC4571"/>, with DTLS packets being sent instead of
+                  RTP/RTCP packets, and SDP signaling according to the procedures
+                  defined in this specification.
+              </t>
+          </list>
+      </t>
+      <t>
+          NOTE: DTLS on top of TCP, without using the framing method defined in
+          <xref target="RFC4571"/> is outside the scope of this specification.
+          A separate proto value would need to be registered for such transport realization.
+      </t>
+  </section>
   <section title="Association And Connection Management" anchor="sec-con-mgmt">
-    <section title="General" anchor="sec-con-mgmt-gen">
-       <t>
-         This section describes how to mange an SCTP association, DTLS association and TCP connection
-         using SDP attributes.
-       </t>
-       <t>
-         The SCTP association, the DTLS association and the TCP connection are managed independently
-         from each other. Each can be established and closed without impacting others.
-       </t>
-       <t>
-         The detailed SDP Offer/Answer <xref target="RFC3264"/> procedures for the SDP attributes
-         are described in <xref target="sec-sdp-oa"/>.
-       </t>
-    </section>
-    <section title="SDP sendrecv/sendonly/recvonly/inactive Attribute" anchor="sec-con-mgmt-direction">
-			<t>
-				This specification does not define semantics for the SDP direction
-				attributes <xref target="RFC4566"/>. Unless semantics of these
-				attributes for an SCTP association usage have been defined, SDP direction
-				attributes MUST be ignored if present.
-			</t>
-		</section>
-    <section title="SCTP Association" anchor="sec-con-mgmt-sctp">
-      <t>
-        When an SCTP association is established, both SCTP endpoints
-        MUST initiate the SCTP association (i.e. both SCTP endpoints take the 'active'
-        role), and MUST use the same SCTP port as client port and server port (in order to
-        prevent two separate SCTP associations from being established).
-      </t>
-      <t>
-        As both SCTP endpoints take the 'active' role, the SDP 'setup'
-        attribute <xref target="RFC4145"/> does not apply to SCTP association
-        establishment. However the 'setup' attribute does apply to establishment
-        of the underlying DTLS association and TCP connection.
-      </t>
-      <t>
-        NOTE: The procedure above is different from TCP, where one endpoint takes the 'active'
-        role, the other endpoint takes the 'passive' role, and only the 'active' endpoint initiates
-        the TCP connection <xref target="RFC4145"/>.
-      </t>
-      <t>
-        NOTE: When the SCTP association is established it is assumed that any NAT traversal
-        procedures for the underlying transport protocol (UDP or TCP) have successfully been
-        performed.
-      </t>
-      <t>
-        The SDP 'connection' attribute <xref target="RFC4145"/> does not apply to the SCTP
-        association. In order to trigger the closure of an existing SCTP association, and
-        establishment of a new SCTP association, the SDP 'sctp-port' attribute [<xref target="attr-sctp-port"/>]
-        is used to indicate a new (different than the ones currently used) SCTP port. The existing
-        SCTP association is closed, and the new SCTP association is established, if one or both
-        endpoints signal a new SCTP port. The 'connection' attribute does apply to establishment
-        of underlying TCP connections.
-      </t>
-      <t>
-        Alternatively, an SCTP association can be closed using the SDP 'sctp-port' attribute
-        with a zero attribute value. Later, a new SCTP association can be established using the
-        procedures in this section for establishing an SCTP association.
-      </t>
-      <t>
-        SCTP associations might be closed without SDP signalling, e.g, in case of a failure.
-        The procedures in this section MUST be followed to establish a new
-        SCTP association. This requires a new SDP Offer/Answer exchange.
-        New (different than the ones currently used) SCTP ports MUST be used by both
-        endpoints.
-      </t>
-      <t>
-        NOTE: Closing and establishing a new SCTP association using the SDP
-        'sctp-port' attribute will not impact the underlying DTLS association.
-      </t>
-    </section>
-    <section title="DTLS Association (UDP/DTLS/SCTP And TCP/DTLS/SCTP)" anchor="sec-con-mgmt-dtls">
+      <section title="General" anchor="sec-con-mgmt-gen">
+          <t>
+              This section describes how to manage an SCTP association, DTLS association
+              and TCP connection using SDP attributes.
+          </t>
+          <t>
+              The SCTP association, the DTLS association and the TCP connection are managed independently
+              from each other. Each can be established and closed without impacting others.
+          </t>
+          <t>
+              The detailed SDP Offer/Answer <xref target="RFC3264"/> procedures for the SDP attributes
+              are described in <xref target="sec-sdp-oa"/>.
+          </t>
+      </section>
+      <section title="SDP sendrecv/sendonly/recvonly/inactive Attribute" anchor="sec-con-mgmt-direction">
+          <t>
+              This specification does not define semantics for the SDP direction
+              attributes <xref target="RFC4566"/>. Unless semantics of these
+              attributes for an SCTP association usage have been defined, SDP direction
+              attributes MUST be ignored if present.
+          </t>
+      </section>
+      <section title="SCTP Association" anchor="sec-con-mgmt-sctp">
+          <t>
+              When an SCTP association is established, both SCTP endpoints
+              MUST initiate the SCTP association (i.e. both SCTP endpoints take the 'active'
+              role), and MUST use the same SCTP port as client port and server port (in order to
+              prevent two separate SCTP associations from being established).
+          </t>
+          <t>
+              As both SCTP endpoints take the 'active' role, the SDP 'setup'
+              attribute <xref target="RFC4145"/> does not apply to SCTP association
+              establishment. However the 'setup' attribute does apply to establishment
+              of the underlying DTLS association and TCP connection.
+          </t>
+          <t>
+              NOTE: The procedure above is different from TCP, where one endpoint takes the 'active'
+              role, the other endpoint takes the 'passive' role, and only the 'active' endpoint initiates
+              the TCP connection <xref target="RFC4145"/>.
+          </t>
+          <t>
+              NOTE: When the SCTP association is established it is assumed that any NAT traversal
+              procedures for the underlying transport protocol (UDP or TCP) have successfully been
+              performed.
+          </t>
+          <t>
+              The SDP 'connection' attribute <xref target="RFC4145"/> does not apply to the SCTP
+              association. In order to trigger the closure of an existing SCTP association, and
+              establishment of a new SCTP association, the SDP 'sctp-port' attribute [<xref target="attr-sctp-port"/>]
+              is used to indicate a new (different than the ones currently used) SCTP port. The existing
+              SCTP association is closed, and the new SCTP association is established, if one or both
+              endpoints signal a new SCTP port. The 'connection' attribute does apply to establishment
+              of underlying TCP connections.
+          </t>
+          <t>
+              Alternatively, an SCTP association can be closed using the SDP 'sctp-port' attribute
+              with a zero attribute value. Later, a new SCTP association can be established using the
+              procedures in this section for establishing an SCTP association.
+          </t>
+          <t>
+              SCTP associations might be closed without SDP signalling, e.g, in case of a failure.
+              The procedures in this section MUST be followed to establish a new
+              SCTP association. This requires a new SDP Offer/Answer exchange.
+              New (different than the ones currently used) SCTP ports MUST be used by both
+              endpoints.
+          </t>
+          <t>
+              NOTE: Closing and establishing a new SCTP association using the SDP
+              'sctp-port' attribute will not affect the state of the underlying
+              DTLS association.
+          </t>
+      </section>
+      <section title="DTLS Association (UDP/DTLS/SCTP And TCP/DTLS/SCTP)" anchor="sec-con-mgmt-dtls">
       <t>
         A DTLS association is managed according to the procedures in <xref target="I-D.ietf-mmusic-dtls-sdp"/>.
         Hence, the SDP 'setup' attribute is used to negotiate the (D)TLS roles ('client' and 'server')
-        <xref target="RFC4572"/>.
+        <xref target="I-D.ietf-mmusic-4572-update"/>.
       </t>
       <t>
         NOTE: The SDP 'setup' attribute is used to negotiate both the DTLS roles and the
@@ -580,9 +577,8 @@
         Thus, a switch from one candidate pair to another candidate pair will not trigger the establishment
         of a new DTLS association.
       </t>
-
-    </section>
-    <section title="TCP Connection (TCP/DTLS/SCTP)" anchor="sec-con-mgmt-tcp">
+      </section>
+      <section title="TCP Connection (TCP/DTLS/SCTP)" anchor="sec-con-mgmt-tcp">
       <t>
         The TCP connection is managed according to the procedures in <xref target="RFC4145"/>. Hence,
         the SDP 'setup' attribute is used to negotiate the TCP roles ('active' and 'passive'), and
@@ -598,93 +594,94 @@
         'holdconn' value is not allowed. Therefore this specification also forbids usage of the attribute
         value for TCP, as DTLS is transported on top of TCP.
       </t>
-    </section>
+      </section>
   </section>
 
-	<section title="SDP Offer/Answer Procedures" anchor="sec-sdp-oa">
-		<section title="General">
+  <section title="SDP Offer/Answer Procedures" anchor="sec-sdp-oa">
+      <section title="General">
       <t>
-				This section defines the SDP Offer/Answer <xref target="RFC3264"/>
-				procedures for negotiating and establishing an SCTP-over-DTLS association.
+        This section defines the SDP Offer/Answer <xref target="RFC3264"/>
+        procedures for negotiating and establishing an SCTP-over-DTLS association.
         Unless explicitly stated, the procedures apply to both the
         'UDP/DTLS/SCTP' and 'TCP/DTLS/SCTP' m- line proto values.
-			</t>
-			<t>
+      </t>
+      <t>
         Each endpoint MUST associate one or more certificate fingerprints, using
         the SDP 'fingerprint' attribute with the m- line, following the procedures
         in <xref target="I-D.ietf-mmusic-4572-update"/>.
-			</t>
-			<t>
+      </t>
+      <t>
         The authentication certificates are interpreted and validated as
         defined in <xref target="I-D.ietf-mmusic-4572-update"/>. Self-signed
         certificates can be used securely, provided that the integrity of the
         SDP description is assured as defined in <xref target="I-D.ietf-mmusic-4572-update"/>.
-			</t>
+      </t>
       <t>
         Each endpoint MUST associate an SDP 'dtls-id' attribute with the m- line,
         following the procedures in <xref target="I-D.ietf-mmusic-dtls-sdp"/>.
       </t>
-		</section>
-		<section title="Generating the Initial SDP Offer" anchor="sec-oa-initial-offer">
-			<t>
-				When the offerer creates an initial offer, the offerer:
-			</t>
-			<t>
-				<list style="symbols">
-					<t>
-						MUST associate an SDP setup attribute with the m- line;
-					</t>
-					<t>
-						MUST associate an SDP 'sctp-port' attribute with the m- line;
-					</t>
-					<t>
-						MUST, in the case of TCP/DTLS/SCTP, associate an SDP 'connection'
-            attribute, with a 'new' attribute value, with the m- line; and
-					</t>
-					<t>
-						MAY associate an SDP 'max-message-size' attribute
-            [<xref target="attr-max-message-size" />] with the m- line.
-					</t>
-				</list>
-			</t>
-		</section>
-		<section title="Generating the SDP Answer">
-			<t>
-				When the answerer receives an offer, which contains an m- line describing
-				an SCTP-over-DTLS association, if the answerer accepts the association,
-        the answerer:
-			</t>
-			<t>
-				<list style="symbols">
-					<t>
-						MUST insert a corresponding m- line in the answer, with an identical
-						m- line proto value <xref target="RFC3264"/>;
-					</t>
-					<t>
-						MUST associate an SDP 'setup' attribute with the m- line;
-					</t>
-					<t>
-						MUST associate an SDP 'sctp-port' attribute with the m- line. If the
-            offer contained a new (different than the one currently used) SCTP
-            port value the answerer MUST also associate a new SCTP port value. If
-            the offer contained a zero SCTP port value, or if the answerer does not
-            accept the SCTP association, the answerer MUST also associate a zero
-            SCTP port value; and
-					</t>
-					<t>
-						MAY associate an SDP 'max-message-size' attribute
-            [<xref target="attr-max-message-size" />] with the m- line. The
-            attribute value in the answer is independent from the value
-            (if present) in the corresponding m- line of the offer.
-					</t>
-				</list>
-			</t>
-			<t>
+      </section>
+      <section title="Generating the Initial SDP Offer" anchor="sec-oa-initial-offer">
+      <t>
+         When the offerer creates an initial offer, the offerer:
+      </t>
+      <t>
+      <list style="symbols">
+        <t>
+          MUST associate an SDP setup attribute with the m- line;
+        </t>
+        <t>
+          MUST associate an SDP 'sctp-port' attribute with the m- line;
+        </t>
+        <t>
+          MUST, in the case of TCP/DTLS/SCTP, associate an SDP 'connection'
+          attribute, with a 'new' attribute value, with the m- line; and
+        </t>
+        <t>
+          MAY associate an SDP 'max-message-size' attribute
+         [<xref target="attr-max-message-size" />] with the m- line.
+        </t>
+      </list>
+      </t>
+      </section>
+      <section title="Generating the SDP Answer">
+            <t>
+                When the answerer receives an offer, which contains an m- line describing
+                an SCTP-over-DTLS association, if the answerer accepts the association,
+                the answerer:
+            </t>
+            <t>
+                <list style="symbols">
+                    <t>
+                        MUST insert a corresponding m- line in the answer, with an m- line
+                        proto value <xref target="RFC3264"/> identical to the value in
+                        the offer;
+                    </t>
+                    <t>
+                        MUST associate an SDP 'setup' attribute with the m- line;
+                    </t>
+                    <t>
+                        MUST associate an SDP 'sctp-port' attribute with the m- line. If the
+                        offer contained a new (different than the one currently used) SCTP
+                        port value the answerer MUST also associate a new SCTP port value. If
+                        the offer contained a zero SCTP port value, or if the answerer does not
+                        accept the SCTP association, the answerer MUST also associate a zero
+                        SCTP port value; and
+                    </t>
+                    <t>
+                        MAY associate an SDP 'max-message-size' attribute
+                        [<xref target="attr-max-message-size" />] with the m- line. The
+                        attribute value in the answer is independent from the value
+                        (if present) in the corresponding m- line of the offer.
+                    </t>
+                </list>
+            </t>
+            <t>
         Once the answerer has sent the answer the answerer:
       </t>
       <t>
-				<list style="symbols">
-					<t>
+          <list style="symbols">
+          <t>
             MUST, in the case of TCP/DTLS/SCTP, if a TCP connection has not yet
             been established, or if an existing TCP connection is to be
             closed and replaced by a new TCP connection, follow the procedures
@@ -694,7 +691,7 @@
             MUST, if a DTLS association has not yet been established, or if
             an existing DTLS association is to be closed and replaced by a
             new DTLS association, follow the procedures in <xref target="I-D.ietf-mmusic-dtls-sdp"/>
-            for closing establishing a DTLS association; and
+            for closing the currently used, and establishing a new, DTLS association; and
           </t>
           <t>
             MUST, if an SCTP association has not yet been established, or if an
@@ -703,26 +700,26 @@
             SCTP association (if applicable) and establishment of the SCTP association.
           </t>
         </list>
-			</t>
+      </t>
       <t>
         If the SDP 'sctp-port' attribute in the answer contains a zero attribute
         value, the answerer MUST NOT establish an SCTP association. If an SCTP
         association exists, the offerer MUST close it.
       </t>
-			<t>
-				If the answerer does not accept the m- line in the offer, it MUST assign
+      <t>
+        If the answerer does not accept the m- line in the offer, it MUST assign
         a zero port value to the corresponding m- line in the answer, following the
         procedures in <xref target="RFC3264"/>. In addition, the answerer MUST NOT
         initiate the establishment of a TCP connection, a DTLS association or a
         DTLS association associated with the m- line.
-			</t>
-		</section>
-		<section title="Offerer Processing of the SDP Answer">
+      </t>
+      </section>
+      <section title="Offerer Processing of the SDP Answer">
       <t>
         Once the offerer has received the answer the offerer:
       </t>
       <t>
-				<list style="symbols">
+        <list style="symbols">
           <t>
             MUST, in the case of TCP/DTLS/SCTP, if a TCP connection has not yet
             been established, or if an existing TCP connection is to be
@@ -742,28 +739,28 @@
             SCTP association (if applicable) and establishment of the SCTP association.
           </t>
         </list>
-			</t>
+      </t>
       <t>
         If the SDP 'sctp-port' attribute in the answer contains a zero attribute
         value, the offerer MUST NOT establish an SCTP association. If an SCTP
         association exists in that case, the offerer MUST close it.
       </t>
-			<t>
-				If the m- line in the answer contains a zero port value, the offerer
+      <t>
+        If the m- line in the answer contains a zero port value, the offerer
         MUST NOT initiate the establishment a TCP connection, a DTLS association
         or an SCTP association associated with the m- line. If a TCP connection,
         or a DTLS association or an SCTP association exists in that case, the offerer MUST close it.
-			</t>
-		</section>
-		<section title="Modifying the Session">
-			<t>
-				When an offerer sends an updated offer, in order to modify a previously established
-				SCTP association, it follows the procedures in <xref target="sec-oa-initial-offer" />,
-				with the following exceptions:
-			</t>
-			<t>
-				<list style="symbols">
-					<t>
+      </t>
+      </section>
+      <section title="Modifying the Session">
+      <t>
+        When an offerer sends an updated offer, in order to modify a previously established
+        SCTP association, it follows the procedures in <xref target="sec-oa-initial-offer" />,
+        with the following exceptions:
+      </t>
+      <t>
+      <list style="symbols">
+          <t>
             If the offerer wants to close an SCTP association, and immediately establish a new SCTP association,
             the offerer MUST associate an SDP 'sctp-port' attribute with a new (different than the
             one currently used) attribute value. This will not impact the underlying
@@ -784,21 +781,21 @@
             that was used with the previous SCTP association before it was closed. This will not impact
             the underlying DTLS association (and TCP connection in case of TCP/DTLS/SCTP).
           </t>
-					<t>
-						If the offerer wants to close an existing SCTP association, and the
+          <t>
+            If the offerer wants to close an existing SCTP association, and the
             underlying DTLS association (and the underlying TCP connection in case of
             TCP/DTLS/SCTP) it MUST assign a zero port value to the m- line associated with the
             SCTP and DTLS associations (and TCP connection in case of TCP/DTLS/SCTP),
             following the procedures in <xref target="RFC3264"/>.
-					</t>
+          </t>
           <t>
             NOTE: This specification does not define a mechanism for explicitly closing a DTLS
             association while maintaining the overlying SCTP association. However, if a DTLS
             association is closed and replaced with a new DTLS association, as a result of some other action
-            <xref target="I-D.ietf-mmusic-dtls-sdp"/>, the SCTP association is not affected.
+            <xref target="I-D.ietf-mmusic-dtls-sdp"/>, the state of the SCTP association is not affected.
           </t>
-				</list>
-			</t>
+      </list>
+      </t>
       <t>
         The offer follows the procedures in <xref target="I-D.ietf-mmusic-dtls-sdp"/> regarding
         the DTLS association impacts when modifying a session.
@@ -808,67 +805,67 @@
         <xref target="RFC4145"/> regarding the TCP connection impacts when
         modifying a session.
       </t>
-    </section>
-	</section>
+      </section>
+  </section>
 
-	<section title="Multihoming Considerations">
-		<t>
-			Multihoming is not supported when sending SCTP on top of DTLS,
-			as DTLS does not expose address management of the underlying
-			transport protocols (UDP or TCP) to its upper layer.
-		</t>
-	</section>
-
-	<section title="NAT Considerations">
-		<section title="General">
-			<t>
-				When SCTP-over-DTLS is used in NAT environment, it relies on the NAT
-				traversal procedures for the underlying transport protocol (UDP or TCP).
-			</t>
-		</section>
-		<section title="ICE Considerations">
-			<t>
-				When SCTP-over-DTLS is used with UDP based ICE candidates <xref target="RFC5245"/>
-				then the procedures for UDP/DTLS/SCTP [<xref target="sec-udp-dtls-sctp"/>] are used.
-			</t>
-			<t>
-				When SCTP-over-DTLS is used with TCP based ICE candidates <xref target="RFC6544"/>
-				then the procedures for TCP/DTLS/SCTP [<xref target="sec-tcp-dtls-sctp"/>] are used.
-			</t>
-			<t>
-				Implementations MUST treat all ICE candidate pairs associated with
-				an SCTP association on top of a DTLS association as part of the same
-				DTLS association. Thus, there will only be one SCTP handshake and one DTLS
-				handshake even if there are multiple valid candidate pairs, and shifting from one candidate
-				pair to another will not impact the SCTP or DTLS associations. If new candidates
-				are added, they will also be part of the same SCTP and DTLS associations. When transitioning
-				between candidate pairs, different candidate pairs can be currently active
-				in different directions and implementations MUST be ready to receive
-				data on any of the candidates, even if this means sending and receiving data using
-				UDP/DTLS/SCTP and TCP/DTLS/SCTP at the same time in different directions.
-			</t>
+  <section title="Multihoming Considerations">
       <t>
-        When an SDP offer or answer is sent, the proto value MUST match the
-        transport protocol associated with the default candidate. Hence, if UDP
-        transport is used for the default candidate the 'UDP/DTLS/SCTP'
-        proto value MUST be used. If TCP transport is used for the default
-        candidate the 'TCP/DTLS/SCTP' proto value MUST be used.
-        However, if an endpoint switches between TCP-based and UDP-based candidates
-        during a session the endpoint is not required to send an SDP offer in order
-        to modify that proto value of the associated m- line.
+          Multihoming is not supported when sending SCTP on top of DTLS,
+          as DTLS does not expose address management of the underlying
+          transport protocols (UDP or TCP) to its upper layer.
       </t>
-      <t>
-        NOTE: The text in the paragraph above only applies when the usage of ICE
-        has been negotiated. If ICE is not used, the proto value MUST always reflect
-        the transport protocol used at any given time.
-      </t>
-		</section>
-	</section>
+  </section>
 
-	<section title="Examples">
-		<section title="Establishment of UDP/DTLS/SCTP association">
-			<figure>
-				<artwork><![CDATA[
+  <section title="NAT Considerations">
+      <section title="General">
+          <t>
+              When SCTP-over-DTLS is used in NAT environment, it relies on the NAT
+              traversal procedures for the underlying transport protocol (UDP or TCP).
+          </t>
+      </section>
+      <section title="ICE Considerations">
+          <t>
+              When SCTP-over-DTLS is used with UDP based ICE candidates <xref target="RFC5245"/>
+              then the procedures for UDP/DTLS/SCTP [<xref target="sec-udp-dtls-sctp"/>] are used.
+          </t>
+          <t>
+              When SCTP-over-DTLS is used with TCP based ICE candidates <xref target="RFC6544"/>
+              then the procedures for TCP/DTLS/SCTP [<xref target="sec-tcp-dtls-sctp"/>] are used.
+          </t>
+          <t>
+              Implementations MUST treat all ICE candidate pairs associated with
+              an SCTP association on top of a DTLS association as part of the same
+              DTLS association. Thus, there will only be one SCTP handshake and one DTLS
+              handshake even if there are multiple valid candidate pairs, and shifting from one candidate
+              pair to another will not impact the SCTP or DTLS associations. If new candidates
+              are added, they will also be part of the same SCTP and DTLS associations. When transitioning
+              between candidate pairs, different candidate pairs can be currently active
+              in different directions and implementations MUST be ready to receive
+              data on any of the candidates, even if this means sending and receiving data using
+              UDP/DTLS/SCTP and TCP/DTLS/SCTP at the same time in different directions.
+          </t>
+          <t>
+              When an SDP offer or answer is sent, the proto value MUST match the
+              transport protocol associated with the default candidate. Hence, if UDP
+              transport is used for the default candidate the 'UDP/DTLS/SCTP'
+              proto value MUST be used. If TCP transport is used for the default
+              candidate the 'TCP/DTLS/SCTP' proto value MUST be used.
+              However, if an endpoint switches between TCP-based and UDP-based candidates
+              during a session the endpoint is not required to send an SDP offer in order
+              to modify that proto value of the associated m- line.
+          </t>
+          <t>
+              NOTE: The text in the paragraph above only applies when the usage of ICE
+              has been negotiated. If ICE is not used, the proto value MUST always reflect
+              the transport protocol used at any given time.
+          </t>
+      </section>
+  </section>
+
+  <section title="Examples">
+      <section title="Establishment of UDP/DTLS/SCTP association">
+          <figure>
+              <artwork><![CDATA[
 
  SDP Offer:
 
@@ -902,110 +899,108 @@
     - The answerer takes the server DTLS role.
 
 
-								 ]]></artwork>
-			</figure>
-		</section>
-	</section>
+              ]]></artwork>
+          </figure>
+      </section>
+  </section>
 
-	<section title="Security Considerations">
-		<t>
-			<xref target="RFC4566"/> defines general SDP security considerations, while
-			<xref target="RFC3264"/>, <xref target="RFC4145"/> and <xref target="RFC4572"/>
-			define security considerations when using the SDP offer/answer mechanism
-			to negotiate media streams.
-		</t>
-		<t>
-			<xref target="RFC4960"/> defines general SCTP security considerations
-      and <xref target="I-D.ietf-tsvwg-sctp-dtls-encaps"/> defines security
-			considerations when using SCTP on top of DTLS.
-		</t>
-		<t>
-			This specification does not introduce new security considerations in addition
-			to those defined in the specifications listed above.
-		</t>
-	</section>
+  <section title="Security Considerations">
+      <t>
+          <xref target="RFC4566"/> defines general SDP security considerations, while
+          <xref target="RFC3264"/>, <xref target="RFC4145"/> and <xref target="I-D.ietf-mmusic-4572-update"/>
+          define security considerations when using the SDP offer/answer mechanism
+          to negotiate media streams.
+      </t>
+      <t>
+          <xref target="RFC4960"/> defines general SCTP security considerations
+          and <xref target="I-D.ietf-tsvwg-sctp-dtls-encaps"/> defines security
+          considerations when using SCTP on top of DTLS.
+      </t>
+      <t>
+          This specification does not introduce new security considerations in addition
+          to those defined in the specifications listed above.
+      </t>
+  </section>
 
-	<section title="IANA Considerations">
-		<section title="New SDP proto values" anchor="iana-sdp-proto" toc="default">
-			<t>
-				[RFC EDITOR NOTE: Please replace RFCXXXX with the RFC number
-				of this document.]
-			</t>
-			<t>
-				This document updates the "Session Description Protocol (SDP) Parameters" registry,
-				following the procedures in <xref target="RFC4566" pageno="false" format="default"/>,
-				by adding the following values to the table in the SDP "proto" field registry:
-			</t>
-			<texttable anchor="table_SDP_proto_values" title='SDP "proto" field values'>
-				<ttcol align='center'>Type</ttcol>
-				<ttcol align='center'>SDP Name</ttcol>
-				<ttcol align='center'>Reference</ttcol>
-				<c>proto</c>
-				<c>UDP/DTLS/SCTP</c>
-				<c>[RFCXXXX]</c>
-				<c>proto</c>
-				<c>TCP/DTLS/SCTP</c>
-				<c>[RFCXXXX]</c>
-			</texttable>
-		</section>
+  <section title="IANA Considerations">
+      <section title="New SDP proto values" anchor="iana-sdp-proto" toc="default">
+          <t>
+              [RFC EDITOR NOTE: Please replace RFCXXXX with the RFC number of this document.]
+          </t>
+          <t>
+              This document updates the "Session Description Protocol (SDP) Parameters" registry,
+              following the procedures in <xref target="RFC4566" pageno="false" format="default"/>,
+              by adding the following values to the table in the SDP "proto" field registry:
+          </t>
+          <texttable anchor="table_SDP_proto_values" title='SDP "proto" field values'>
+              <ttcol align='center'>Type</ttcol>
+              <ttcol align='center'>SDP Name</ttcol>
+              <ttcol align='center'>Reference</ttcol>
+              <c>proto</c>
+              <c>UDP/DTLS/SCTP</c>
+              <c>[RFCXXXX]</c>
+              <c>proto</c>
+              <c>TCP/DTLS/SCTP</c>
+              <c>[RFCXXXX]</c>
+          </texttable>
+      </section>
 
-		<section title="New SDP Attributes" anchor="iana-sdp-attr" toc="default">
-			<section title="sctp-port" anchor="iana-sdp-attr-sctp-port" toc="default">
-				<t>
-					This document defines a new SDP media-level attribute,'sctp-port'. The
-          details of the attribute are defined in <xref target="attr-sctp-port-syn"
-          pageno="false" format="default"/>.
-				</t>
-			</section>
-			<section title="max-message-size" anchor="iana-sdp-attr-max-msg-size" toc="default">
-				<t>
-					This document defines a new SDP media-level attribute,'max-message-size'. The
-          details of the attribute are defined in <xref target="attr-max-message-size-syn"
-          pageno="false" format="default"/>.
-				</t>
-			</section>
-		</section>
+      <section title="New SDP Attributes" anchor="iana-sdp-attr" toc="default">
+          <section title="sctp-port" anchor="iana-sdp-attr-sctp-port" toc="default">
+              <t>
+                  This document defines a new SDP media-level attribute,'sctp-port'. The
+                  details of the attribute are defined in <xref target="attr-sctp-port-syn"
+                  pageno="false" format="default"/>.
+              </t>
+          </section>
+          <section title="max-message-size" anchor="iana-sdp-attr-max-msg-size" toc="default">
+              <t>
+                  This document defines a new SDP media-level attribute,'max-message-size'. The
+                  details of the attribute are defined in <xref target="attr-max-message-size-syn"
+                  pageno="false" format="default"/>.
+              </t>
+          </section>
+      </section>
 
-		<section title="association-usage Name Registry" anchor="iana-assusage-registry" toc="default">
-			<t>
-				[RFC EDITOR NOTE: Please replace RFCXXXX with the RFC number
-				of this document.]
-			</t>
-			<t>
-				This specification creates a new IANA registry, following the procedures in
-				<xref target="RFC5226"/>, for the "fmt" namespace associated with the
-				'UDP/DTLS/SCTP' and 'TCP/DTLS/SCTP' protocol identifiers.
-				Each "fmt" value describes the usage of an entire SCTP association, including
-				all SCTP streams associated with the SCTP association.
-			</t>
-			<t>
-				NOTE: Usage indication of individual SCTP streams is outside the scope of this
-				specification.
-			</t>
-			<t>
-				The "fmt" value, "association-usage", used with these "proto" values is required.
-				It is defined in <xref target="m-line"/>.
-			</t>
-			<t>
-				As part of this registry, IANA maintains the following information:
-			</t>
-			<t>
-				<list style='hanging'>
-					<t hangText="association-usage name:">The identifier of the
-					subprotocol, as will be used as the "fmt" value.</t>
-					<t hangText="association-usage reference:">A reference to the
-					document in which the association-usage is defined.</t>
-				</list>
-			</t>
-			<t>
-				association-usage names are to be subject to the "First Come First Served"
-				IANA registration policy [RFC5226].
-			</t>
-			<t>
-				IANA is asked to add initial values to the registry.
-			</t>
-			<figure anchor="exempleIANA" title="">
-				<artwork><![CDATA[
+      <section title="association-usage Name Registry" anchor="iana-assusage-registry" toc="default">
+          <t>
+              [RFC EDITOR NOTE: Please replace RFCXXXX with the RFC number of this document.]
+          </t>
+          <t>
+              This specification creates a new IANA registry, following the procedures in
+              <xref target="RFC5226"/>, for the  namespace associated with the
+              'UDP/DTLS/SCTP' and 'TCP/DTLS/SCTP' protocol identifiers.
+              Each fmt value describes the usage of an entire SCTP association, including
+              all SCTP streams associated with the SCTP association.
+          </t>
+          <t>
+              NOTE: Usage indication of individual SCTP streams is outside the scope of this
+              specification.
+          </t>
+          <t>
+              The fmt value, "association-usage", used with these "proto" values is required.
+              It is defined in <xref target="m-line"/>.
+          </t>
+          <t>
+              As part of this registry, IANA maintains the following information:
+          </t>
+          <t>
+              <list style='hanging'>
+                  <t hangText="association-usage name:">The identifier of the
+                  subprotocol, as will be used as the fmt value.</t>
+                  <t hangText="association-usage reference:">A reference to the
+                  document in which the association-usage is defined.</t>
+              </list>
+          </t>
+          <t>
+              association-usage names are to be subject to the "First Come First Served"
+              IANA registration policy [RFC5226].
+          </t>
+          <t>
+              IANA is asked to add initial values to the registry.
+          </t>
+          <figure anchor="exempleIANA" title="">
+              <artwork><![CDATA[
 
      |----------------------------------------------------------|
      |         name       |           Reference                 |
@@ -1014,149 +1009,153 @@
      |                    | RFCXXX                              |
      |----------------------------------------------------------|
 
-	[RFC EDITOR NOTE: Please hold the publication of this draft
+  [RFC EDITOR NOTE: Please hold the publication of this draft
   until draft-ietf-rtcweb-data-protocol has been published as an RFC.
   Then, replace the reference to draft-ietf-rtcweb-data-protocol
-	with the RFC number.]
+  with the RFC number.]
 
   [RFC EDITOR NOTE: Please replace RFCXXXX with the RFC number
   of this document.]
 
-				]]></artwork>
-			</figure>
-		</section>
-	</section>
+              ]]></artwork>
+          </figure>
+      </section>
+  </section>
 
-	<section title="Acknowledgments">
-		<t>
-			The authors wish to thank Harald Alvestrand, Randell Jesup, Paul Kyzivat,
-			Michael Tuexen, Juergen Stoetzer-Bradler, Flemming Andreasen and Ari Keranen for
-			their comments and useful feedback.
-		</t>
-	</section>
+  <section title="Acknowledgments">
+      <t>
+          The authors wish to thank Harald Alvestrand, Randell Jesup, Paul Kyzivat,
+          Michael Tuexen, Juergen Stoetzer-Bradler, Flemming Andreasen and Ari Keranen for
+          their comments and useful feedback. Ben Campbell provided comments as part
+          of his AD review.
+      </t>
+  </section>
 
-	<section title="">
-		<t>[RFC EDITOR NOTE: Please remove this section when publishing]</t>
-    <t>Changes from draft-ietf-mmusic-sctp-sdp-20
-			<list style="symbols">
-        <t>Informative reference to draft-ietf-rtcweb-data-protocol added.</t>
-			</list>
-		</t>
-    <t>Changes from draft-ietf-mmusic-sctp-sdp-19
-			<list style="symbols">
-        <t>Changes based on WG chair comments from Flemming Andreasen.</t>
-			</list>
-		</t>
-    <t>Changes from draft-ietf-mmusic-sctp-sdp-18
-			<list style="symbols">
-        <t>Changes based on WGLC comments from Paul Kyzivat.</t>
-			</list>
-		</t>
-    <t>Changes from draft-ietf-mmusic-sctp-sdp-17
-			<list style="symbols">
-        <t>Removal of 'SCTP'.</t>
-        <t>Document title changed.</t>
-        <t>Disallow usage of SDP 'setup' attribute 'holdconn' value.</t>
-				<t>Roman Shpount added as co-editor.</t>
-			</list>
-		</t>
-    <t>Changes from draft-ietf-mmusic-sctp-sdp-15
-			<list style="symbols">
-				<t>Chapter about SCTP, DTLS and TCP association/connection management modified.</t>
-        <t>Removal of SCTP/DTLS.</t>
-			</list>
-		</t>
-		<t>Changes from draft-ietf-mmusic-sctp-sdp-14
-			<list style="symbols">
-				<t>Changes based on WGLC comments from Magnus Westerlund.</t>
-				<t>- ABNF clarification that token and port are defined in RFC4566.</t>
-				<t>- Specify 40 as maximum digit character length for the SDP max-message-size value.</t>
-				<t>- Editorial clarification.</t>
-				<t>Changes based on discussions at IETF#92.</t>
-				<t>- Specify that all ICE candidate pairs belong to the same DTLS association.</t>
-			</list>
-		</t>
-		<t>Changes from draft-ietf-mmusic-sctp-sdp-13
-			<list style="symbols">
-				<t>Changes based on comments from Paul Kyzivat.</t>
-				<t>- Text preventing usage of well-known ports removed.</t>
-				<t>- Editorial clarification.</t>
-			</list>
-		</t>
-		<t>Changes from draft-ietf-mmusic-sctp-sdp-12
-			<list style="symbols">
-				<t>Mux category rules added for new SDP attributes.</t>
-				<t>Reference to draft-ietf-mmusic-sdp-mux-attributes added.</t>
-				<t>Changes based on comments from Roman Shpount:</t>
-				<t>- Specify that fingerprint or setup roles must not be modified,
-				unless underlying transport protocol is also modified.</t>
-				<t>Changes based on comments from Ari Keranen:</t>
-				<t>- Editorial corrections.</t>
-				<t>Changes based on comments from Flemming Andreasen:</t>
-				<t>- Clarify that, if UDP/DTLS/SCTP or TCP/DTLS/SCTP is used,
-				     the DTLS association is established before the SCTP
-					 association.</t>
-				<t>- Clarify that max-message-size value is given in bytes, and
-				     that different values can be used per direction.</t>
-				<t>- Section on fmtp attribute removed.</t>
-				<t>- Editorial corrections.</t>
-			</list>
-		</t>
-		<t>Changes from draft-ietf-mmusic-sctp-sdp-11
-			<list style="symbols">
-				<t>Example added.</t>
-			</list>
-		</t>
-		<t>Changes from draft-ietf-mmusic-sctp-sdp-10
-			<list style="symbols">
-				<t>SDP max-message-size attribute added to IANA considerations.</t>
-				<t>Changes based on comments from Paul Kyzivat:</t>
-				<t>- Text about max message size removed from fmtp attribute section.</t>
-			</list>
-		</t>
-		<t>Changes from draft-ietf-mmusic-sctp-sdp-09
-			<list style="symbols">
-				<t>'DTLS/SCTP' split into 'UDP/DTLS/SCTP' and 'TCP/DTLS/SCTP'</t>
-				<t>Procedures for realizing UDP/DTLS/SCTP- and TCP/DTLS/SCTP transports added.</t>
-			</list>
-		</t>
-		<t>Changes from draft-ietf-mmusic-sctp-sdp-08
-			<list style="symbols">
-				<t>Default SCTP port removed:</t>
-				<t>- Usage of SDP sctp-port attribute mandatory.</t>
-				<t>SDP max-message-size attribute defined:</t>
-				<t>- Attribute definition.</t>
-				<t>- SDP Offer/Answer procedures.</t>
-				<t>Text about SDP direction attributes added.</t>
-				<t>Text about TLS role determination added.</t>
-			</list>
-		</t>
-	</section>
+  <section title="">
+      <t>[RFC EDITOR NOTE: Please remove this section when publishing]</t>
+      <t>Changes from draft-ietf-mmusic-sctp-sdp-21
+          <list style="symbols">
+              <t>Changes based on AD review by Ben Campbell.</t>
+          </list>
+      </t>
+      <t>Changes from draft-ietf-mmusic-sctp-sdp-20
+          <list style="symbols">
+              <t>Informative reference to draft-ietf-rtcweb-data-protocol added.</t>
+          </list>
+      </t>
+      <t>Changes from draft-ietf-mmusic-sctp-sdp-19
+          <list style="symbols">
+              <t>Changes based on WG chair comments from Flemming Andreasen.</t>
+          </list>
+      </t>
+      <t>Changes from draft-ietf-mmusic-sctp-sdp-18
+          <list style="symbols">
+              <t>Changes based on WGLC comments from Paul Kyzivat.</t>
+          </list>
+      </t>
+      <t>Changes from draft-ietf-mmusic-sctp-sdp-17
+          <list style="symbols">
+              <t>Removal of 'SCTP'.</t>
+              <t>Document title changed.</t>
+              <t>Disallow usage of SDP 'setup' attribute 'holdconn' value.</t>
+              <t>Roman Shpount added as co-editor.</t>
+          </list>
+      </t>
+      <t>Changes from draft-ietf-mmusic-sctp-sdp-15
+          <list style="symbols">
+              <t>Chapter about SCTP, DTLS and TCP association/connection management modified.</t>
+              <t>Removal of SCTP/DTLS.</t>
+          </list>
+      </t>
+      <t>Changes from draft-ietf-mmusic-sctp-sdp-14
+          <list style="symbols">
+              <t>Changes based on WGLC comments from Magnus Westerlund.</t>
+              <t>- ABNF clarification that token and port are defined in RFC4566.</t>
+              <t>- Specify 40 as maximum digit character length for the SDP max-message-size value.</t>
+              <t>- Editorial clarification.</t>
+              <t>Changes based on discussions at IETF#92.</t>
+              <t>- Specify that all ICE candidate pairs belong to the same DTLS association.</t>
+          </list>
+      </t>
+      <t>Changes from draft-ietf-mmusic-sctp-sdp-13
+          <list style="symbols">
+              <t>Changes based on comments from Paul Kyzivat.</t>
+              <t>- Text preventing usage of well-known ports removed.</t>
+              <t>- Editorial clarification.</t>
+          </list>
+      </t>
+      <t>Changes from draft-ietf-mmusic-sctp-sdp-12
+          <list style="symbols">
+              <t>Mux category rules added for new SDP attributes.</t>
+              <t>Reference to draft-ietf-mmusic-sdp-mux-attributes added.</t>
+              <t>Changes based on comments from Roman Shpount:</t>
+              <t>- Specify that fingerprint or setup roles must not be modified,
+                  unless underlying transport protocol is also modified.</t>
+              <t>Changes based on comments from Ari Keranen:</t>
+              <t>- Editorial corrections.</t>
+              <t>Changes based on comments from Flemming Andreasen:</t>
+              <t>- Clarify that, if UDP/DTLS/SCTP or TCP/DTLS/SCTP is used,
+                  the DTLS association is established before the SCTP association.</t>
+              <t>- Clarify that max-message-size value is given in bytes, and
+                  that different values can be used per direction.</t>
+              <t>- Section on fmtp attribute removed.</t>
+              <t>- Editorial corrections.</t>
+          </list>
+      </t>
+      <t>Changes from draft-ietf-mmusic-sctp-sdp-11
+          <list style="symbols">
+              <t>Example added.</t>
+          </list>
+      </t>
+      <t>Changes from draft-ietf-mmusic-sctp-sdp-10
+          <list style="symbols">
+              <t>SDP max-message-size attribute added to IANA considerations.</t>
+              <t>Changes based on comments from Paul Kyzivat:</t>
+              <t>- Text about max message size removed from fmtp attribute section.</t>
+          </list>
+      </t>
+      <t>Changes from draft-ietf-mmusic-sctp-sdp-09
+          <list style="symbols">
+              <t>'DTLS/SCTP' split into 'UDP/DTLS/SCTP' and 'TCP/DTLS/SCTP'</t>
+              <t>Procedures for realizing UDP/DTLS/SCTP- and TCP/DTLS/SCTP transports added.</t>
+          </list>
+      </t>
+      <t>Changes from draft-ietf-mmusic-sctp-sdp-08
+          <list style="symbols">
+              <t>Default SCTP port removed:</t>
+              <t>- Usage of SDP sctp-port attribute mandatory.</t>
+              <t>SDP max-message-size attribute defined:</t>
+              <t>- Attribute definition.</t>
+              <t>- SDP Offer/Answer procedures.</t>
+              <t>Text about SDP direction attributes added.</t>
+              <t>Text about TLS role determination added.</t>
+          </list>
+      </t>
+  </section>
 </middle>
 
 <back>
-	<references title="Normative References">
-		<?rfc include="reference.RFC.2119"?>
-		<?rfc include="reference.RFC.3264"?>
-		<?rfc include="reference.RFC.4145"?>
-		<?rfc include="reference.RFC.4566"?>
-		<?rfc include="reference.RFC.4571"?>
-		<?rfc include="reference.RFC.4572"?>
-		<?rfc include="reference.RFC.4960"?>
-		<?rfc include="reference.RFC.5226"?>
-		<?rfc include="reference.RFC.6347"?>
-    <?rfc include="reference.I-D.draft-ietf-mmusic-4572-update-10"?>
-    <?rfc include="reference.I-D.draft-ietf-mmusic-dtls-sdp-15"?>
-		<?rfc include="reference.I-D.draft-ietf-tsvwg-sctp-dtls-encaps-09"?>
-		<?rfc include="reference.I-D.draft-ietf-mmusic-sdp-mux-attributes-16"?>
-	</references>
-	<references title="Informative References">
-		<?rfc include="reference.RFC.0793"?>
-		<?rfc include="reference.RFC.5245"?>
-		<?rfc include="reference.RFC.6544"?>
-    <?rfc include="reference.I-D.draft-ietf-rtcweb-data-channel-13"?>
-    <?rfc include="reference.I-D.draft-ietf-mmusic-data-channel-sdpneg-10"?>
-    <?rfc include="reference.I-D.draft-ietf-rtcweb-data-protocol-09"?>
-	</references>
+    <references title="Normative References">
+        <?rfc include="reference.RFC.0793"?>
+        <?rfc include="reference.RFC.2119"?>
+        <?rfc include="reference.RFC.3264"?>
+        <?rfc include="reference.RFC.4145"?>
+        <?rfc include="reference.RFC.4566"?>
+        <?rfc include="reference.RFC.4571"?>
+        <?rfc include="reference.RFC.4960"?>
+        <?rfc include="reference.RFC.5226"?>
+        <?rfc include="reference.RFC.6347"?>
+        <?rfc include="reference.RFC.6544"?>
+        <?rfc include="reference.I-D.draft-ietf-mmusic-4572-update-11"?>
+        <?rfc include="reference.I-D.draft-ietf-mmusic-dtls-sdp-16"?>
+        <?rfc include="reference.I-D.draft-ietf-tsvwg-sctp-dtls-encaps-09"?>
+        <?rfc include="reference.I-D.draft-ietf-mmusic-sdp-mux-attributes-16"?>
+    </references>
+    <references title="Informative References">
+        <?rfc include="reference.RFC.5245"?>
+        <?rfc include="reference.I-D.draft-ietf-rtcweb-data-channel-13"?>
+        <?rfc include="reference.I-D.draft-ietf-mmusic-data-channel-sdpneg-10"?>
+        <?rfc include="reference.I-D.draft-ietf-rtcweb-data-protocol-09"?>
+     </references>
 </back>
 </rfc>
