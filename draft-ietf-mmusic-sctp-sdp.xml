@@ -122,10 +122,10 @@
       SCTP-over-DTLS associations.
   	</t>
     <t>
-      NOTE: Due to the characteristics of TCP, usage of 'TCP/DTLS/SCTP' will always
-      force ordered and reliable delivery of the SCTP packets, which limits the usage of
-      the SCTP options. Therefore, it is RECOMMENDED that TCP is only used
-      in situations where UDP traffic is blocked.
+      NOTE: Due to the characteristics of TCP, while multiple SCTP streams can still
+      be used,usage of 'TCP/DTLS/SCTP' will always force ordered and reliable delivery
+      of the SCTP packets, which limits the usage of the SCTP options. Therefore, it is
+      RECOMMENDED that TCP is only used in situations where UDP traffic is blocked.
     </t>
   </section>
 
@@ -255,10 +255,10 @@
 
     m= line parameter        parameter value(s)
     ------------------------------------------------------------------
-    <media>:                 "application"
-    <proto>:                 "UDP/DTLS/SCTP" or "TCP/DTLS/SCTP"
-    <port>:                  UDP port number (for "UDP/DTLS/SCTP")
-                             TCP port number (for ""UDP/DTLS/SCTP")
+    <media>:                 'application'
+    <proto>:                 'UDP/DTLS/SCTP' or 'TCP/DTLS/SCTP'
+    <port>:                  UDP port number (for 'UDP/DTLS/SCTP')
+                             TCP port number (for 'TCP/DTLS/SCTP')
     <fmt>:                   a string denoting the association-usage,
                              limited to the syntax of a 'token' as
                              defined in RFC4566.
@@ -870,7 +870,7 @@
  SDP Offer:
 
     m=application 54111 UDP/DTLS/SCTP webrtc-datachannel
-    c=IN IP4 192.0.2.1
+    c=IN IP6 2001:DB8::A8FD
     a=dtls-id:abc3dl
     a=setup:actpass
     a=sctp-port:5000
@@ -888,7 +888,7 @@
  SDP Answer:
 
     m=application 64300 UDP/DTLS/SCTP webrtc-datachannel
-    c=IN IP4 192.0.2.2
+    c=IN IP6 2001:DB8::001D
     a=dtls-id:ggr4rd
     a=setup:passive
     a=sctp-port:6000
@@ -1027,12 +1027,17 @@
           The authors wish to thank Harald Alvestrand, Randell Jesup, Paul Kyzivat,
           Michael Tuexen, Juergen Stoetzer-Bradler, Flemming Andreasen and Ari Keranen for
           their comments and useful feedback. Ben Campbell provided comments as part
-          of his AD review.
+          of his AD review. Brian Carpenter performed the Gen-ART review.
       </t>
   </section>
 
   <section title="">
       <t>[RFC EDITOR NOTE: Please remove this section when publishing]</t>
+      <t>Changes from draft-ietf-mmusic-sctp-sdp-22
+          <list style="symbols">
+              <t>Changes based on Gen-ART review by Brian Carpenter.</t>
+          </list>
+      </t>
       <t>Changes from draft-ietf-mmusic-sctp-sdp-21
           <list style="symbols">
               <t>Changes based on AD review by Ben Campbell.</t>
