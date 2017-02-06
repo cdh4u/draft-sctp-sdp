@@ -123,7 +123,7 @@
   	</t>
     <t>
       NOTE: Due to the characteristics of TCP, while multiple SCTP streams can still
-      be used,usage of 'TCP/DTLS/SCTP' will always force ordered and reliable delivery
+      be used, usage of 'TCP/DTLS/SCTP' will always force ordered and reliable delivery
       of the SCTP packets, which limits the usage of the SCTP options. Therefore, it is
       RECOMMENDED that TCP is only used in situations where UDP traffic is blocked.
     </t>
