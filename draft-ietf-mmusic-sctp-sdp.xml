@@ -5,7 +5,7 @@
 <?rfc compact="yes" ?>
 <?rfc subcompact="no" ?>
 <?rfc sortrefs="no" ?>
-<rfc category="std" docName="draft-ietf-mmusic-sctp-sdp-22" ipr="trust200902">
+<rfc category="std" docName="draft-ietf-mmusic-sctp-sdp-23" ipr="trust200902">
 
 <?xml-stylesheet type="text/xsl" href="rfc2629.xslt" ?>
 
@@ -1151,15 +1151,15 @@
         <?rfc include="reference.RFC.5226"?>
         <?rfc include="reference.RFC.6347"?>
         <?rfc include="reference.RFC.6544"?>
-        <?rfc include="reference.I-D.draft-ietf-mmusic-4572-update-11"?>
-        <?rfc include="reference.I-D.draft-ietf-mmusic-dtls-sdp-16"?>
+        <?rfc include="reference.I-D.draft-ietf-mmusic-4572-update-13"?>
+        <?rfc include="reference.I-D.draft-ietf-mmusic-dtls-sdp-18"?>
         <?rfc include="reference.I-D.draft-ietf-tsvwg-sctp-dtls-encaps-09"?>
         <?rfc include="reference.I-D.draft-ietf-mmusic-sdp-mux-attributes-16"?>
     </references>
     <references title="Informative References">
         <?rfc include="reference.RFC.5245"?>
         <?rfc include="reference.I-D.draft-ietf-rtcweb-data-channel-13"?>
-        <?rfc include="reference.I-D.draft-ietf-mmusic-data-channel-sdpneg-10"?>
+        <?rfc include="reference.I-D.draft-ietf-mmusic-data-channel-sdpneg-11"?>
         <?rfc include="reference.I-D.draft-ietf-rtcweb-data-protocol-09"?>
      </references>
 </back>
