@@ -475,14 +475,16 @@
               </t>
               <t>
                   DTLS on top of TCP is realized using the framing method defined in
-                  <xref target="RFC4571"/>, with DTLS packets being sent instead of
-                  RTP/RTCP packets, and SDP signaling according to the procedures
+                  <xref target="RFC4571"/>, with DTLS packets being sent and received 
+                  instead of RTP/RTCP packets using the shim defined in <xref target="RFC4571"/>,
+                  so that length field defined in <xref target="RFC4571"/>
+                  precedes each DTLS message, and SDP signaling according to the procedures
                   defined in this specification.
               </t>
           </list>
       </t>
       <t>
-          NOTE: DTLS on top of TCP, without using the framing method defined in
+          NOTE: TLS on top of TCP, without using the framing method defined in
           <xref target="RFC4571"/> is outside the scope of this specification.
           A separate proto value would need to be registered for such transport realization.
       </t>
@@ -833,26 +835,51 @@
               then the procedures for TCP/DTLS/SCTP [<xref target="sec-tcp-dtls-sctp"/>] are used.
           </t>
           <t>
+              In ICE environments, during the nomination process, end points go through multiple
+              ICE candidate pairs, until the most preferred candidate pair is found. During 
+              the nomination process, data can be sent as soon as the first working candidate
+              pair is found, but the nomination process still continues and selected candidate pairs
+              can still change while data is sent. Furthermore, if end points roam between networks,
+              for instance when mobile end point switches from mobile connection to WiFi, end points will
+              initiate an ICE restart, which will trigger a new nomination process between the new set
+              of candidates and likely result in the new nominated candidate pair.
+          </t>
+          <t>
               Implementations MUST treat all ICE candidate pairs associated with
               an SCTP association on top of a DTLS association as part of the same
               DTLS association. Thus, there will only be one SCTP handshake and one DTLS
               handshake even if there are multiple valid candidate pairs, and shifting from one candidate
-              pair to another will not impact the SCTP or DTLS associations. If new candidates
-              are added, they will also be part of the same SCTP and DTLS associations. When transitioning
-              between candidate pairs, different candidate pairs can be currently active
-              in different directions and implementations MUST be ready to receive
-              data on any of the candidates, even if this means sending and receiving data using
-              UDP/DTLS/SCTP and TCP/DTLS/SCTP at the same time in different directions.
+              pair to another, including switching between UDP to TCP candidate pairs, will not impact
+              the SCTP or DTLS associations. If new candidates are added, they will also be part of the
+              same SCTP and DTLS associations. When transitioning between candidate pairs, different
+              candidate pairs can be currently active in different directions and implementations MUST
+              be ready to receive data on any of the candidates, even if this means sending and receiving
+              data using UDP/DTLS/SCTP and TCP/DTLS/SCTP at the same time in different directions.
           </t>
           <t>
-              When an SDP offer or answer is sent, the proto value MUST match the
-              transport protocol associated with the default candidate. Hence, if UDP
-              transport is used for the default candidate the 'UDP/DTLS/SCTP'
-              proto value MUST be used. If TCP transport is used for the default
-              candidate the 'TCP/DTLS/SCTP' proto value MUST be used.
-              However, if an endpoint switches between TCP-based and UDP-based candidates
-              during a session the endpoint is not required to send an SDP offer in order
-              to modify that proto value of the associated m- line.
+              In order to maximize the likelihood of interoperability between the end points, all 
+              ICE enabled SCTP-over-DTLS end points SHOULD implement support for UDP/DTLS/SCTP.
+          </t>
+          <t>
+              When an SDP offer or answer is sent with multiple ICE candidates during initial connection
+              negotiation or after ICE restart, UDP based candidates SHOULD be included and default
+              candidate SHOULD be chosen from one of those UDP candidates. The proto value MUST match
+              the transport protocol associated with the default candidate. If UDP transport is used
+              for the default candidate, then 'UDP/DTLS/SCTP' proto value MUST be used. If TCP transport
+              is used for the default candidate, then 'TCP/DTLS/SCTP' proto value MUST be used. 
+              Note that under normal circumstances the proto value for offers and answers sent during ICE
+              nomination SHOULD be 'UDP/DTLS/SCTP'.
+          </t>
+          <t>
+              When a subsequent SDP offer or answer is sent after ICE nomination is complete and does not
+              initiate ICE restart, it will contain only the currently negotiated ICE candidate pair.
+              In this case, the proto value MUST match the transport protocol associated with the currently
+              negotiated ICE candidate pair. If UDP transport is used for the currently negotiated pair,
+              then 'UDP/DTLS/SCTP' proto value MUST be used. If TCP transport is used for the currently
+              negotiated pair, then  'TCP/DTLS/SCTP' proto value MUST be used. Please note that if an endpoint
+              switches between TCP-based and UDP-based candidates during the nomination process the endpoint
+              is not required to send an SDP offer for the sole purpose of keeping the proto value of the
+              associated m- line in sync.
           </t>
           <t>
               NOTE: The text in the paragraph above only applies when the usage of ICE
