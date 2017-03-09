@@ -5,7 +5,7 @@
 <?rfc compact="yes" ?>
 <?rfc subcompact="no" ?>
 <?rfc sortrefs="no" ?>
-<rfc category="std" docName="draft-ietf-mmusic-sctp-sdp-23" ipr="trust200902">
+<rfc category="std" docName="draft-ietf-mmusic-sctp-sdp-24" ipr="trust200902">
 
 <?xml-stylesheet type="text/xsl" href="rfc2629.xslt" ?>
 
@@ -475,7 +475,7 @@
               </t>
               <t>
                   DTLS on top of TCP is realized using the framing method defined in
-                  <xref target="RFC4571"/>, with DTLS packets being sent and received 
+                  <xref target="RFC4571"/>, with DTLS packets being sent and received
                   instead of RTP/RTCP packets using the shim defined in <xref target="RFC4571"/>,
                   so that length field defined in <xref target="RFC4571"/>
                   precedes each DTLS message, and SDP signaling according to the procedures
@@ -835,12 +835,12 @@
               then the procedures for TCP/DTLS/SCTP [<xref target="sec-tcp-dtls-sctp"/>] are used.
           </t>
           <t>
-              In ICE environments, during the nomination process, end points go through multiple
-              ICE candidate pairs, until the most preferred candidate pair is found. During 
+              In ICE environments, during the nomination process, endpoints go through multiple
+              ICE candidate pairs, until the most preferred candidate pair is found. During
               the nomination process, data can be sent as soon as the first working candidate
               pair is found, but the nomination process still continues and selected candidate pairs
-              can still change while data is sent. Furthermore, if end points roam between networks,
-              for instance when mobile end point switches from mobile connection to WiFi, end points will
+              can still change while data is sent. Furthermore, if endpoints roam between networks,
+              for instance when mobile endpoint switches from mobile connection to WiFi, endpoints will
               initiate an ICE restart, which will trigger a new nomination process between the new set
               of candidates and likely result in the new nominated candidate pair.
           </t>
@@ -857,8 +857,8 @@
               data using UDP/DTLS/SCTP and TCP/DTLS/SCTP at the same time in different directions.
           </t>
           <t>
-              In order to maximize the likelihood of interoperability between the end points, all 
-              ICE enabled SCTP-over-DTLS end points SHOULD implement support for UDP/DTLS/SCTP.
+              In order to maximize the likelihood of interoperability between the endpoints, all
+              ICE enabled SCTP-over-DTLS endpoints SHOULD implement support for UDP/DTLS/SCTP.
           </t>
           <t>
               When an SDP offer or answer is sent with multiple ICE candidates during initial connection
@@ -866,17 +866,17 @@
               candidate SHOULD be chosen from one of those UDP candidates. The proto value MUST match
               the transport protocol associated with the default candidate. If UDP transport is used
               for the default candidate, then 'UDP/DTLS/SCTP' proto value MUST be used. If TCP transport
-              is used for the default candidate, then 'TCP/DTLS/SCTP' proto value MUST be used. 
+              is used for the default candidate, then 'TCP/DTLS/SCTP' proto value MUST be used.
               Note that under normal circumstances the proto value for offers and answers sent during ICE
               nomination SHOULD be 'UDP/DTLS/SCTP'.
           </t>
           <t>
-              When a subsequent SDP offer or answer is sent after ICE nomination is complete and does not
-              initiate ICE restart, it will contain only the currently negotiated ICE candidate pair.
+              When a subsequent SDP offer or answer is sent after ICE nomination is complete, and does not
+              initiate ICE restart, it will contain only the currently nominated ICE candidate pair.
               In this case, the proto value MUST match the transport protocol associated with the currently
-              negotiated ICE candidate pair. If UDP transport is used for the currently negotiated pair,
+              negotiated ICE candidate pair. If UDP transport is used for the currently nominated pair,
               then 'UDP/DTLS/SCTP' proto value MUST be used. If TCP transport is used for the currently
-              negotiated pair, then  'TCP/DTLS/SCTP' proto value MUST be used. Please note that if an endpoint
+              negotiated pair, then 'TCP/DTLS/SCTP' proto value MUST be used. Please note that if an endpoint
               switches between TCP-based and UDP-based candidates during the nomination process the endpoint
               is not required to send an SDP offer for the sole purpose of keeping the proto value of the
               associated m- line in sync.
@@ -1060,6 +1060,12 @@
 
   <section title="">
       <t>[RFC EDITOR NOTE: Please remove this section when publishing]</t>
+      <t>Changes from draft-ietf-mmusic-sctp-sdp-23
+          <list style="symbols">
+              <t>Changes based on IESG review.</t>
+              <t>- Proto value clarifications.</t>
+          </list>
+      </t>
       <t>Changes from draft-ietf-mmusic-sctp-sdp-22
           <list style="symbols">
               <t>Changes based on Gen-ART review by Brian Carpenter.</t>
