@@ -5,7 +5,7 @@
 <?rfc compact="yes" ?>
 <?rfc subcompact="no" ?>
 <?rfc sortrefs="no" ?>
-<rfc category="std" docName="draft-ietf-mmusic-sctp-sdp-24" ipr="trust200902">
+<rfc category="std" docName="draft-ietf-mmusic-sctp-sdp-25" ipr="trust200902">
 
 <?xml-stylesheet type="text/xsl" href="rfc2629.xslt" ?>
 
@@ -101,7 +101,7 @@
             (SDP) <xref target="RFC4145"/> specifies a general mechanism for describing and
             establishing TCP <xref target="RFC0793"/> streams.
             Connection-Oriented Media Transport over the Transport Layer Security (TLS)
-            Protocol in SDP <xref target="I-D.ietf-mmusic-4572-update"/> extends RFC4145 <xref target="RFC4145"/> for
+            Protocol in SDP <xref target="RFC8122"/> extends RFC4145 <xref target="RFC4145"/> for
             describing TCP-based media streams that are protected using TLS.
         </t>
         <t>
@@ -566,7 +566,7 @@
       <t>
         A DTLS association is managed according to the procedures in <xref target="I-D.ietf-mmusic-dtls-sdp"/>.
         Hence, the SDP 'setup' attribute is used to negotiate the (D)TLS roles ('client' and 'server')
-        <xref target="I-D.ietf-mmusic-4572-update"/>.
+        <xref target="RFC8122"/>.
       </t>
       <t>
         NOTE: The SDP 'setup' attribute is used to negotiate both the DTLS roles and the
@@ -610,16 +610,16 @@
       <t>
         Each endpoint MUST associate one or more certificate fingerprints, using
         the SDP 'fingerprint' attribute with the m- line, following the procedures
-        in <xref target="I-D.ietf-mmusic-4572-update"/>.
+        in <xref target="RFC8122"/>.
       </t>
       <t>
         The authentication certificates are interpreted and validated as
-        defined in <xref target="I-D.ietf-mmusic-4572-update"/>. Self-signed
+        defined in <xref target="RFC8122"/>. Self-signed
         certificates can be used securely, provided that the integrity of the
-        SDP description is assured as defined in <xref target="I-D.ietf-mmusic-4572-update"/>.
+        SDP description is assured as defined in <xref target="RFC8122"/>.
       </t>
       <t>
-        Each endpoint MUST associate an SDP 'dtls-id' attribute with the m- line,
+        Each endpoint MUST associate an SDP 'tls-id' attribute with the m- line,
         following the procedures in <xref target="I-D.ietf-mmusic-dtls-sdp"/>.
       </t>
       </section>
@@ -873,7 +873,7 @@
           <t>
               When a subsequent SDP offer or answer is sent after ICE nomination is complete, and does not
               initiate ICE restart, it will contain only the nominated ICE candidate pair.
-              In this case, the proto value MUST match the transport protocol associated with the 
+              In this case, the proto value MUST match the transport protocol associated with the
               nominated ICE candidate pair. If UDP transport is used for the nominated pair,
               then 'UDP/DTLS/SCTP' proto value MUST be used. If TCP transport is used for the
               nominated pair, then 'TCP/DTLS/SCTP' proto value MUST be used. Please note that if an endpoint
@@ -898,7 +898,7 @@
 
     m=application 54111 UDP/DTLS/SCTP webrtc-datachannel
     c=IN IP6 2001:DB8::A8FD
-    a=dtls-id:abc3dl
+    a=tls-id:abc3de65cddef001be82
     a=setup:actpass
     a=sctp-port:5000
     a=max-message-size:100000
@@ -916,7 +916,7 @@
 
     m=application 64300 UDP/DTLS/SCTP webrtc-datachannel
     c=IN IP6 2001:DB8::001D
-    a=dtls-id:ggr4rd
+    a=tls-id:dbc8de77cddef001be90
     a=setup:passive
     a=sctp-port:6000
     a=max-message-size:100000
@@ -934,7 +934,7 @@
   <section title="Security Considerations">
       <t>
           <xref target="RFC4566"/> defines general SDP security considerations, while
-          <xref target="RFC3264"/>, <xref target="RFC4145"/> and <xref target="I-D.ietf-mmusic-4572-update"/>
+          <xref target="RFC3264"/>, <xref target="RFC4145"/> and <xref target="RFC8122"/>
           define security considerations when using the SDP offer/answer mechanism
           to negotiate media streams.
       </t>
@@ -1060,6 +1060,16 @@
 
   <section title="">
       <t>[RFC EDITOR NOTE: Please remove this section when publishing]</t>
+      <t>Changes from draft-ietf-mmusic-sctp-sdp-25
+          <list style="symbols">
+              <t>SDP 'dtls-id' attribute re-named to 'tls-id'.</t>
+          </list>
+      </t>
+      <t>Changes from draft-ietf-mmusic-sctp-sdp-24
+          <list style="symbols">
+              <t>Minor editorial fix by Roman.</t>
+          </list>
+      </t>
       <t>Changes from draft-ietf-mmusic-sctp-sdp-23
           <list style="symbols">
               <t>Changes based on IESG review.</t>
@@ -1184,15 +1194,15 @@
         <?rfc include="reference.RFC.5226"?>
         <?rfc include="reference.RFC.6347"?>
         <?rfc include="reference.RFC.6544"?>
-        <?rfc include="reference.I-D.draft-ietf-mmusic-4572-update-13"?>
-        <?rfc include="reference.I-D.draft-ietf-mmusic-dtls-sdp-18"?>
+        <?rfc include="reference.RFC.8122"?>
+        <?rfc include="reference.I-D.draft-ietf-mmusic-dtls-sdp-24"?>
         <?rfc include="reference.I-D.draft-ietf-tsvwg-sctp-dtls-encaps-09"?>
         <?rfc include="reference.I-D.draft-ietf-mmusic-sdp-mux-attributes-16"?>
     </references>
     <references title="Informative References">
         <?rfc include="reference.RFC.5245"?>
         <?rfc include="reference.I-D.draft-ietf-rtcweb-data-channel-13"?>
-        <?rfc include="reference.I-D.draft-ietf-mmusic-data-channel-sdpneg-11"?>
+        <?rfc include="reference.I-D.draft-ietf-mmusic-data-channel-sdpneg-12"?>
         <?rfc include="reference.I-D.draft-ietf-rtcweb-data-protocol-09"?>
      </references>
 </back>
