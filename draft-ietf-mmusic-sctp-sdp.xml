@@ -5,7 +5,7 @@
 <?rfc compact="yes" ?>
 <?rfc subcompact="no" ?>
 <?rfc sortrefs="no" ?>
-<rfc category="std" docName="draft-ietf-mmusic-sctp-sdp-26" ipr="trust200902">
+<rfc category="std" docName="draft-ietf-mmusic-sctp-sdp-27" ipr="trust200902">
 
 <?xml-stylesheet type="text/xsl" href="rfc2629.xslt" ?>
 
@@ -70,7 +70,7 @@
         </address>
     </author>
 
-    <date year="2017"/>
+    <date year="2019"/>
     <area>RAI</area>
     <workgroup>MMUSIC</workgroup>
     <keyword>SCTP, SDP, DTLS</keyword>
@@ -278,8 +278,8 @@
               ]]></artwork>
           </figure>
           <t>
-              NOTE: 'webrtc-datachannel' indicates the WebRTC Data Channel Establishment Protocol
-              defined in <xref target="I-D.ietf-rtcweb-data-protocol"/>.
+              NOTE: 'webrtc-datachannel' indicates a WebRTC data channel
+              defined in <xref target="I-D.ietf-rtcweb-data-channel"/>.
           </t>
       </section>
   </section>
@@ -1029,17 +1029,23 @@
           <figure anchor="exempleIANA" title="">
               <artwork><![CDATA[
 
-     |----------------------------------------------------------|
-     |         name       |           Reference                 |
-     |----------------------------------------------------------|
-     | webrtc-datachannel | draft-ietf-rtcweb-data-protocol-xx, |
-     |                    | RFCXXX                              |
-     |----------------------------------------------------------|
+     |---------------------------------------------------------------|
+     |         name       |           Reference                      |
+     |---------------------------------------------------------------|
+     | webrtc-datachannel | draft-ietf-rtcweb-data-channel-xx,       |
+     |                    | RFCXXX                                   |
+     |                    | draft-ietf-rtcweb-data-protocol-xx,      |
+     |                    | RFCXXX                                   |
+     |                    | draft-ietf-mmusic-data-channel-sdpneg-xx |
+     |                    | RFCXXX                                   |
+     |---------------------------------------------------------------|
 
-  [RFC EDITOR NOTE: Please hold the publication of this draft
-  until draft-ietf-rtcweb-data-protocol has been published as an RFC.
-  Then, replace the reference to draft-ietf-rtcweb-data-protocol
-  with the RFC number.]
+draft-ietf-mmusic-data-channel-sdpneg
+
+  [RFC EDITOR NOTE: Please hold the publication of this draft until
+  draft-ietf-rtcweb-data-channel, draft-ietf-rtcweb-data-protocol and
+  draft-ietf-mmusic-data-channel-sdpneg have been published as RFCs.
+  Then, replace the reference to the drafts with the RFC number.]
 
   [RFC EDITOR NOTE: Please replace RFCXXXX with the RFC number
   of this document.]
